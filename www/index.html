@@ -26,10 +26,34 @@
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
+    <script src="lib/ionic-datepicker/dist/ionic-datepicker.bundle.min.js"></script>
+    <script src="lib/ionic-timepicker/dist/ionic-timepicker.bundle.min.js"></script>
+
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
+
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDmmDV3OMslrzUbeeMCj_Aj1hSTXe67bCc",
+        authDomain: "bioapp-bb33c.firebaseapp.com",
+        databaseURL: "https://bioapp-bb33c.firebaseio.com",
+        projectId: "bioapp-bb33c",
+        storageBucket: "bioapp-bb33c.appspot.com",
+        messagingSenderId: "623324303784"
+      };
+      firebase.initializeApp(config);
+    </script>
+
+    <script src="js/factoryEntry.js"></script>
+    <script src="js/factorySpecies.js"></script>
+    <script src="js/factoryStaf.js"></script>
+    <script src="js/factoryParts.js"></script>
+
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/services.js"></script>
@@ -38,10 +62,13 @@
     <!--
       The nav bar that will be updated as we navigate between views.
     -->
-    <ion-nav-bar class="bar-stable">
-      <ion-nav-back-button>
-      </ion-nav-back-button>
-    </ion-nav-bar>
+
+    <!--
+Create tabs with an icon and label, using the tabs-positive style.
+Each tab's child <ion-nav-view> directive will have its own
+navigation history that also transitions its views in and out.
+-->
+    
     <!--
       The views will be rendered in the <ion-nav-view> directive below
       Templates are in the /templates folder (but you could also

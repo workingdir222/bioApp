@@ -1,0 +1,28 @@
+<!--
+Create tabs with an icon and label, using the tabs-positive style.
+Each tab's child <ion-nav-view> directive will have its own
+navigation history that also transitions its views in and out.
+-->
+<ion-tabs class="abs-striped tabs-color-assertive tabs-icon-top">
+
+  <!-- Dashboard Tab -->
+  <ion-tab title="Specimen" icon-on="ion-pie-graph" icon-off="ion-ios-pie-outline" href="#/app/species/specimen">
+    <ion-nav-view name="tab-specimen"></ion-nav-view>
+  </ion-tab>
+  
+  <!-- Chats Tab -->
+  <ion-tab title="Parts" icon-on="ion-ios-list" icon-off="ion-ios-list-outline" href="#/app/species/parts">
+    <ion-nav-view name="tab-parts"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Account Tab -->
+  <ion-tab title="Measurement" icon-on="ion-ios-recording" icon-off="ion-ios-recording-outline" href="#/app/species/measurement">
+    <ion-nav-view name="tab-measurement"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="Capture Record" icon-on="ion-ios-camera" icon-off="ion-ios-camera-outline" href="#/app/species/capture">
+    <ion-nav-view name="tab-capture"></ion-nav-view>
+  </ion-tab>
+
+
+</ion-tabs>
