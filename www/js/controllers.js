@@ -81,17 +81,46 @@ angular.module('starter.controllers', [
 .controller('entryCtrl', [
   '$scope',
   '$http',
+  '$cordovaSQLite',
   'factoryEntry',
   'ionicDatePicker',
-  function ($scope, $http, factoryEntry, ionicDatePicker) {
+  function ($scope, $http, $cordovaSQLite, factoryEntry, ionicDatePicker) {
 
-      $scope._entry = factoryEntry;
+    $scope.firstnameText = "";
+    $scope.lastnameText = "";
 
-      $scope.postData = function() {
-        $scope._entry.postDB();
-      };
+    $scope.accounts = function() {
+      db.transaction(function(tx) {
+        tx.executeSql('SELECT count(*) AS mycount FROM DemoTable', [], function(tx, rs) {
+          console.log('Record count (expected to be 2): ' + rs.rows.item(0).mycount);
+        }, function(tx, error) {
+          console.log('SELECT error: ' + error.message);
+        });
+      });
+    }
+  
+    $scope.addAccount = function(){
+      db.transaction(function(tx) {
+        tx.executeSql('CREATE TABLE IF NOT EXISTS DemoTable (name, score)');
+        tx.executeSql('INSERT INTO DemoTable VALUES (?,?)', ['Alice', 101]);
+        tx.executeSql('INSERT INTO DemoTable VALUES (?,?)', ['Betty', 202]);
+      }, function(error) {
+        console.log('Transaction ERROR: ' + error.message);
+      }, function() {
+        console.log('Populated database OK');
+      });
+      
+      $scope.firstnameText = '';
+      $scope.lastnameText = '';
+    }
 
-      $scope.dateTest = "";
+    $scope._entry = factoryEntry;
+
+    $scope.postData = function() {
+      $scope._entry.postDB();
+    };
+
+    $scope.dateTest = "";
 
     var ipObj1 = {
       callback: function (val) {  //Mandatory

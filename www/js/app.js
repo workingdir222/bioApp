@@ -5,9 +5,12 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ionic-datepicker', 'ionic-timepicker'])
 
-.run(function($ionicPlatform) {
+var db = null;
+
+angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.services', 'ionic-datepicker', 'ionic-timepicker'])
+
+.run(function($ionicPlatform, $cordovaSQLite) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -20,6 +23,32 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+    ionic.Platform.ready(function () {   
+        if (window.cordova) {
+            db = $cordovaSQLite.openDB({
+                name: "my.db",
+                location: 1
+            })
+        } else {
+            db = window.sqlitePlugin.openDatabase({
+                name: 'my.db',
+                location: 1,
+                androidDatabaseImplementation: 2
+            });
+        }
+    });
+
+    db.transaction(function(tx) {
+        tx.executeSql('CREATE TABLE IF NOT EXISTS DemoTable (name, score)');
+        tx.executeSql('INSERT INTO DemoTable VALUES (?,?)', ['Alice', 101]);
+        tx.executeSql('INSERT INTO DemoTable VALUES (?,?)', ['Betty', 202]);
+    }, function(error) {
+        console.log('Transaction ERROR: ' + error.message);
+    }, function() {
+        console.log('Populated database OK');
+    });
+    
   });
 })
 

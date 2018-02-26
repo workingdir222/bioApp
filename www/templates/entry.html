@@ -1,22 +1,49 @@
 <ion-view view-title="Master Parts">
     <ion-content>
-        <ion-list>
-            <label class="item item-input">
-                <span class="input-label">Date</span>
-                <input type="text" ng-model="dateTest" value="{{dateTest}}" ng-click="openDatePicker()" placeholder="Date">
-            </label>
-            <label class="item item-input">
-                <span class="input-label">Site ID</span>
-                <input type="text" placeholder="Site ID">
-            </label>
-            <label class="item item-input">
-                <span class="input-label">Type</span>
-                <input type="text" placeholder="Type">
-            </label>
-            <label class="item item-input item-stacked-label">
-                <span class="input-label">Description</span>
-                <textarea placeholder="Description"></textarea>
-            </label>
-        </ion-list>
+        <form>
+            <ion-list>
+                <label class="item item-input">
+                    <span class="input-label">Date</span>
+                    <input type="text" ng-model="dateTest" value="{{dateTest}}" ng-click="openDatePicker()" placeholder="Date">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Site ID</span>
+                    <input type="text" placeholder="Site ID">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Type</span>
+                    <input type="text" placeholder="Type">
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Description</span>
+                    <textarea placeholder="Description"></textarea>
+                </label>
+
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">First Name</span>
+                    <input type="text" placeholder="John" ng-model="firstnameText">
+                </label>
+
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Last Name</span>
+                    <input type="text" placeholder="Suhr" ng-model="lastnameText">
+                </label>
+
+                <div class="padding">
+                    <button ng-click="addAccount()" class="button button-block button-positive">Create Account</button>
+                </div>
+
+            </ion-list>
+        </form>
+
+        <ul class="list list-inset">
+                <li class="item item-divider">
+                  {{accounts.length}} records
+                </li>
+                <li class="item" ng-repeat="account in accounts">
+                  <i class="icon ion-person"></i>&nbsp; - &nbsp;
+                  <span>{{account.firstname}} {{account.lastname}}</span>
+                </li>
+              </ul>
     </ion-content>
 </ion-view>    
