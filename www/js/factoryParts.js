@@ -5,12 +5,6 @@ angular.module('common.parts', []).factory('factoryParts', [
         var self = {};
         self.welcome = { name : 'Angular Factory Parts' };
 
-        self.postDB = function(){
-            firebase.database().ref('parts').set({
-                table: 'parts'
-            });
-        };
-
         return self;
 
     }

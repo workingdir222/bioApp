@@ -6,11 +6,9 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 
-var db = null;
-
 angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.services', 'ionic-datepicker', 'ionic-timepicker'])
 
-.run(function($ionicPlatform, $cordovaSQLite) {
+.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -23,31 +21,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-
-    ionic.Platform.ready(function () {   
-        if (window.cordova) {
-            db = $cordovaSQLite.openDB({
-                name: "my.db",
-                location: 1
-            })
-        } else {
-            db = window.sqlitePlugin.openDatabase({
-                name: 'my.db',
-                location: 1,
-                androidDatabaseImplementation: 2
-            });
-        }
-    });
-
-    db.transaction(function(tx) {
-        tx.executeSql('CREATE TABLE IF NOT EXISTS DemoTable (name, score)');
-        tx.executeSql('INSERT INTO DemoTable VALUES (?,?)', ['Alice', 101]);
-        tx.executeSql('INSERT INTO DemoTable VALUES (?,?)', ['Betty', 202]);
-    }, function(error) {
-        console.log('Transaction ERROR: ' + error.message);
-    }, function() {
-        console.log('Populated database OK');
-    });
     
   });
 })
@@ -60,6 +33,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
   // Each state's controller can be found in controllers.js
 
   $ionicConfigProvider.tabs.position('bottom');
+  $ionicConfigProvider.views.maxCache(0);
 
   var datePickerObj = {
     inputDate: new Date(),
@@ -91,8 +65,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
 
   $stateProvider
 
-  // setup an abstract state for the tabs directive
-
   .state('app', {
     url: '/app',
     abstract: true,
@@ -103,8 +75,27 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     url: '/entry',
     views: {
       'menuContent': {
-        templateUrl: 'templates/entry.html',
+        templateUrl: 'templates/tab-entry.html'
+      }
+    }
+  })
+
+  .state('app.entry.formentry', {
+    url: '/formentry',
+    views: {
+      'tab-form-entry': {
+        templateUrl: 'templates/entry/entry.html',
         controller: 'entryCtrl'
+      }
+    }
+  })
+
+  .state('app.entry.listentry', {
+    url: '/listentry',
+    views: {
+      'tab-list-entry': {
+        templateUrl: 'templates/entry/list-entry.html',
+        controller: 'listEntryCtrl'
       }
     }
   })
@@ -117,48 +108,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
       }
     }
   })
-
-  .state('app.event', {
-    url: '/event',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/event.html',
-        controller: 'eventCtrl'
-      }
-    }
-  })
-
-  .state('app.site', {
-    url: '/site',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/site.html',
-        controller: 'siteCtrl'
-      }
-    }
-  })
-
-  .state('app.staf', {
-    url: '/staf',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/staf.html',
-        controller: 'stafCtrl'
-      }
-    }
-  })
-  
-  .state('app.parts', {
-    url: '/parts',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/parts.html',
-        controller: 'partsCtrl'
-      }
-    }
-  })
-
-  // Each tab has its own nav history stack:
 
   .state('app.species.specimen', {
     url: '/specimen',
@@ -228,9 +177,48 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
         controller: 'AccountCtrl'
       }
     }
+  })
+
+  .state('app.event', {
+    url: '/event',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/event.html',
+        controller: 'eventCtrl'
+      }
+    }
+  })
+
+  .state('app.site', {
+    url: '/site',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/site.html',
+        controller: 'siteCtrl'
+      }
+    }
+  })
+
+  .state('app.staf', {
+    url: '/staf',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/staf.html',
+        controller: 'stafCtrl'
+      }
+    }
+  })
+  
+  .state('app.parts', {
+    url: '/parts',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/parts.html',
+        controller: 'partsCtrl'
+      }
+    }
   });
 
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/species/specimen');
+  $urlRouterProvider.otherwise('/app/entry/formentry');
 
 });

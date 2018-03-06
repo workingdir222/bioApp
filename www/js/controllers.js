@@ -1,8 +1,8 @@
 angular.module('starter.controllers', [
+  'common.entry',
   'common.species',
   'common.staf',
   'common.parts',
-  'common.entry'
 ])
 
 .controller('DashCtrl', function($scope) {})
@@ -81,76 +81,22 @@ angular.module('starter.controllers', [
 .controller('entryCtrl', [
   '$scope',
   '$http',
-  '$cordovaSQLite',
   'factoryEntry',
-  'ionicDatePicker',
-  function ($scope, $http, $cordovaSQLite, factoryEntry, ionicDatePicker) {
-
-    $scope.firstnameText = "";
-    $scope.lastnameText = "";
-
-    $scope.accounts = function() {
-      db.transaction(function(tx) {
-        tx.executeSql('SELECT count(*) AS mycount FROM DemoTable', [], function(tx, rs) {
-          console.log('Record count (expected to be 2): ' + rs.rows.item(0).mycount);
-        }, function(tx, error) {
-          console.log('SELECT error: ' + error.message);
-        });
-      });
-    }
-  
-    $scope.addAccount = function(){
-      db.transaction(function(tx) {
-        tx.executeSql('CREATE TABLE IF NOT EXISTS DemoTable (name, score)');
-        tx.executeSql('INSERT INTO DemoTable VALUES (?,?)', ['Alice', 101]);
-        tx.executeSql('INSERT INTO DemoTable VALUES (?,?)', ['Betty', 202]);
-      }, function(error) {
-        console.log('Transaction ERROR: ' + error.message);
-      }, function() {
-        console.log('Populated database OK');
-      });
-      
-      $scope.firstnameText = '';
-      $scope.lastnameText = '';
-    }
+  function ($scope, $http, factoryEntry) {
 
     $scope._entry = factoryEntry;
+      
+  }
+])
 
-    $scope.postData = function() {
-      $scope._entry.postDB();
-    };
+.controller('listEntryCtrl', [
+  '$scope',
+  '$http',
+  'factoryListEntry',
+  function ($scope, $http, factoryListEntry) {
 
-    $scope.dateTest = "";
-
-    var ipObj1 = {
-      callback: function (val) {  //Mandatory
-        console.log('Return value from the datepicker popup is : ' + val, new Date(val));
-        var date = new Date(val);
-        $scope.dateTest = date.getDate() +' - '+ (date.getMonth()+1) +' - '+ date.getFullYear();
-      },
-      disabledDates: [            //Optional
-        new Date(2018, 2, 16),
-        new Date(2017, 2, 16),
-        new Date(2016, 2, 16),
-        new Date(2015, 3, 16),
-        new Date(2015, 4, 16),
-        new Date(2015, 5, 16),
-        new Date('Wednesday, August 12, 2015'),
-        new Date("08-16-2016"),
-        new Date(1439676000000)
-      ],
-      from: new Date(2012, 1, 1), //Optional
-      to: new Date(2018, 12, 30), //Optional
-      inputDate: new Date(),      //Optional
-      mondayFirst: true,          //Optional
-      disableWeekdays: [0],       //Optional
-      closeOnSelect: false,       //Optional
-      templateType: 'popup'       //Optional
-    };
-
-    $scope.openDatePicker = function(){
-      ionicDatePicker.openDatePicker(ipObj1);
-    };
+    $scope._listEntry = factoryListEntry;
+    $scope._listEntry.loadData();
       
   }
 ])
