@@ -26,6 +26,7 @@ angular.module('common.listentry', []).factory('factoryListEntry', [
 
                 let settings = angular.fromJson(success);
                 const listProject = settings.tblEntry;
+                listProjectArr = [];
 
                 for (let i = 0; i < listProject.length; i++) {
 
@@ -41,7 +42,7 @@ angular.module('common.listentry', []).factory('factoryListEntry', [
 
                 if (i === (listProject.length - 1)) {
                     console.log(listProjectArr);
-                    $self.listEntry = listProjectArr;
+                    self.listEntry = listProjectArr;
                 }
                 
                 }
@@ -63,7 +64,7 @@ angular.module('common.listentry', []).factory('factoryListEntry', [
             }, function (error) {
                 // error
             })
-        }
+        };
 
         return self;
 

@@ -1,5 +1,6 @@
 angular.module('starter.controllers', [
   'common.entry',
+  'common.listentry',
   'common.species',
   'common.staf',
   'common.parts',
