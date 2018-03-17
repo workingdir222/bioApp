@@ -1,0 +1,33 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-stable bar-assertive">
+        <h1 class="title">Add Staf</h1>
+        <div class="buttons">
+        <button class="button button-clear" ng-click="closeStafPopup()">Close</button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <ion-list>
+            <ion-list>
+                <label class="item item-input">
+                    <span class="input-label">name</span>
+                    <input id="nameValue" ng-model="nameValue" ng-change="nameTyping(nameValue)" type="text"  vplaceholder="Name">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Initials</span>
+                    <input id="initialValue" ng-model="initialValue" ng-change="initialTyping(initialValue)" type="text" placeholder="Initial">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Affiliatuin</span>
+                    <input id="affiliatuinValue" ng-model="affiliatuinValue" ng-change="affiliatuinTyping(affiliatuinValue)" type="text" placeholder="Affiliatuin">
+                </label>
+
+            </ion-list>
+
+        <div class="padding">
+            <button ng-click="addListStaff()" class="button button-large button-block button-energized">
+                Save
+            </button>
+        </div>
+    </ion-content>
+</ion-modal-view>
+        

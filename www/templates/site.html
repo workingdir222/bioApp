@@ -6,14 +6,13 @@
                 <span class="input-label">Site ID</span>
                 <input type="text" placeholder="Reng Part">
             </label>
+            <button class="button button-block button-energized" ng-click="addStafPopup()">Add Staf</button>
             <label class="item item-input item-select">
                 <div class="input-label">
                     Lead Staff
                 </div>
                 <select>
-                    <option>---</option>
-                    <option>---</option>
-                    <option>---</option>
+                    <option ng-repeat="listStaf in stafList">{{listStaf.name}}</option>
                 </select>
             </label>
             <label class="item item-input item-select">

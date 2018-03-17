@@ -71,21 +71,31 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     templateUrl: 'templates/menu.html'
   })
 
+  // .state('app.entry', {
+  //   url: '/entry',
+  //   views: {
+  //     'menuContent': {
+  //       templateUrl: 'templates/tab-entry.html'
+  //     }
+  //   }
+  // })
+
   .state('app.entry', {
     url: '/entry',
     views: {
       'menuContent': {
-        templateUrl: 'templates/tab-entry.html'
+        templateUrl: 'templates/entry/entry.html',
+        controller: 'entryCtrl'
       }
     }
   })
 
-  .state('app.entry.formentry', {
-    url: '/formentry',
+  .state('app.entry-detail', {
+    url: '/entry-detail/:id',
     views: {
-      'tab-form-entry': {
-        templateUrl: 'templates/entry/entry.html',
-        controller: 'entryCtrl'
+      'menuContent': {
+        templateUrl: 'templates/entry/detail-entry.html',
+        controller: 'EntryDetailCtrl'
       }
     }
   })
@@ -124,7 +134,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
       views: {
         'tab-parts': {
           templateUrl: 'templates/specimen/parts.html',
-          controller: 'ChatsCtrl'
+          controller: 'partsCtrl'
         }
       }
     })
@@ -144,7 +154,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
       views: {
         'tab-capture': {
           templateUrl: 'templates/specimen/capture.html',
-          controller: 'speciesCtrl'
+          controller: 'captureCtrl'
         }
       }
     })
@@ -219,6 +229,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     }
   });
 
-  $urlRouterProvider.otherwise('/app/entry/formentry');
+  $urlRouterProvider.otherwise('/app/entry');
 
 });

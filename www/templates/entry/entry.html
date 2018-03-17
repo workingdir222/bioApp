@@ -1,32 +1,21 @@
 <ion-view view-title="Master Entry">
     <ion-content>
-        <form>
-            <ion-list>
-                <label class="item item-input">
-                    <span class="input-label">Date</span>
-                    <input type="text" ng-model="_entry.dateEntry" value="{{_entry.dateEntry}}" ng-click="_entry.openDatePicker()" placeholder="Date">
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Site ID</span>
-                    <input type="text" id="siteID" placeholder="Site ID">
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Type</span>
-                    <input type="text" id="typeEntry" placeholder="Type">
-                </label>
-                <label class="item item-input item-stacked-label">
-                    <span class="input-label">Description</span>
-                    <textarea id="desEntry" placeholder="Description"></textarea>
-                </label>
 
-                <div class="padding">
-                    <button ng-click="_entry.checkDbFile()" class="button button-block button-positive">Create Project</button>
-                    <!-- <button ng-click="accounts()" class="button button-block button-positive">Create Account</button>
-                    <button ng-click="deleteDB()" class="button button-block button-positive">Create Account</button> -->
-                </div>
+        <ion-list>
+            <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="list in _entry.listEntry" type="item-text-wrap" href="#/app/entry-detail/{{list.id}}">
+                <h2 class="text-capitalize">{{list.siteID}}</h2>
+                <p>{{list.dateEntry | date:'MMM dd y'}}</p>
+                <i class="icon ion-chevron-right icon-accessory"></i>
 
-            </ion-list>
-        </form>
+                <ion-option-button class="button-assertive">
+                Delete
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+        
+        <div class="padding">
+            <button ng-click="addEntryList()" class="button button-large button-block button-energized">Create Project</button>
+        </div>
 
     </ion-content>
 </ion-view>    

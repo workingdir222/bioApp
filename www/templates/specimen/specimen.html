@@ -1,47 +1,47 @@
 <ion-view view-title="Specimen">
     <ion-content>
-
+        
         <ion-list>
             <label class="item item-input">
                 <span class="input-label">Reg</span>
-                <input type="text" placeholder="Reg">
+                <input id="inputReg" type="text" placeholder="Reg">
             </label>
             <label class="item item-input">
                 <span class="input-label">Collector</span>
-                <input type="text" placeholder="Colector">
+                <input id="inputCollector" type="text" placeholder="Colector">
             </label>
             <label class="item item-input">
                 <span class="input-label">Initials</span>
-                <input type="text" placeholder="Initials">
+                <input id="inputInitials" type="text" placeholder="Initials">
             </label>
             <label class="item item-input">
                 <span class="input-label">Preparator</span>
-                <input type="text" placeholder="Preparator">
+                <input id="inputPreparator" type="text" placeholder="Preparator">
             </label>
             <label class="item item-input">
                 <span class="input-label">Genu</span>
-                <input type="text" placeholder="Genu">
+                <input id="inputGenu" type="text" placeholder="Genu">
             </label>
             <label class="item item-input">
                 <span class="input-label">Species</span>
-                <input type="text" placeholder="Species">
+                <input id="inputSpecies" type="text" placeholder="Species">
             </label>
     
             <label class="item item-input">
                 <span class="input-label">field</span>
-                <input type="text" placeholder="field">
+                <input id="inputField1" type="text" placeholder="field">
             </label>
             <label class="item item-input">
                 <span class="input-label">field</span>
-                <input type="text" placeholder="field">
+                <input id="inputField2" type="text" placeholder="field">
             </label>
             <label class="item item-input">
                 <span class="input-label">field</span>
-                <input type="text" placeholder="field">
+                <input id="inputField3" type="text" placeholder="field">
             </label>
             <label class="item item-input item-stacked-label">
                 <span class="input-label">field</span>
-                <textarea placeholder="field"></textarea>
+                <textarea id="inputField4" placeholder="field"></textarea>
             </label>
         </ion-list>
 
@@ -52,6 +52,12 @@
                 <a ng-click="login()" class="button button-outline button-assertive">Speciment List</a>
             </div>
         </div>
+
+        <!-- <div class="padding">
+            <button ng-click="_entry.checkDbFile()" class="button button-large button-block button-energized">
+                Save
+            </button>
+        </div> -->
         
     </ion-content>
 </ion-view>

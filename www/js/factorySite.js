@@ -1,9 +1,9 @@
-angular.module('common.staf', []).factory('factoryStaf', [
+angular.module('common.site', []).factory('factorySite', [
     '$http',
     function ($http) {
 
         var self = {};
-        self.welcome = { name : 'Angular Factory Staf' };nameValue, initialValue, affiliatuinValue
+        self.welcome = { name : 'Angular Factory Staf' };
 
         self.stafList = [{
             id: 0,
@@ -31,20 +31,6 @@ angular.module('common.staf', []).factory('factoryStaf', [
             lastText: 'This is wicked good ice cream.',
             face: 'img/mike.png'
           }];
-
-          self.addListStaff = function() {
-              var staffArr ={
-                  id: self.stafList.lengt + 1,
-                  name: angular.element('#nameValue').value,
-                  lastText: angular.element('#nameValue').value,
-                  face: angular.element('#affiliatuinValue').value
-              };
-
-              self.stafList.push(staffArr)
-
-              console.log(self.stafList);
-          }
-
         return self;
 
     }
