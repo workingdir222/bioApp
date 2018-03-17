@@ -322,6 +322,12 @@ angular.module('starter.controllers', [
       $scope.modalCaptureList.hide();
     };
 
+    $scope.selectStaff = function (value) {
+      if (value === "add") {
+        $scope.addStafPopup();
+      }
+    }
+
     $scope.stafList = [{
       id: 0,
       name: 'Ben Sparrow',
