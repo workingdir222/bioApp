@@ -40,7 +40,7 @@ angular.module('starter.controllers', [
   };
 })
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, Chats) {
+.controller('AppCtrl', function($scope, $ionicModal, $stateParams, $timeout, Chats, factorySpecies) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -51,6 +51,12 @@ angular.module('starter.controllers', [
 
   // Form data for the login modal
   $scope.loginData = {};
+
+  $scope._species = factorySpecies;
+  $scope._species.stateParams = $stateParams.id;
+  $scope._species.loadData();
+  
+  $scope.entryDetail = $stateParams.id;
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -92,14 +98,50 @@ angular.module('starter.controllers', [
   '$http',
   '$timeout',
   '$ionicModal',
+  '$cordovaCamera',
   'factoryEntry',
-  function ($scope, $http, $timeout, $ionicModal, factoryEntry) {
+  function ($scope, $http, $timeout, $ionicModal, $cordovaCamera, factoryEntry) {
 
     $scope._entry = factoryEntry;
 
+    $scope.checkDbFile = function () {
+      $scope._entry.checkDbFile();
+      $scope.modalEntryList.hide();
+    };
+
+    $scope.getPhoto = function () {
+
+      var options = {
+        quality: 100,
+        destinationType: Camera.DestinationType.DATA_URL,
+        sourceType: Camera.PictureSourceType.CAMERA,
+        allowEdit: true,
+        encodingType: Camera.EncodingType.JPEG,
+        targetWidth: 100,
+        targetHeight: 100,
+        popoverOptions: CameraPopoverOptions,
+        saveToPhotoAlbum: false,
+      correctOrientation:true
+      };
+  
+      $cordovaCamera.getPicture(options).then(function(imageData) {
+
+        var image = document.getElementById('myImage');
+        image.src = "data:image/jpeg;base64," + imageData;
+
+        $scope.dataImg = image.src;
+
+        console.log(image);
+
+      }, function(err) {
+        // error
+      });
+  
+    };
+
     $timeout(function () {
       $scope._entry.loadData();
-    },100)
+    },500)
     
     $ionicModal.fromTemplateUrl('templates/entry/modal-entry.html', {
       scope: $scope

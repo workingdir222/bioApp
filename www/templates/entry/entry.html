@@ -4,7 +4,7 @@
         <ion-list>
             <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="list in _entry.listEntry" type="item-text-wrap" href="#/app/entry-detail/{{list.id}}">
                 <h2 class="text-capitalize">{{list.siteID}}</h2>
-                <p>{{list.dateEntry | date:'MMM dd y'}}</p>
+                <p>{{list.dateEntry | date:'MMMM dd, y'}}</p>
                 <i class="icon ion-chevron-right icon-accessory"></i>
 
                 <ion-option-button class="button-assertive">
@@ -15,7 +15,15 @@
         
         <div class="padding">
             <button ng-click="addEntryList()" class="button button-large button-block button-energized">Create Project</button>
+            <button ng-click="_entry.deleteDB()" class="button button-large button-block button-energized">Delete Project</button>
+            <button ng-click="getPhoto()" class="button button-large button-block button-energized">Capture</button>
         </div>
 
+        <edit-config id="myImage" target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
+            <div class="padding">
+                <img style="width: 100%;" src="{{ dataImg }}" alt="">
+            </div>
+        </edit-config>
+        
     </ion-content>
 </ion-view>    

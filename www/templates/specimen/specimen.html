@@ -4,44 +4,45 @@
         <ion-list>
             <label class="item item-input">
                 <span class="input-label">Reg</span>
-                <input id="inputReg" type="text" placeholder="Reg">
+                <input id="idEntry" type="hidden" placeholder="Reg" value="{{ entryDetail }}">
+                <input id="inputReg" type="text" placeholder="Reg" value="{{ _species.listSpecies[0].inputReg }}">
             </label>
             <label class="item item-input">
                 <span class="input-label">Collector</span>
-                <input id="inputCollector" type="text" placeholder="Colector">
+                <input id="inputCollector" type="text" placeholder="Colector" value="{{ _species.listSpecies[0].inputCollector }}">
             </label>
             <label class="item item-input">
                 <span class="input-label">Initials</span>
-                <input id="inputInitials" type="text" placeholder="Initials">
+                <input id="inputInitials" type="text" placeholder="Initials" value="{{ _species.listSpecies[0].inputInitials }}">
             </label>
             <label class="item item-input">
                 <span class="input-label">Preparator</span>
-                <input id="inputPreparator" type="text" placeholder="Preparator">
+                <input id="inputPreparator" type="text" placeholder="Preparator" value="{{ _species.listSpecies[0].inputPreparator }}">
             </label>
             <label class="item item-input">
                 <span class="input-label">Genu</span>
-                <input id="inputGenu" type="text" placeholder="Genu">
+                <input id="inputGenu" type="text" placeholder="Genu" value="{{ _species.listSpecies[0].inputGenu }}">
             </label>
             <label class="item item-input">
                 <span class="input-label">Species</span>
-                <input id="inputSpecies" type="text" placeholder="Species">
+                <input id="inputSpecies" type="text" placeholder="Species" value="{{ _species.listSpecies[0].inputSpecies }}">
             </label>
     
             <label class="item item-input">
                 <span class="input-label">field</span>
-                <input id="inputField1" type="text" placeholder="field">
+                <input id="inputField1" type="text" placeholder="field" value="{{ _species.listSpecies[0].inputField1 }}">
             </label>
             <label class="item item-input">
                 <span class="input-label">field</span>
-                <input id="inputField2" type="text" placeholder="field">
+                <input id="inputField2" type="text" placeholder="field" value="{{ _species.listSpecies[0].inputField2 }}">
             </label>
             <label class="item item-input">
                 <span class="input-label">field</span>
-                <input id="inputField3" type="text" placeholder="field">
+                <input id="inputField3" type="text" placeholder="field" value="{{ _species.listSpecies[0].inputField3 }}">
             </label>
             <label class="item item-input item-stacked-label">
                 <span class="input-label">field</span>
-                <textarea id="inputField4" placeholder="field"></textarea>
+                <textarea id="inputField4" placeholder="field">{{ _species.listSpecies[0].inputField4 }}"</textarea>
             </label>
         </ion-list>
 
@@ -53,11 +54,11 @@
             </div>
         </div>
 
-        <!-- <div class="padding">
-            <button ng-click="_entry.checkDbFile()" class="button button-large button-block button-energized">
+        <div class="padding">
+            <button ng-click="_species.checkDbFile()" class="button button-large button-block button-energized">
                 Save
             </button>
-        </div> -->
+        </div>
         
     </ion-content>
 </ion-view>

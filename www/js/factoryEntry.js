@@ -20,6 +20,7 @@ angular.module('common.entry', []).factory('factoryEntry', [
                 console.log(success);
             }, function (error) {
                 // error
+                console.log(error);
             });
         };
 
@@ -31,43 +32,27 @@ angular.module('common.entry', []).factory('factoryEntry', [
                 console.log(success);
             }, function (error) {
                 // error
+                console.log(error);
             });
 
             $cordovaFile.checkFile(cordova.file.dataDirectory, "dbfile.json")
             .then(function (req) {
                 
-            $cordovaFile.readAsBinaryString(cordova.file.dataDirectory, "dbfile.json")
-            .then(function (success) {
+                $cordovaFile.readAsBinaryString(cordova.file.dataDirectory, "dbfile.json")
+                .then(function (success) {
 
-                let settings = angular.fromJson(success);
-                const listProject = settings.tblEntry;
-                listProjectArr = [];
+                    let settings = angular.fromJson(success);
 
-                for (let i = 0; i < listProject.length; i++) {
-
-                const date = new Date(listProject[i].dateEntry);
-                
-                listProjectArr.push({
-                    "id": listProject[i].id,
-                    "dateEntry": listProject[i].dateEntry,
-                    "dateEntryString": date.getDate() +' - '+ (date.getMonth()+1) +' - '+ date.getFullYear(),
-                    "siteID": listProject[i].siteID,
-                    "typeEntry": listProject[i].typeEntry,
-                    "desEntry": listProject[i].desEntry,
+                    console.log(settings);
+                    self.listEntry = settings.tblEntry;
+                    
+                }, function (error) {
+                    console.log(error)
                 });
 
-                if (i === (listProject.length - 1)) {
-                    console.log(listProjectArr);
-                    self.listEntry = listProjectArr;
-                }
-                
-                }
-                
             }, function (error) {
-                console.log(error)
-            });
 
-            }, function (error) {
+                self.listEntry = [];
 
             });
 
@@ -77,6 +62,7 @@ angular.module('common.entry', []).factory('factoryEntry', [
             $cordovaFile.removeFile(cordova.file.dataDirectory, "dbfile.json")
             .then(function (success) {
                 // success
+                self.listEntry = [];
             }, function (error) {
                 // error
             })
@@ -99,17 +85,17 @@ angular.module('common.entry', []).factory('factoryEntry', [
                     "typeEntry": document.getElementById('typeEntry').value,
                     "desEntry": document.getElementById('desEntry').value
                 };
-
+                
                 var settings = angular.fromJson(success);
-
+                
                 settings.tblEntry.push(pushData);
                 
                 console.log(settings);
 
+                self.listEntry = settings.tblEntry;
+
                 return $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(settings), { replace: true });
-
-                self.outputText = settings;
-
+                
                 }, function (error) {
                 console.log(error)
                 });
@@ -135,15 +121,17 @@ angular.module('common.entry', []).factory('factoryEntry', [
                 };
             
                 var tblEntry = {"tblEntry": [pushData]};
-                
-                $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(tblEntry), {append: true})
-                .then(function (success) {
 
-                    console.log(success);
+                self.listEntry = tblEntry.tblEntry;
+                
+                    $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(tblEntry), {append: true})
+                    .then(function (success) {
                     
-                }, function (error) {
-                    // error
-                });
+                        console.log(success);
+                        
+                    }, function (error) {
+                        // error
+                    });
 
                 }, function (error) {
                 // error
