@@ -7,7 +7,7 @@ angular.module('common.species', []).factory('factorySpecies', [
         self.idProject = "";
         self.listSpecies = [];
         self.stateParams = "";
-        self.jsonData = {tblEntry: [], tblSpecies: []};
+        self.jsonData = {tblProject: [], tblSpecies: []};
 
         self.loadData = function () {
 
@@ -44,7 +44,7 @@ angular.module('common.species', []).factory('factorySpecies', [
 
             }, function (error) {
 
-                self.listEntry = [];
+                self.listProject = [];
 
             });
 
@@ -90,7 +90,7 @@ angular.module('common.species', []).factory('factorySpecies', [
                         "inputField4": document.getElementById('inputField4').value
                     };
                     
-                    self.jsonData.tblEntry = settings.tblEntry;
+                    self.jsonData.tblProject = settings.tblProject;
                     self.jsonData.tblSpecies.push(pushData);
 
                     // self.stateParams +'-specimen'+ self.jsonData.tblSpecies.length

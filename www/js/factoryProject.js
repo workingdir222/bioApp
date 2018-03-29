@@ -1,8 +1,4 @@
-angular.module('common.project', []).factory('factoryProject', [
-    '$http',
-    '$cordovaFile',
-    'ionicDatePicker',
-    function ($http, $cordovaFile, ionicDatePicker) {
+angular.module('common.project', []).factory('factoryProject', function ($http, $cordovaFile, ionicDatePicker) {
 
         var self = {};
 
@@ -91,7 +87,7 @@ angular.module('common.project', []).factory('factoryProject', [
                 
                 settings.tblProject.push(pushData);
                 
-                console.log(settings);
+                // console.log(settings);
 
                 self.listProject = settings.tblProject;
 
@@ -126,7 +122,7 @@ angular.module('common.project', []).factory('factoryProject', [
                     $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(tblProject), {append: true})
                     .then(function (success) {
                     
-                        console.log(success);
+                        // console.log(success);
                         
                     }, function (error) {
                         // error
@@ -148,7 +144,7 @@ angular.module('common.project', []).factory('factoryProject', [
 
                 var settings = angular.fromJson(success);
                 
-                console.log(settings);
+                // console.log(settings);
 
             }, function (error) {
                 console.log(error);
@@ -203,4 +199,4 @@ angular.module('common.project', []).factory('factoryProject', [
         return self;
 
     }
-])
+)

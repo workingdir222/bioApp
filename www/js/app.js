@@ -71,15 +71,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     templateUrl: 'templates/menu.html'
   })
 
-  // .state('app.entry', {
-  //   url: '/entry',
-  //   views: {
-  //     'menuContent': {
-  //       templateUrl: 'templates/tab-entry.html'
-  //     }
-  //   }
-  // })
-
   .state('app.project', {
     url: '/project',
     views: {
@@ -130,11 +121,11 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
   })
 
   .state('app.species.specimen', {
-    url: '/specimen',
+    url: '/specimen/:id',
     views: {
       'tab-specimen': {
         templateUrl: 'templates/specimen/specimen.html',
-        controller: 'AppCtrl'
+        controller: 'speciesCtrl'
       }
     }
   })
@@ -144,7 +135,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     views: {
       'tab-specimen': {
         templateUrl: 'templates/specimen/specimen-edit.html',
-        controller: 'AppCtrl'
+        controller: 'speciesCtrl'
       }
     }
   })
@@ -154,7 +145,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
       views: {
         'tab-parts': {
           templateUrl: 'templates/specimen/parts.html',
-          controller: 'AppCtrl'
+          controller: 'speciesCtrl'
         }
       }
     })
@@ -164,7 +155,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
       views: {
         'tab-measurement': {
           templateUrl: 'templates/specimen/measurement.html',
-          controller: 'AppCtrl'
+          controller: 'speciesCtrl'
         }
       }
     })
@@ -174,7 +165,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
       views: {
         'tab-capture': {
           templateUrl: 'templates/specimen/capture.html',
-          controller: 'AppCtrl'
+          controller: 'speciesCtrl'
         }
       }
     })
@@ -184,7 +175,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
       views: {
         'tab-chats': {
           templateUrl: 'templates/specimen/tab-chats.html',
-          controller: 'AppCtrl'
+          controller: 'speciesCtrl'
         }
       }
   })
@@ -294,7 +285,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     views: {
       'menuContent': {
         templateUrl: 'templates/capture.html',
-        controller: 'AppCtrl'
+        controller: 'captureCtrl'
       }
     }
   })

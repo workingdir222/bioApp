@@ -33,6 +33,8 @@ angular.module('starter.controllers', [
   $scope.projectDetail = factoryProject.getDataByID($stateParams.id);
   $scope.listSpecies = factoryProject.listSpecies;
 
+  console.log(factoryProject.listSpecies)
+
 })
 
 .controller('AccountCtrl', function($scope) {
@@ -41,71 +43,7 @@ angular.module('starter.controllers', [
   };
 })
 
-.controller('AppCtrl', function($scope, $ionicModal, $stateParams, $timeout, Chats, factorySpecies) {
-
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-
-  // Form data for the login modal
-  $scope.loginData = {};
-
-  $scope._species = factorySpecies;
-  $scope._species.stateParams = $stateParams.id;
-  $scope._species.loadData();
-
-  $scope.projectDetail = factorySpecies.getDataByID($stateParams.id);
-  
-  // $scope.entryDetail = $stateParams.id;
-
-  console.log($stateParams.id);
-
-  // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
-  };
-
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
-  };
-
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
-
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
-  };
-
-})
-
-.controller('projectCtrl', [
-  '$scope',
-  '$http',
-  '$timeout',
-  '$ionicModal',
-  '$cordovaCamera',
-  'factoryProject',
-  function ($scope, $http, $timeout, $ionicModal, $cordovaCamera, factoryProject) {
+.controller('projectCtrl', function ($scope, $http, $timeout, $ionicModal, $cordovaCamera, factoryProject) {
 
     $scope._project = factoryProject;
 
@@ -164,27 +102,57 @@ angular.module('starter.controllers', [
     };
       
   }
-])
+)
 
-.controller('listProjectCtrl', [
-  '$scope',
-  '$http',
-  'factoryListProject',
-  function ($scope, $http, factoryListProject) {
+.controller('listProjectCtrl', function ($scope, $http, factoryListProject) {
 
     $scope._listProject = factoryListProject;
     $scope._listProject.loadData();
       
   }
-])
+)
 
-.controller('speciesCtrl', [
-  '$scope',
-  '$http',
-  'factorySpecies',
-  'ionicDatePicker',
-  'ionicTimePicker',
-  function ($scope, $http, factorySpecies, ionicDatePicker, ionicTimePicker) {
+.controller('speciesCtrl', function ($scope, $http, $ionicModal, $stateParams, $timeout, Chats, factorySpecies, ionicDatePicker, ionicTimePicker) {
+
+    $scope.loginData = {};
+
+    $scope._species = factorySpecies;
+    $scope._species.stateParams = $stateParams.id;
+    $scope._species.loadData();
+
+    $scope.projectDetail = factorySpecies.getDataByID($stateParams.id);
+
+    $ionicModal.fromTemplateUrl('templates/login.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modal = modal;
+    });
+
+    // Triggered in the login modal to close it
+    $scope.closeLogin = function() {
+      $scope.modal.hide();
+    };
+
+    // Open the login modal
+    $scope.login = function() {
+      $scope.modal.show();
+    };
+
+    $scope.chats = Chats.all();
+    $scope.remove = function(chat) {
+      Chats.remove(chat);
+    };
+
+    // Perform the login action when the user submits the login form
+    $scope.doLogin = function() {
+      console.log('Doing login', $scope.loginData);
+
+      // Simulate a login delay. Remove this and replace with your login
+      // code if using a login system
+      $timeout(function() {
+        $scope.closeLogin();
+      }, 1000);
+    };
 
       $scope._species = factorySpecies;
 
@@ -243,14 +211,9 @@ angular.module('starter.controllers', [
         ionicTimePicker.openTimePicker(ipObj1);
       };
   }
-])
+)
 
-.controller('eventCtrl', [
-  '$scope',
-  '$http',
-  'ionicDatePicker',
-  'ionicTimePicker',
-  function ($scope, $http, ionicDatePicker, ionicTimePicker) {
+.controller('eventCtrl', function ($scope, $http, ionicDatePicker, ionicTimePicker) {
 
     $scope.dateEvent = "";
 
@@ -323,14 +286,9 @@ angular.module('starter.controllers', [
       };
 
   }
-])
+)
 
-.controller('siteCtrl', [
-  '$scope',
-  '$http',
-  '$ionicModal',
-  'factorySite',
-  function ($scope, $http, $ionicModal, factorySite) {
+.controller('siteCtrl', function ($scope, $http, $ionicModal, factorySite) {
 
     $scope._site = factorySite;
     $scope.nameValue = "";
@@ -419,13 +377,9 @@ angular.module('starter.controllers', [
     }
 
   }
-])
+)
 
-.controller('stafCtrl', [
-  '$scope',
-  '$http',
-  'factoryStaf',
-  function ($scope, $http, factoryStaf) {
+.controller('stafCtrl', function ($scope, $http, factoryStaf) {
 
       $scope._staf = factoryStaf;
 
@@ -434,41 +388,27 @@ angular.module('starter.controllers', [
       };
 
   }
-])
+)
 
-.controller('captureCtrl', [
-  '$scope',
-  '$http',
-  function ($scope, $http) {
+.controller('captureCtrl', function ($scope, $http) {
 
 
   }
-])
+)
 
-.controller('orbCtrl', [
-  '$scope',
-  '$http',
-  function ($scope, $http) {
+.controller('orbCtrl', function ($scope, $http) {
 
 
   }
-])
+)
 
-.controller('entryCtrl', [
-  '$scope',
-  '$http',
-  function ($scope, $http) {
+.controller('entryCtrl', function ($scope, $http) {
 
 
   }
-])
+)
 
-.controller('partsCtrl', [
-  '$scope',
-  '$http',
-  '$ionicModal',
-  'factoryParts',
-  function ($scope, $http, $ionicModal, factoryParts) {
+.controller('partsCtrl', function ($scope, $http, $ionicModal, factoryParts) {
 
       $scope._parts = factoryParts;
 
@@ -492,14 +432,9 @@ angular.module('starter.controllers', [
       };
 
   }
-])
+)
 
-.controller('captureCtrl', [
-  '$scope',
-  '$http',
-  '$ionicModal',
-  'factoryCapture',
-  function ($scope, $http, $ionicModal, factoryCapture) {
+.controller('captureCtrl', function ($scope, $http, $ionicModal, factoryCapture) {
 
       $scope._capture = factoryCapture;
 
@@ -519,4 +454,4 @@ angular.module('starter.controllers', [
       };
 
   }
-]);
+);
