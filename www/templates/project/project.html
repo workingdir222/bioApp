@@ -1,10 +1,10 @@
-<ion-view view-title="Master Entry">
+<ion-view view-title="Master Project">
     <ion-content>
 
         <ion-list>
-            <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="list in _entry.listEntry" type="item-text-wrap" href="#/app/entry-detail/{{list.id}}">
-                <h2 class="text-capitalize">{{list.siteID}}</h2>
-                <p>{{list.dateEntry | date:'MMMM dd, y'}}</p>
+            <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="list in _project.listProject" type="item-text-wrap" href="#/app/project-detail-menu/{{list.id}}">
+                <h2 class="text-capitalize">{{list.location}}</h2>
+                <p>{{list.dateProject | date:'MMMM dd, y'}}</p>
                 <i class="icon ion-chevron-right icon-accessory"></i>
 
                 <ion-option-button class="button-assertive">
@@ -14,8 +14,8 @@
         </ion-list>
         
         <div class="padding">
-            <button ng-click="addEntryList()" class="button button-large button-block button-energized">Create Project</button>
-            <button ng-click="_entry.deleteDB()" class="button button-large button-block button-energized">Delete Project</button>
+            <button ng-click="addProjectList()" class="button button-large button-block button-energized">Create Project</button>
+            <button ng-click="_project.deleteDB()" class="button button-large button-block button-energized">Delete Project</button>
             <button ng-click="getPhoto()" class="button button-large button-block button-energized">Capture</button>
         </div>
 

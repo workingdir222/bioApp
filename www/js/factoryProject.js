@@ -1,16 +1,14 @@
-angular.module('common.entry', []).factory('factoryEntry', [
+angular.module('common.project', []).factory('factoryProject', [
     '$http',
     '$cordovaFile',
     'ionicDatePicker',
     function ($http, $cordovaFile, ionicDatePicker) {
 
         var self = {};
-        
-        self.welcome = { name : 'Angular Factory Staf' };
 
-        self.dateEntry = "";
-        self.dateEntryPush = "";
-        self.listEntry = [];
+        self.dateProject = "";
+        self.dateProjectPush = "";
+        self.listProject = [];
         self.listSpecies = [];
         let listProjectArr = [];
 
@@ -44,7 +42,7 @@ angular.module('common.entry', []).factory('factoryEntry', [
 
                     let settings = angular.fromJson(success);
 
-                    self.listEntry = settings.tblEntry;
+                    self.listProject = settings.tblProject;
 
                     if (settings.tblSpecies !== "") {
                         self.listSpecies = settings.tblSpecies;
@@ -57,7 +55,7 @@ angular.module('common.entry', []).factory('factoryEntry', [
 
             }, function (error) {
 
-                self.listEntry = [];
+                self.listProject = [];
 
             });
 
@@ -67,7 +65,7 @@ angular.module('common.entry', []).factory('factoryEntry', [
             $cordovaFile.removeFile(cordova.file.dataDirectory, "dbfile.json")
             .then(function (success) {
                 // success
-                self.listEntry = [];
+                self.listProject = [];
             }, function (error) {
                 // error
             })
@@ -80,24 +78,22 @@ angular.module('common.entry', []).factory('factoryEntry', [
                 $cordovaFile.readAsBinaryString(cordova.file.dataDirectory, req.name)
                 .then(function (success) {
 
-                var idEntry = self.dateEntryPush +" "+ document.getElementById('siteID').value;
-                idEntry = idEntry.replace(/\s+/g, '-').toLowerCase();
+                var idProject = self.dateProjectPush +" "+ document.getElementById('location').value;
+                idProject = idProject.replace(/\s+/g, '-').toLowerCase();
 
                 var pushData = {
-                    "id": idEntry,
-                    "dateEntry": self.dateEntryPush,
-                    "siteID": document.getElementById('siteID').value,
-                    "typeEntry": document.getElementById('typeEntry').value,
-                    "desEntry": document.getElementById('desEntry').value
+                    "id": idProject,
+                    "dateProject": self.dateProjectPush,
+                    "location": document.getElementById('location').value
                 };
                 
                 var settings = angular.fromJson(success);
                 
-                settings.tblEntry.push(pushData);
+                settings.tblProject.push(pushData);
                 
                 console.log(settings);
 
-                self.listEntry = settings.tblEntry;
+                self.listProject = settings.tblProject;
 
                 return $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(settings), { replace: true });
                 
@@ -114,22 +110,20 @@ angular.module('common.entry', []).factory('factoryEntry', [
                 .then(function (success) {
                 // success
 
-                var idEntry = self.dateEntryPush +" "+ document.getElementById('siteID').value;
-                idEntry = idEntry.replace(/\s+/g, '-').toLowerCase();
+                var idProject = self.dateProjectPush +" "+ document.getElementById('location').value;
+                idProject = idProject.replace(/\s+/g, '-').toLowerCase();
 
                 var pushData = {
-                    "id": idEntry,
-                    "dateEntry": self.dateEntryPush,
-                    "siteID": document.getElementById('siteID').value,
-                    "typeEntry": document.getElementById('typeEntry').value,
-                    "desEntry": document.getElementById('desEntry').value
+                    "id": idProject,
+                    "dateProject": self.dateProjectPush,
+                    "location": document.getElementById('location').value
                 };
             
-                var tblEntry = {"tblEntry": [pushData]};
+                var tblProject = {"tblProject": [pushData]};
 
-                self.listEntry = tblEntry.tblEntry;
+                self.listProject = tblProject.tblProject;
                 
-                    $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(tblEntry), {append: true})
+                    $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(tblProject), {append: true})
                     .then(function (success) {
                     
                         console.log(success);
@@ -168,9 +162,9 @@ angular.module('common.entry', []).factory('factoryEntry', [
 
         self.getDataByID = function(id) {
             console.log(id);
-            for (var i = 0; i < self.listEntry.length; i++) {
-                if (self.listEntry[i].id === id) {
-                    return self.listEntry[i];
+            for (var i = 0; i < self.listProject.length; i++) {
+                if (self.listProject[i].id === id) {
+                    return self.listProject[i];
                 }
             }
         };
@@ -178,9 +172,9 @@ angular.module('common.entry', []).factory('factoryEntry', [
         var ipObj1 = {
         callback: function (val) {  //Mandatory
             console.log('Return value from the datepicker popup is : ' + val, new Date(val));
-            self.dateEntryPush = val;
+            self.dateProjectPush = val;
             var date = new Date(val);
-            self.dateEntry = date.getDate() +' - '+ (date.getMonth()+1) +' - '+ date.getFullYear();
+            self.dateProject = date.getDate() +' - '+ (date.getMonth()+1) +' - '+ date.getFullYear();
         },
         disabledDates: [            //Optional
             new Date(2018, 2, 16),
@@ -203,9 +197,9 @@ angular.module('common.entry', []).factory('factoryEntry', [
         };
 
         self.openDatePicker = function(){
-        ionicDatePicker.openDatePicker(ipObj1);
+            ionicDatePicker.openDatePicker(ipObj1);
         };
-        
+
         return self;
 
     }

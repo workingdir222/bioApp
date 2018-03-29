@@ -1,0 +1,29 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-stable bar-assertive">
+        <h1 class="title">Add Project</h1>
+        <div class="buttons">
+        <button class="button button-clear" ng-click="closeProjectList()">Close</button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <ion-list>
+            <ion-list>
+                <label class="item item-input">
+                    <span class="input-label">Date</span>
+                    <input type="text" ng-model="_project.dateProject" value="{{_project.dateProject}}" ng-click="_project.openDatePicker()" placeholder="Date">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Location</span>
+                    <input type="text" id="location" placeholder="Site ID">
+                </label>
+
+            </ion-list>
+
+        <div class="padding">
+            <button ng-click="checkDbFile()" class="button button-large button-block button-energized">
+                Save
+            </button>
+        </div>
+    </ion-content>
+</ion-modal-view>
+        

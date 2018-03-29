@@ -1,0 +1,18 @@
+<ion-view view-title="{{projectDetail.siteID}}">
+    <ion-content>
+        <!-- <p>{{entryDetail.siteID}}</p> -->
+
+        <ion-list>
+            <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="list in listSpecies" ng-if="list.idProject === projectDetail.id" type="item-text-wrap" href="#/app/species/specimen-edit/{{list.id}}">
+                <h2 class="text-capitalize">{{list.inputReg}}</h2>
+                <p>{{list.inputCollector}}</p>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </ion-item>
+        </ion-list>
+
+        <div class="padding">
+            <a href="#/app/event" ng-click="_project.accounts()" class="button button-large button-block button-energized">New</a>
+        </div>
+
+    </ion-content>
+</ion-view>

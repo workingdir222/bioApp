@@ -1,5 +1,5 @@
 angular.module('starter.controllers', [
-  'common.entry',
+  'common.project',
   'common.species',
   'common.staf',
   'common.site',
@@ -28,9 +28,10 @@ angular.module('starter.controllers', [
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('EntryDetailCtrl', function($scope, $stateParams, factoryEntry) {
+.controller('ProjectDetailCtrl', function($scope, $stateParams, factoryProject) {
 
-  $scope.entryDetail = factoryEntry.getDataByID($stateParams.id);
+  $scope.projectDetail = factoryProject.getDataByID($stateParams.id);
+  $scope.listSpecies = factoryProject.listSpecies;
 
 })
 
@@ -55,8 +56,12 @@ angular.module('starter.controllers', [
   $scope._species = factorySpecies;
   $scope._species.stateParams = $stateParams.id;
   $scope._species.loadData();
+
+  $scope.projectDetail = factorySpecies.getDataByID($stateParams.id);
   
-  $scope.entryDetail = $stateParams.id;
+  // $scope.entryDetail = $stateParams.id;
+
+  console.log($stateParams.id);
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -93,20 +98,20 @@ angular.module('starter.controllers', [
 
 })
 
-.controller('entryCtrl', [
+.controller('projectCtrl', [
   '$scope',
   '$http',
   '$timeout',
   '$ionicModal',
   '$cordovaCamera',
-  'factoryEntry',
-  function ($scope, $http, $timeout, $ionicModal, $cordovaCamera, factoryEntry) {
+  'factoryProject',
+  function ($scope, $http, $timeout, $ionicModal, $cordovaCamera, factoryProject) {
 
-    $scope._entry = factoryEntry;
+    $scope._project = factoryProject;
 
     $scope.checkDbFile = function () {
-      $scope._entry.checkDbFile();
-      $scope.modalEntryList.hide();
+      $scope._project.checkDbFile();
+      $scope.modalProjectList.hide();
     };
 
     $scope.getPhoto = function () {
@@ -140,35 +145,35 @@ angular.module('starter.controllers', [
     };
 
     $timeout(function () {
-      $scope._entry.loadData();
+      $scope._project.loadData();
     },500)
     
-    $ionicModal.fromTemplateUrl('templates/entry/modal-entry.html', {
+    $ionicModal.fromTemplateUrl('templates/project/modal-project.html', {
       scope: $scope
     }).then(function(modal) {
-      $scope.modalEntryList = modal;
+      $scope.modalProjectList = modal;
     });
     
     // Open the login modal
-    $scope.addEntryList = function() {
-      $scope.modalEntryList.show();
+    $scope.addProjectList = function() {
+      $scope.modalProjectList.show();
     };
     
-    $scope.closeEntryList = function() {
-      $scope.modalEntryList.hide();
+    $scope.closeProjectList = function() {
+      $scope.modalProjectList.hide();
     };
       
   }
 ])
 
-.controller('listEntryCtrl', [
+.controller('listProjectCtrl', [
   '$scope',
   '$http',
-  'factoryListEntry',
-  function ($scope, $http, factoryListEntry) {
+  'factoryListProject',
+  function ($scope, $http, factoryListProject) {
 
-    $scope._listEntry = factoryListEntry;
-    $scope._listEntry.loadData();
+    $scope._listProject = factoryListProject;
+    $scope._listProject.loadData();
       
   }
 ])
@@ -427,6 +432,33 @@ angular.module('starter.controllers', [
       $scope.postData = function() {
         $scope._staf.postDB();
       };
+
+  }
+])
+
+.controller('captureCtrl', [
+  '$scope',
+  '$http',
+  function ($scope, $http) {
+
+
+  }
+])
+
+.controller('orbCtrl', [
+  '$scope',
+  '$http',
+  function ($scope, $http) {
+
+
+  }
+])
+
+.controller('entryCtrl', [
+  '$scope',
+  '$http',
+  function ($scope, $http) {
+
 
   }
 ])

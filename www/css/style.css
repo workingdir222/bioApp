@@ -2,3 +2,14 @@
 .text-capitalize {
     text-transform: capitalize !important;
 }
+
+.btn-menu {
+    font-size: 50px !important;
+    display: block;
+}
+.mb-0 {
+    margin-bottom: 0 !important;
+}
+.mt-0 {
+    margin-top: 0 !important;
+}

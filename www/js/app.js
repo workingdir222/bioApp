@@ -80,32 +80,42 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
   //   }
   // })
 
-  .state('app.entry', {
-    url: '/entry',
+  .state('app.project', {
+    url: '/project',
     views: {
       'menuContent': {
-        templateUrl: 'templates/entry/entry.html',
-        controller: 'entryCtrl'
+        templateUrl: 'templates/project/project.html',
+        controller: 'projectCtrl'
       }
     }
   })
 
-  .state('app.entry-detail', {
-    url: '/entry-detail/:id',
+  .state('app.project-detail-menu', {
+    url: '/project-detail-menu/:id',
     views: {
       'menuContent': {
-        templateUrl: 'templates/entry/detail-entry.html',
-        controller: 'EntryDetailCtrl'
+        templateUrl: 'templates/project/detail-project-menu.html',
+        controller: 'ProjectDetailCtrl'
       }
     }
   })
 
-  .state('app.entry.listentry', {
-    url: '/listentry',
+  .state('app.project-detail-specimen', {
+    url: '/project-detail-specimen/:id',
     views: {
-      'tab-list-entry': {
-        templateUrl: 'templates/entry/list-entry.html',
-        controller: 'listEntryCtrl'
+      'menuContent': {
+        templateUrl: 'templates/project/detail-project-specimen.html',
+        controller: 'ProjectDetailCtrl'
+      }
+    }
+  })
+
+  .state('app.project.listproject', {
+    url: '/listproject',
+    views: {
+      'tab-list-project': {
+        templateUrl: 'templates/project/list-project.html',
+        controller: 'listProjectCtrl'
       }
     }
   })
@@ -120,10 +130,20 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
   })
 
   .state('app.species.specimen', {
-    url: '/specimen/:id',
+    url: '/specimen',
     views: {
       'tab-specimen': {
         templateUrl: 'templates/specimen/specimen.html',
+        controller: 'AppCtrl'
+      }
+    }
+  })
+
+  .state('app.species.specimen-edit', {
+    url: '/specimen-edit/:id',
+    views: {
+      'tab-specimen': {
+        templateUrl: 'templates/specimen/specimen-edit.html',
         controller: 'AppCtrl'
       }
     }
@@ -189,12 +209,32 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     }
   })
 
+  .state('app.project-detail-event', {
+    url: '/project-detail-event/:id',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/project/detail-project-event.html',
+        controller: 'ProjectDetailCtrl'
+      }
+    }
+  })
+
   .state('app.event', {
     url: '/event',
     views: {
       'menuContent': {
         templateUrl: 'templates/event.html',
         controller: 'eventCtrl'
+      }
+    }
+  })
+
+  .state('app.project-detail-site', {
+    url: '/project-detail-site/:id',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/project/detail-project-site.html',
+        controller: 'ProjectDetailCtrl'
       }
     }
   })
@@ -209,12 +249,72 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     }
   })
 
+  .state('app.project-detail-capture', {
+    url: '/project-detail-capture/:id',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/project/detail-project-capture.html',
+        controller: 'ProjectDetailCtrl'
+      }
+    }
+  })
+
+  .state('app.project-detail-orb', {
+    url: '/project-detail-orb/:id',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/project/detail-project-orb.html',
+        controller: 'ProjectDetailCtrl'
+      }
+    }
+  })
+
+  .state('app.project-detail-entry', {
+    url: '/project-detail-entry/:id',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/project/detail-project-entry.html',
+        controller: 'ProjectDetailCtrl'
+      }
+    }
+  })
+
   .state('app.staf', {
     url: '/staf',
     views: {
       'menuContent': {
         templateUrl: 'templates/staf.html',
         controller: 'stafCtrl'
+      }
+    }
+  })
+
+  .state('app.capture', {
+    url: '/capture',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/capture.html',
+        controller: 'AppCtrl'
+      }
+    }
+  })
+
+  .state('app.orb', {
+    url: '/orb',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/orb.html',
+        controller: 'orbCtrl'
+      }
+    }
+  })
+
+  .state('app.entry', {
+    url: '/entry',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/entry.html',
+        controller: 'entryCtrl'
       }
     }
   })
@@ -229,6 +329,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     }
   });
 
-  $urlRouterProvider.otherwise('/app/entry');
+  $urlRouterProvider.otherwise('/app/project');
 
 });
