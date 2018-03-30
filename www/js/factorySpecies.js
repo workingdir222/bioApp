@@ -92,22 +92,13 @@ angular.module('common.species', []).factory('factorySpecies', [
                     
                     self.jsonData.tblProject = settings.tblProject;
                     self.jsonData.tblSpecies.push(pushData);
-
-                    // self.stateParams +'-specimen'+ self.jsonData.tblSpecies.length
-
-                    
-                    
                     self.listSpecies = self.jsonData.tblSpecies;
-                    
-                    console.log(self.jsonData);
 
                     return $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(self.jsonData), { replace: true });
                 
                 }, function (error) {
                 console.log(error)
                 });
-                
-                // console.log(success);
 
             });
         };

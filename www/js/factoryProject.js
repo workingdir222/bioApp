@@ -3,21 +3,11 @@ angular.module('common.project', []).factory('factoryProject', function ($http, 
         var self = {};
 
         self.dateProject = "";
+        self.location = "";
         self.dateProjectPush = "";
         self.listProject = [];
         self.listSpecies = [];
         let listProjectArr = [];
-
-        self.checkDisk = function() {
-            $cordovaFile.getFreeDiskSpace()
-            .then(function (success) {
-                // success in kilobytes
-                console.log(success);
-            }, function (error) {
-                // error
-                console.log(error);
-            });
-        };
 
         self.loadData = function () {
 
@@ -40,9 +30,13 @@ angular.module('common.project', []).factory('factoryProject', function ($http, 
 
                     self.listProject = settings.tblProject;
 
-                    if (settings.tblSpecies !== "") {
-                        self.listSpecies = settings.tblSpecies;
-                        console.log(self.listSpecies);
+                    if (settings.tblSpecies !== undefined) {
+
+                        if (settings.tblSpecies !== "") {
+                            self.listSpecies = settings.tblSpecies;
+                            console.log(self.listSpecies);
+                        }
+                        
                     }
                     
                 }, function (error) {
@@ -51,6 +45,19 @@ angular.module('common.project', []).factory('factoryProject', function ($http, 
 
             }, function (error) {
 
+                $cordovaFile.createFile(cordova.file.dataDirectory, "dbfile.json", true)
+                .then(function (success) {
+                
+                    var tblProject = {"tblProject": []};
+
+                    self.listProject = tblProject.tblProject;
+                    
+                    return $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(tblProject), {append: true});
+
+                }, function (error) {
+                // error
+                });
+
                 self.listProject = [];
 
             });
@@ -58,13 +65,15 @@ angular.module('common.project', []).factory('factoryProject', function ($http, 
         };
 
         self.deleteDB = function () {
+
             $cordovaFile.removeFile(cordova.file.dataDirectory, "dbfile.json")
             .then(function (success) {
-                // success
                 self.listProject = [];
+                self.listSpecies = [];
+                self.loadData();
             }, function (error) {
-                // error
             })
+
         };
 
         self.checkDbFile = function() {
@@ -74,20 +83,20 @@ angular.module('common.project', []).factory('factoryProject', function ($http, 
                 $cordovaFile.readAsBinaryString(cordova.file.dataDirectory, req.name)
                 .then(function (success) {
 
-                var idProject = self.dateProjectPush +" "+ document.getElementById('location').value;
+                var idProject = self.dateProjectPush +" "+ self.location;
                 idProject = idProject.replace(/\s+/g, '-').toLowerCase();
 
                 var pushData = {
                     "id": idProject,
                     "dateProject": self.dateProjectPush,
-                    "location": document.getElementById('location').value
+                    "location": self.location
                 };
+
+                console.log(pushData);
                 
                 var settings = angular.fromJson(success);
                 
                 settings.tblProject.push(pushData);
-                
-                // console.log(settings);
 
                 self.listProject = settings.tblProject;
 
@@ -97,40 +106,9 @@ angular.module('common.project', []).factory('factoryProject', function ($http, 
                 console.log(error)
                 });
                 
-                // console.log(success);
-
             }, function (error) {
 
                 console.log('no+++');
-                $cordovaFile.createFile(cordova.file.dataDirectory, "dbfile.json", true)
-                .then(function (success) {
-                // success
-
-                var idProject = self.dateProjectPush +" "+ document.getElementById('location').value;
-                idProject = idProject.replace(/\s+/g, '-').toLowerCase();
-
-                var pushData = {
-                    "id": idProject,
-                    "dateProject": self.dateProjectPush,
-                    "location": document.getElementById('location').value
-                };
-            
-                var tblProject = {"tblProject": [pushData]};
-
-                self.listProject = tblProject.tblProject;
-                
-                    $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(tblProject), {append: true})
-                    .then(function (success) {
-                    
-                        // console.log(success);
-                        
-                    }, function (error) {
-                        // error
-                    });
-
-                }, function (error) {
-                // error
-                });
 
             });
         };
@@ -151,10 +129,6 @@ angular.module('common.project', []).factory('factoryProject', function ($http, 
             });
 
         };
-
-        // self.postData = function() {
-        //     self._entry.postDB();
-        // };
 
         self.getDataByID = function(id) {
             console.log(id);

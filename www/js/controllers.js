@@ -33,7 +33,6 @@ angular.module('starter.controllers', [
   $scope.projectDetail = factoryProject.getDataByID($stateParams.id);
   $scope.listSpecies = factoryProject.listSpecies;
 
-  console.log(factoryProject.listSpecies)
 
 })
 
@@ -47,6 +46,10 @@ angular.module('starter.controllers', [
 
     $scope._project = factoryProject;
 
+    document.addEventListener("deviceready", function () {
+      $scope._project.loadData();
+    });
+
     $scope.checkDbFile = function () {
       $scope._project.checkDbFile();
       $scope.modalProjectList.hide();
@@ -55,13 +58,13 @@ angular.module('starter.controllers', [
     $scope.getPhoto = function () {
 
       var options = {
-        quality: 100,
+        // quality: 3000,
         destinationType: Camera.DestinationType.DATA_URL,
         sourceType: Camera.PictureSourceType.CAMERA,
         allowEdit: true,
         encodingType: Camera.EncodingType.JPEG,
-        targetWidth: 100,
-        targetHeight: 100,
+        // targetWidth: 100,
+        // targetHeight: 100,
         popoverOptions: CameraPopoverOptions,
         saveToPhotoAlbum: false,
       correctOrientation:true
@@ -82,9 +85,9 @@ angular.module('starter.controllers', [
   
     };
 
-    $timeout(function () {
-      $scope._project.loadData();
-    },500)
+    // $timeout(function () {
+    //   $scope._project.loadData();
+    // },500)
     
     $ionicModal.fromTemplateUrl('templates/project/modal-project.html', {
       scope: $scope
@@ -95,6 +98,8 @@ angular.module('starter.controllers', [
     // Open the login modal
     $scope.addProjectList = function() {
       $scope.modalProjectList.show();
+      $scope._project.dateProject = "";
+      $scope._project.location = "";
     };
     
     $scope.closeProjectList = function() {
