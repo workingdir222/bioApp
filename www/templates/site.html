@@ -15,57 +15,94 @@
                     
                 </div>
             </div> -->
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Lead Staff
-                </div>
-                <select ng-model="staffSelect" ng-change="selectStaff(staffSelect)" class="col">
-                    <option ng-repeat="listStaf in stafList">{{listStaf.name}}</option>
-                    <option value="add">+ Add</option>
-                </select>
-                <button class="button button-energized" ng-click="addStafPopup()">Add</button>
-            </label>
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Type
-                </div>
-                <select>
-                    <option>---</option>
-                    <option>---</option>
-                    <option>---</option>
-                </select>
-            </label>
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Country
-                </div>
-                <select>
-                    <option>---</option>
-                    <option>---</option>
-                    <option>---</option>
-                </select>
-            </label>
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    State
-                </div>
-                <select>
-                    <option>---</option>
-                    <option>---</option>
-                    <option>---</option>
-                </select>
-            </label>
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Island
-                </div>
-                <select>
-                    <option>---</option>
-                    <option>---</option>
-                    <option>---</option>
-                </select>
-            </label>
 
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Lead Staff
+                        </div>
+                        <!-- <a class="button button-icon icon ion-plus-circled" ng-click="addStafPopup()"></a> -->
+                        <select ng-model="staffSelect" ng-change="selectStaff(staffSelect)">
+                            <option ng-repeat="listStaf in stafList">{{listStaf.name}}</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addStafPopup()">Add</button>
+                </div>
+            </div>
+
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Type
+                        </div>
+                        <select>
+                            <option>---</option>
+                            <option>---</option>
+                            <option>---</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addStafPopup()">Add</button>
+                </div>
+            </div>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Country
+                        </div>
+                        <select>
+                            <option>---</option>
+                            <option>---</option>
+                            <option>---</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addStafPopup()">Add</button>
+                </div>
+            </div>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            State
+                        </div>
+                        <select>
+                            <option>---</option>
+                            <option>---</option>
+                            <option>---</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addStafPopup()">Add</button>
+                </div>
+            </div>
+            
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Island
+                        </div>
+                        <select>
+                            <option>---</option>
+                            <option>---</option>
+                            <option>---</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addStafPopup()">Add</button>
+                </div>
+            </div>
+            
             <label class="item item-input">
                 <span class="input-label">Elevation</span>
                 <input type="text" placeholder="Z Number">
@@ -87,26 +124,42 @@
                 <span class="input-label">End Date</span>
                 <input type="text" placeholder="field">
             </label>
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Habitat
+            
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Habitat
+                        </div>
+                        <select>
+                            <option>---</option>
+                            <option>---</option>
+                            <option>---</option>
+                        </select>
+                    </label>
                 </div>
-                <select>
-                    <option>---</option>
-                    <option>---</option>
-                    <option>---</option>
-                </select>
-            </label>
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Disturbed
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addStafPopup()">Add</button>
                 </div>
-                <select>
-                    <option>---</option>
-                    <option>---</option>
-                    <option>---</option>
-                </select>
-            </label>
+            </div>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Disturbed
+                        </div>
+                        <select>
+                            <option>---</option>
+                            <option>---</option>
+                            <option>---</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addStafPopup()">Add</button>
+                </div>
+            </div>
+            
             
         </ion-list>
         

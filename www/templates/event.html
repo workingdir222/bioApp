@@ -1,17 +1,23 @@
 <ion-view view-title="Event">
     <ion-content>
-
         <ion-list>
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Site ID
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Site ID
+                        </div>
+                        <select>
+                            <option>---</option>
+                            <option>---</option>
+                            <option>---</option>
+                        </select>
+                    </label>
                 </div>
-                <select>
-                    <option>---</option>
-                    <option>---</option>
-                    <option>---</option>
-                </select>
-            </label>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
+                </div>
+            </div>
             <label class="item item-input">
                 <span class="input-label">Date</span>
                 <input type="text" ng-model="dateEvent" value="{{dateEvent}}" ng-click="openDatePickerEvent()" placeholder="Date">
@@ -24,17 +30,23 @@
                 <span class="input-label">End Time</span>
                 <input type="text" ng-model="timeEventEnd" value="{{timeEventEnd}}" ng-click="openTimePickerEventEnd()" placeholder="End Time">
             </label>
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Primary Collection Methods
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Primary Collection Methods
+                        </div>
+                        <select>
+                            <option>Terapping</option>
+                            <option>---</option>
+                            <option>---</option>
+                        </select>
+                    </label>
                 </div>
-                <select>
-                    <option>Terapping</option>
-                    <option>---</option>
-                    <option>---</option>
-                </select>
-            </label>
-
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
+                </div>
+            </div>
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Rat</span>
                 <div class="row">
@@ -314,91 +326,142 @@
             <ion-toggle ng-model="settings.enableFriends">
                 Sound
             </ion-toggle>
-
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Name
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Name
+                        </div>
+                        <select>
+                            <option>---</option>
+                            <option>---</option>
+                            <option>---</option>
+                        </select>
+                    </label>
                 </div>
-                <select>
-                    <option>---</option>
-                    <option>---</option>
-                    <option>---</option>
-                </select>
-            </label>
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Rool
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
                 </div>
-                <select>
-                    <option>---</option>
-                    <option>---</option>
-                    <option>---</option>
-                </select>
-            </label>
-
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Name
+            </div>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Rool
+                        </div>
+                        <select>
+                            <option>---</option>
+                            <option>---</option>
+                            <option>---</option>
+                        </select>
+                    </label>
                 </div>
-                <select>
-                    <option>---</option>
-                    <option>---</option>
-                    <option>---</option>
-                </select>
-            </label>
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Rool
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
                 </div>
-                <select>
-                    <option>---</option>
-                    <option>---</option>
-                    <option>---</option>
-                </select>
-            </label>
-
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Name
+            </div>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Name
+                        </div>
+                        <select>
+                            <option>---</option>
+                            <option>---</option>
+                            <option>---</option>
+                        </select>
+                    </label>
                 </div>
-                <select>
-                    <option>---</option>
-                    <option>---</option>
-                    <option>---</option>
-                </select>
-            </label>
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Rool
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
                 </div>
-                <select>
-                    <option>---</option>
-                    <option>---</option>
-                    <option>---</option>
-                </select>
-            </label>
-
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Name
+            </div>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Rool
+                        </div>
+                        <select>
+                            <option>---</option>
+                            <option>---</option>
+                            <option>---</option>
+                        </select>
+                    </label>
                 </div>
-                <select>
-                    <option>---</option>
-                    <option>---</option>
-                    <option>---</option>
-                </select>
-            </label>
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Rool
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
                 </div>
-                <select>
-                    <option>---</option>
-                    <option>---</option>
-                    <option>---</option>
-                </select>
-            </label>
-
+            </div>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Name
+                        </div>
+                        <select>
+                            <option>---</option>
+                            <option>---</option>
+                            <option>---</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
+                </div>
+            </div>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Rool
+                        </div>
+                        <select>
+                            <option>---</option>
+                            <option>---</option>
+                            <option>---</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
+                </div>
+            </div>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Name
+                        </div>
+                        <select>
+                            <option>---</option>
+                            <option>---</option>
+                            <option>---</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
+                </div>
+            </div>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Rool
+                        </div>
+                        <select>
+                            <option>---</option>
+                            <option>---</option>
+                            <option>---</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
+                </div>
+            </div>
         </ion-list>
         
     </ion-content>

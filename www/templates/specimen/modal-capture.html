@@ -7,16 +7,24 @@
     </ion-header-bar>
     <ion-content>
         <ion-list>
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Coll. Event
+            
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Coll. Event
+                        </div>
+                        <select>
+                            <option>KCT----</option>
+                            <option>KCM----</option>
+                            <option>---</option>
+                        </select>
+                    </label>
                 </div>
-                <select>
-                    <option>KCT----</option>
-                    <option>KCM----</option>
-                    <option>---</option>
-                </select>
-            </label>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
+                </div>
+            </div>
             <label class="item item-input">
                 <span class="input-label">Capture Date</span>
                 <input type="text" ng-model="dateCapture" value="{{dateCapture}}" ng-click="openDatePickerCapture()" placeholder="Capture Date">
@@ -25,80 +33,136 @@
                 <span class="input-label">Capture Time</span>
                 <input type="text" ng-model="timeCapture" value="{{timeCapture}}" ng-click="openTimePickerCapture()" placeholder="Capture Time">
             </label>
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Capture Type
+            
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Capture Type
+                        </div>
+                        <select>
+                            <option>Voucher<option>
+                            <option>----</option>
+                            <option>---</option>
+                        </select>
+                    </label>
                 </div>
-                <select>
-                    <option>Voucher<option>
-                    <option>----</option>
-                    <option>---</option>
-                </select>
-            </label>
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Trap Type
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
                 </div>
-                <select>
-                    <option>Pitfall<option>
-                    <option>----</option>
-                    <option>---</option>
-                </select>
-            </label>
+            </div>
+            
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Trap Type
+                        </div>
+                        <select>
+                            <option>Pitfall<option>
+                            <option>----</option>
+                            <option>---</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
+                </div>
+            </div>
             <label class="item item-input">
                 <span class="input-label">Trap ID</span>
                 <input type="text" placeholder="Trap ID">
             </label>
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Capture
+            
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Capture
+                        </div>
+                        <select>
+                            <option>Aliva<option>
+                            <option>----</option>
+                            <option>---</option>
+                        </select>
+                    </label>
                 </div>
-                <select>
-                    <option>Aliva<option>
-                    <option>----</option>
-                    <option>---</option>
-                </select>
-            </label>
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Species Field
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
                 </div>
-                <select>
-                    <option>Aliva<option>
-                    <option>----</option>
-                    <option>---</option>
-                </select>
-            </label>
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Sex
+            </div>
+            
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Species Field
+                        </div>
+                        <select>
+                            <option>Aliva<option>
+                            <option>----</option>
+                            <option>---</option>
+                        </select>
+                    </label>
                 </div>
-                <select>
-                    <option>Male</option>
-                    <option>Female</option>
-                    <option>---</option>
-                </select>
-            </label>
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Age
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
                 </div>
-                <select>
-                    <option>Adult</option>
-                    <option>---</option>
-                    <option>---</option>
-                </select>
-            </label>
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Caught By
+            </div>
+            
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Sex
+                        </div>
+                        <select>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>---</option>
+                        </select>
+                    </label>
                 </div>
-                <select>
-                    <option>---</option>
-                    <option>---</option>
-                    <option>---</option>
-                </select>
-            </label>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
+                </div>
+            </div>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Age
+                        </div>
+                        <select>
+                            <option>Adult</option>
+                            <option>---</option>
+                            <option>---</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
+                </div>
+            </div>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Caught By
+                        </div>
+                        <select>
+                            <option>---</option>
+                            <option>---</option>
+                            <option>---</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
+                </div>
+            </div>
+            
+            
             <label class="item item-input">
                 <span class="input-label">Reproduction</span>
                 <input type="text" placeholder="Reproduction">
@@ -107,36 +171,60 @@
                 <span class="input-label">Release Time</span>
                 <input type="text" placeholder="release time">
             </label>
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Camp Time
+            
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Camp Time
+                        </div>
+                        <select>
+                            <option>---</option>
+                            <option>---</option>
+                            <option>---</option>
+                        </select>
+                    </label>
                 </div>
-                <select>
-                    <option>---</option>
-                    <option>---</option>
-                    <option>---</option>
-                </select>
-            </label>
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Camp Condition
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
                 </div>
-                <select>
-                    <option>---</option>
-                    <option>---</option>
-                    <option>---</option>
-                </select>
-            </label>
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Final Condition
+            </div>
+            
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Camp Condition
+                        </div>
+                        <select>
+                            <option>---</option>
+                            <option>---</option>
+                            <option>---</option>
+                        </select>
+                    </label>
                 </div>
-                <select>
-                    <option>---</option>
-                    <option>---</option>
-                    <option>---</option>
-                </select>
-            </label>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
+                </div>
+            </div>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                        <label class="item item-input item-select">
+                            <div class="input-label">
+                                Final Condition
+                            </div>
+                            <select>
+                                <option>---</option>
+                                <option>---</option>
+                                <option>---</option>
+                            </select>
+                        </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
+                </div>
+            </div>
+            
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Description</span>
                 <textarea placeholder="Description"></textarea>

@@ -116,6 +116,40 @@ angular.module('starter.controllers', [
 
     $scope.loginData = {};
 
+      $scope.postData = function() {
+        $scope._parts.postDB();
+      };
+
+      $ionicModal.fromTemplateUrl('templates/specimen/modal-part.html', {
+        scope: $scope
+      }).then(function(modal) {
+        $scope.modalPartList = modal;
+      });
+      
+      // Open the login modal
+      $scope.addPartList = function() {
+        $scope.modalPartList.show();
+      };
+      
+      $scope.closePartList = function() {
+        $scope.modalPartList.hide();
+      };
+
+      $ionicModal.fromTemplateUrl('templates/specimen/modal-capture.html', {
+        scope: $scope
+      }).then(function(modal) {
+        $scope.modalCaptureList = modal;
+      });
+      
+      // Open the login modal
+      $scope.addCaptureList = function() {
+        $scope.modalCaptureList.show();
+      };
+      
+      $scope.closeCaptureList = function() {
+        $scope.modalCaptureList.hide();
+      };
+
     $scope._species = factorySpecies;
     $scope._species.stateParams = $stateParams.id;
     $scope._species.loadData();
@@ -436,22 +470,7 @@ angular.module('starter.controllers', [
 
 .controller('captureCtrl', function ($scope, $http, $ionicModal, factoryCapture) {
 
-      $scope._capture = factoryCapture;
-
-      $ionicModal.fromTemplateUrl('templates/specimen/modal-capture.html', {
-        scope: $scope
-      }).then(function(modal) {
-        $scope.modalCaptureList = modal;
-      });
       
-      // Open the login modal
-      $scope.addCaptureList = function() {
-        $scope.modalCaptureList.show();
-      };
-      
-      $scope.closeCaptureList = function() {
-        $scope.modalCaptureList.hide();
-      };
 
   }
 );

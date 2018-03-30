@@ -5,8 +5,6 @@ angular.module('common.entry', []).factory('factoryEntry', [
     function ($http, $cordovaFile, ionicDatePicker) {
 
         var self = {};
-        
-        self.welcome = { name : 'Angular Factory Staf' };
 
         self.dateEntry = "";
         self.dateEntryPush = "";
