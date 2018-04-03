@@ -9,6 +9,33 @@ angular.module('common.event', []).factory('factoryEvent', [
         self.stateParams = "";
         self.jsonData = {tblProject: [], tblEvent: []};
 
+        self.stafList = [{
+            id: 0,
+            name: 'Ben Sparrow',
+            lastText: 'You on your way?',
+            face: 'img/ben.png'
+          }, {
+            id: 1,
+            name: 'Max Lynx',
+            lastText: 'Hey, it\'s me',
+            face: 'img/max.png'
+          }, {
+            id: 2,
+            name: 'Adam Bradleyson',
+            lastText: 'I should buy a boat',
+            face: 'img/adam.jpg'
+          }, {
+            id: 3,
+            name: 'Perry Governor',
+            lastText: 'Look at my mukluks!',
+            face: 'img/perry.png'
+          }, {
+            id: 4,
+            name: 'Mike Harrington',
+            lastText: 'This is wicked good ice cream.',
+            face: 'img/mike.png'
+          }];
+
         self.loadData = function () {
 
             $cordovaFile.getFreeDiskSpace()
@@ -76,7 +103,7 @@ angular.module('common.event', []).factory('factoryEvent', [
                     };
 
                     var pushData = {
-                        "id": self.stateParams +'-specimen'+ idLength,
+                        "id": self.stateParams +'-event'+ idLength,
                         "idProject": self.stateParams,
                         "inputReg": document.getElementById('inputReg').value,
                         "inputCollector": document.getElementById('inputCollector').value,
@@ -93,22 +120,16 @@ angular.module('common.event', []).factory('factoryEvent', [
                     self.jsonData.tblProject = settings.tblProject;
                     self.jsonData.tblEvent.push(pushData);
 
-                    // self.stateParams +'-specimen'+ self.jsonData.tblEvent.length
-
-                    
-                    
                     self.listEvent = self.jsonData.tblEvent;
                     
                     console.log(self.jsonData);
 
-                    return $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(self.jsonData), { replace: true });
+                    return $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(self.jsonData), { append: true });
                 
                 }, function (error) {
                 console.log(error)
                 });
                 
-                // console.log(success);
-
             });
         };
 

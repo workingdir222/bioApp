@@ -6,6 +6,7 @@ angular.module('common.species', []).factory('factorySpecies', [
         var self = {};
         self.idProject = "";
         self.listSpecies = [];
+        self.listSpeciesID = {};
         self.stateParams = "";
         self.jsonData = {tblProject: [], tblSpecies: []};
 
@@ -33,6 +34,12 @@ angular.module('common.species', []).factory('factorySpecies', [
 
                             if (element.id === self.stateParams) {
                                 self.listSpecies = settings.tblSpecies;
+
+                                angular.forEach(self.listSpecies, function(item){
+                                    if (item.id === self.stateParams) {
+                                        self.listSpeciesID = item;
+                                    }
+                                })
                             }
                             
                         });
@@ -94,7 +101,7 @@ angular.module('common.species', []).factory('factorySpecies', [
                     self.jsonData.tblSpecies.push(pushData);
                     self.listSpecies = self.jsonData.tblSpecies;
 
-                    return $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(self.jsonData), { replace: true });
+                    return $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(self.jsonData), { append: true });
                 
                 }, function (error) {
                 console.log(error)

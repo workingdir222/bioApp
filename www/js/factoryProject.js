@@ -49,7 +49,6 @@ angular.module('common.project', []).factory('factoryProject', function ($http, 
                 .then(function (success) {
                 
                     var tblProject = {"tblProject": []};
-
                     self.listProject = tblProject.tblProject;
                     
                     return $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(tblProject), {append: true});
@@ -61,7 +60,6 @@ angular.module('common.project', []).factory('factoryProject', function ($http, 
                 self.listProject = [];
 
             });
-
         };
 
         self.deleteDB = function () {
@@ -97,10 +95,9 @@ angular.module('common.project', []).factory('factoryProject', function ($http, 
                 var settings = angular.fromJson(success);
                 
                 settings.tblProject.push(pushData);
-
                 self.listProject = settings.tblProject;
 
-                return $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(settings), { replace: true });
+                return $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(settings), { append: true });
                 
                 }, function (error) {
                 console.log(error)
