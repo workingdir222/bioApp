@@ -1,0 +1,408 @@
+<ion-view view-title="Event">
+    <ion-content>
+        <ion-list>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Site ID
+                        </div>
+                        <select ng-model="_event.selectSiteID">
+                            <option ng-repeat="listSite in _event.jsonData.siteMaster">{{ listSite.name }}</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button ng-click="addModalSite()" class="button button-block button-energized mb-0 mt-0">Add</button>
+                </div>
+            </div>
+            <label class="item item-input">
+                <span class="input-label">Date</span>
+                <input type="text" id="dateEvent" ng-click="openDatePickerEvent()" placeholder="Date">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Start Time</span>
+                <input type="text" id="timeEventStar" ng-click="openTimePickerEventStart()" placeholder="Start Time">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">End Time</span>
+                <input type="text" id="timeEventEnd" ng-click="openTimePickerEventEnd()" placeholder="End Time">
+            </label>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Primary Collection Methods
+                        </div>
+                        <select ng-model="_event.selectCollection">
+                            <option ng-repeat="listCollection in _event.jsonData.collectionMaster">{{ listCollection.name }}</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button ng-click="addModalCollection()" class="button button-block button-energized mb-0 mt-0">Add</button>
+                </div>
+            </div>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Rat</span>
+                <div class="row">
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputRatCheck" type="number" placeholder="Checked">
+                        </label>
+                    </div>
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputRatAdd" type="number" placeholder="Add/Removed">
+                        </label>
+                    </div>
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputRatMove" type="number" placeholder="Moved">
+                        </label>
+                    </div>
+                </div>
+            </label>
+
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Elliott</span>
+                <div class="row">
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputElliottCheck" type="number" placeholder="Checked">
+                        </label>
+                    </div>
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputElliottAdd" type="number" placeholder="Add/Removed">
+                        </label>
+                    </div>
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputElliottMove" type="number" placeholder="Moved">
+                        </label>
+                    </div>
+                </div>
+            </label>
+
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Cage</span>
+                <div class="row">
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputCageCheck" type="number" placeholder="Checked">
+                        </label>
+                    </div>
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputCageAdd" type="number" placeholder="Add/Removed">
+                        </label>
+                    </div>
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputCageMove" type="number" placeholder="Moved">
+                        </label>
+                    </div>
+                </div>
+            </label>
+
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Pitfall</span>
+                <div class="row">
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputPitfallCheck" type="number" placeholder="Checked">
+                        </label>
+                    </div>
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputPitfallAdd" type="number" placeholder="Add/Removed">
+                        </label>
+                    </div>
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputPitfallMove" type="number" placeholder="Moved">
+                        </label>
+                    </div>
+                </div>
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label">Pitfall size</span>
+                <input ng-model="_event.inputPitfall" type="number" placeholder="Treatment">
+            </label>
+
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Conibear</span>
+                <div class="row">
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputConibearCheck" type="number" placeholder="Checked">
+                        </label>
+                    </div>
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputConibearAdd" type="number" placeholder="Add/Removed">
+                        </label>
+                    </div>
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputConibearMove" type="number" placeholder="Moved">
+                        </label>
+                    </div>
+                </div>
+            </label>
+
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Snare</span>
+                <div class="row">
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputSnareCheck" type="number" placeholder="Checked">
+                        </label>
+                    </div>
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputSnareAdd" type="number" placeholder="Add/Removed">
+                        </label>
+                    </div>
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputSnareMove" type="number" placeholder="Moved">
+                        </label>
+                    </div>
+                </div>
+            </label>
+
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Harp</span>
+                <div class="row">
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputHarpCheck" type="number" placeholder="Checked">
+                        </label>
+                    </div>
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputHarpAdd" type="number" placeholder="Add/Removed">
+                        </label>
+                    </div>
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputHarpMove" type="number" placeholder="Moved">
+                        </label>
+                    </div>
+                </div>
+            </label>
+
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Camera</span>
+                <div class="row">
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputCameraCheck" type="number" placeholder="Checked">
+                        </label>
+                    </div>
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputCameraAdd" type="number" placeholder="Add/Removed">
+                        </label>
+                    </div>
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputCameraMove" type="number" placeholder="Moved">
+                        </label>
+                    </div>
+                </div>
+            </label>
+
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Song Meter</span>
+                <div class="row">
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputSongCheck" type="number" placeholder="Checked">
+                        </label>
+                    </div>
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputSongAdd" type="number" placeholder="Add/Removed">
+                        </label>
+                    </div>
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputSongMove" type="number" placeholder="Moved">
+                        </label>
+                    </div>
+                </div>
+            </label>
+            
+            <label class="item item-input">
+                <span class="input-label">Other Type</span>
+                <input ng-model="_event.inputOtherType" type="text" placeholder="Other Type">
+            </label>
+
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Other</span>
+                <div class="row">
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputOtherCheck" type="number" placeholder="Checked">
+                        </label>
+                    </div>
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputOtherAdd" type="number" placeholder="Add/Removed">
+                        </label>
+                    </div>
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputOtherMove" type="number" placeholder="Moved">
+                        </label>
+                    </div>
+                </div>
+            </label>
+
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Mistnet</span>
+                <div class="row">
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputMistnetCheck" type="number" placeholder="Checked">
+                        </label>
+                    </div>
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputMistnetAdd" type="number" placeholder="Add/Removed">
+                        </label>
+                    </div>
+                    <div class="col">
+                        <label class="">
+                            <input ng-model="_event.inputMistnetMove" type="number" placeholder="Moved">
+                        </label>
+                    </div>
+                </div>
+            </label>
+
+            <label class="item item-input mb-5">
+                <span class="input-label">Temp</span>
+                <input type="text" placeholder="Temp">
+            </label>
+
+            <ion-toggle ng-model="_event.toggleSpecimen">
+                Specimens
+            </ion-toggle>
+            <ion-toggle ng-model="_event.toggleObservation">
+                Observation
+            </ion-toggle>
+            <ion-toggle ng-model="_event.toggleImage">
+                Images
+            </ion-toggle>
+            <ion-toggle ng-model="_event.toggleSound">
+                Sound
+            </ion-toggle>
+            <div class="row p-0">
+                <div class="col col-50 p-0">
+                    <div class="padding">
+                        <button ng-click="addModalStaff()" class="button button-block button-energized mb-0 mt-0">Add Staff</button>
+                    </div>
+                </div>
+                <div class="col col-50 p-0">
+                    <div class="padding">
+                        <button ng-click="addModalRole()" class="button button-block button-energized mb-0 mt-0">Add Role</button>
+                    </div>
+                </div>
+            </div>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Name
+                </div>
+                <select ng-model="_event.selectStaff1">
+                    <option ng-repeat="listStaff in _event.jsonData.staffMaster">{{ listStaff.name }}</option>
+                </select>
+            </label>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Rool
+                </div>
+                <select ng-model="_event.selectRole1">
+                    <option ng-repeat="listRole in _event.jsonData.roleMaster">{{ listRole.name }}</option>
+                </select>
+            </label>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Name
+                </div>
+                <select ng-model="_event.selectStaff2">
+                    <option ng-repeat="listStaff in _event.jsonData.staffMaster">{{ listStaff.name }}</option>
+                </select>
+            </label>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Rool
+                </div>
+                <select ng-model="_event.selectRole2">
+                    <option ng-repeat="listRole in _event.jsonData.roleMaster">{{ listRole.name }}</option>
+                </select>
+            </label>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Name
+                </div>
+                <select ng-model="_event.selectStaff3">
+                    <option ng-repeat="listStaff in _event.jsonData.staffMaster">{{ listStaff.name }}</option>
+                </select>
+            </label>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Rool
+                </div>
+                <select ng-model="_event.selectRole3">
+                    <option ng-repeat="listRole in _event.jsonData.roleMaster">{{ listRole.name }}</option>
+                </select>
+            </label>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Name
+                </div>
+                <select ng-model="_event.selectStaff4">
+                    <option ng-repeat="listStaff in _event.jsonData.staffMaster">{{ listStaff.name }}</option>
+                </select>
+            </label>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Rool
+                </div>
+                <select ng-model="_event.selectRole4">
+                    <option ng-repeat="listRole in _event.jsonData.roleMaster">{{ listRole.name }}</option>
+                </select>
+            </label>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Name
+                </div>
+                <select ng-model="_event.selectStaff5">
+                    <option ng-repeat="listStaff in _event.jsonData.staffMaster">{{ listStaff.name }}</option>
+                </select>
+            </label>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Rool
+                </div>
+                <select ng-model="_event.selectRole5">
+                    <option ng-repeat="listRole in _event.jsonData.roleMaster">{{ listRole.name }}</option>
+                </select>
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Collection Method Notes</span>
+                <textarea ng-model="_event.inputCMN" placeholder="Description"></textarea>
+            </label>
+        </ion-list>
+
+        <div class="padding">
+            <button class="button button-block button-energized" ng-click="_event.checkDbFile()">Save</button>
+        </div>
+        
+    </ion-content>
+</ion-view>
+          

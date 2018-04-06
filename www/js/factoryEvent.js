@@ -1,41 +1,119 @@
-angular.module('common.event', []).factory('factoryEvent', [
-    '$http',
-    '$cordovaFile',
-    function ($http, $cordovaFile) {
+angular.module('common.event', []).factory('factoryEvent', function ($http, $cordovaFile, $q) {
 
         var self = {};
         self.idProject = "";
         self.listEvent = [];
         self.stateParams = "";
-        self.jsonData = {tblProject: [], tblEvent: []};
+        self.jsonData = {};
 
-        self.stafList = [{
+        self.siteMaster = [{
             id: 0,
-            name: 'Ben Sparrow',
-            lastText: 'You on your way?',
-            face: 'img/ben.png'
+            name: 'gorontalo'
           }, {
             id: 1,
-            name: 'Max Lynx',
-            lastText: 'Hey, it\'s me',
-            face: 'img/max.png'
+            name: 'Max Lynx'
           }, {
             id: 2,
-            name: 'Adam Bradleyson',
-            lastText: 'I should buy a boat',
-            face: 'img/adam.jpg'
+            name: 'Adam Bradleyson'
           }, {
             id: 3,
-            name: 'Perry Governor',
-            lastText: 'Look at my mukluks!',
-            face: 'img/perry.png'
+            name: 'Perry Governor'
           }, {
             id: 4,
-            name: 'Mike Harrington',
-            lastText: 'This is wicked good ice cream.',
-            face: 'img/mike.png'
-          }];
+            name: 'Mike Harrington'
+        }];
 
+        self.addListSite = function() {
+            var deferred = $q.defer();
+            let siteArr ={
+                id: self.siteMaster.length + 1,
+                name: self.nameValue,
+            };
+
+            // self.siteMaster.push(siteArr);
+            self.jsonData.siteMaster.push(siteArr);
+            deferred.resolve(self.siteMaster);
+            return deferred.promise;
+        };
+
+        self.collectionMaster = [{
+            id: 0,
+            name: 'gorontalo'
+          }, {
+            id: 1,
+            name: 'Max Lynx'
+          }, {
+            id: 2,
+            name: 'Adam Bradleyson'
+          }, {
+            id: 3,
+            name: 'Perry Governor'
+          }, {
+            id: 4,
+            name: 'Mike Harrington'
+        }];
+
+        self.addListCollection = function() {
+            var deferred = $q.defer();
+            let collectionArr ={
+                id: self.collectionMaster.length + 1,
+                name: self.nameCollection,
+            };
+            
+            // self.collectionMaster.push(collectionArr);
+            self.jsonData.collectionMaster.push(collectionArr);
+            deferred.resolve(self.collectionMaster);
+            return deferred.promise;
+        };
+
+        self.staffMaster = [{
+            id: 0,
+            name: 'ujang'
+          }, {
+            id: 1,
+            name: 'Max Lynx'
+          }, {
+            id: 2,
+            name: 'Adam Bradleyson'
+          }, {
+            id: 3,
+            name: 'Perry Governor'
+          }, {
+            id: 4,
+            name: 'Mike Harrington'
+        }];
+
+        self.addListStaff = function() {
+            var deferred = $q.defer();
+            let staffArr ={
+                id: self.staffMaster.length + 1,
+                name: self.nameStaff,
+            };
+
+            // self.staffMaster.push(staffArr);
+            self.jsonData.staffMaster.push(staffArr);
+            deferred.resolve(self.staffMaster);
+            return deferred.promise;
+        };
+
+        self.roleMaster = [{
+            id: 0,
+            name: 'collector'
+        }];
+
+        self.addListRole = function() {
+            var deferred = $q.defer();
+            let roleArr ={
+                id: self.roleMaster.length + 1,
+                name: self.nameRole,
+            };
+
+            // self.roleMaster.push(roleArr);
+            self.jsonData.roleMaster.push(roleArr);
+            deferred.resolve(self.roleMaster);
+            return deferred.promise;
+        };
+        
         self.loadData = function () {
 
             $cordovaFile.getFreeDiskSpace()
@@ -54,6 +132,8 @@ angular.module('common.event', []).factory('factoryEvent', [
                 .then(function (success) {
 
                     let settings = angular.fromJson(success);
+                    self.jsonData = settings;
+                    console.log(settings)
 
                     if (settings.tblEvent !== undefined) {
                         settings.tblEvent.forEach(element => {
@@ -96,6 +176,8 @@ angular.module('common.event', []).factory('factoryEvent', [
                     var settings = angular.fromJson(success);
                     var idLength = 0;
 
+                    self.jsonData = settings;
+
                     if (settings.tblEvent !== undefined) {
                         idLength = settings.tblEvent.length;
                     } else {
@@ -104,20 +186,65 @@ angular.module('common.event', []).factory('factoryEvent', [
 
                     var pushData = {
                         "id": self.stateParams +'-event'+ idLength,
-                        "idProject": self.stateParams,
-                        "inputReg": document.getElementById('inputReg').value,
-                        "inputCollector": document.getElementById('inputCollector').value,
-                        "inputInitials": document.getElementById('inputInitials').value,
-                        "inputPreparator": document.getElementById('inputPreparator').value,
-                        "inputGenu": document.getElementById('inputGenu').value,
-                        "inputEvent": document.getElementById('inputEvent').value,
-                        "inputField1": document.getElementById('inputField1').value,
-                        "inputField2": document.getElementById('inputField2').value,
-                        "inputField3": document.getElementById('inputField3').value,
-                        "inputField4": document.getElementById('inputField4').value
+                        "selectSiteID": self.selectSiteID,
+                        "dateEvent": self.dateEvent,
+                        "timeEventStar": self.timeEventStar,
+                        "timeEventEnd": self.timeEventEnd,
+                        "selectCollection": self.selectCollection,
+                        "inputRatCheck": self.inputRatCheck,
+                        "inputRatAdd": self.inputRatAdd,
+                        "inputRatMove": self.inputRatMove,
+                        "inputElliottCheck": self.inputElliottCheck,
+                        "inputElliottAdd": self.inputElliottAdd,
+                        "inputElliottMove": self.inputElliottMove,
+                        "inputCageCheck": self.inputCageCheck,
+                        "inputCageAdd": self.inputCageAdd,
+                        "inputCageMove": self.inputCageMove,
+                        "inputPitfallCheck": self.inputPitfallCheck,
+                        "inputPitfallAdd": self.inputPitfallAdd,
+                        "inputPitfallMove": self.inputPitfallMove,
+                        "inputPitfall": self.inputPitfall,
+                        "inputConibearCheck": self.inputConibearCheck,
+                        "inputConibearAdd": self.inputConibearAdd,
+                        "inputConibearMove": self.inputConibearMove,
+                        "inputSnareCheck": self.inputSnareCheck,
+                        "inputSnareAdd": self.inputSnareAdd,
+                        "inputSnareMove": self.inputSnareMove,
+                        "inputHarpCheck": self.inputHarpCheck,
+                        "inputHarpAdd": self.inputHarpAdd,
+                        "inputHarpMove": self.inputHarpMove,
+                        "inputCameraCheck": self.inputCameraCheck,
+                        "inputCameraAdd": self.inputCameraAdd,
+                        "inputCameraMove": self.inputCameraMove,
+                        "inputSongCheck": self.inputSongCheck,
+                        "inputSongAdd": self.inputSongAdd,
+                        "inputSongMove": self.inputSongMove,
+                        "inputOtherType": self.inputOtherType,
+                        "inputOtherCheck": self.inputOtherCheck,
+                        "inputOtherAdd": self.inputOtherAdd,
+                        "inputOtherMove": self.inputOtherMove,
+                        "inputMistnetCheck": self.inputMistnetCheck,
+                        "inputMistnetAdd": self.inputMistnetAdd,
+                        "inputMistnetMove": self.inputMistnetMove,
+                        "toggleSpecimen": self.toggleSpecimen,
+                        "toggleObservation": self.toggleObservation,
+                        "toggleImage": self.toggleImage,
+                        "toggleSound": self.toggleSound,
+                        "selectStaff1": self.selectStaff1,
+                        "selectRole1": self.selectRole1,
+                        "selectStaff2": self.selectStaff2,
+                        "selectRole2": self.selectRole2,
+                        "selectStaff3": self.selectStaff3,
+                        "selectRole3": self.selectRole3,
+                        "selectStaff4": self.selectStaff4,
+                        "selectRole4": self.selectRole4,
+                        "selectStaff5": self.selectStaff5,
+                        "selectRole5": self.selectRole5,
+                        "inputCMN": self.inputCMN
                     };
                     
-                    self.jsonData.tblProject = settings.tblProject;
+                    // self.jsonData.tblProject = settings.tblProject;
+                    // self.jsonData.tblSpecies = settings.tblSpecies;
                     self.jsonData.tblEvent.push(pushData);
 
                     self.listEvent = self.jsonData.tblEvent;
@@ -136,4 +263,4 @@ angular.module('common.event', []).factory('factoryEvent', [
         return self;
 
     }
-])
+)

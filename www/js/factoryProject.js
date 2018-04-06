@@ -48,7 +48,21 @@ angular.module('common.project', []).factory('factoryProject', function ($http, 
                 $cordovaFile.createFile(cordova.file.dataDirectory, "dbfile.json", true)
                 .then(function (success) {
                 
-                    var tblProject = {"tblProject": []};
+                    var tblProject = {
+                        "tblProject": [],
+                        "tblSpecies": [],
+                        "tblEvent": [],
+                        "tblSite": [],
+                        "tblCapture": [],
+                        "tblObs": [],
+                        "tblNarrative": [],
+                        "tblEvent": [],
+                        "siteMaster": [],
+                        "collectionMaster": [],
+                        "staffMaster": [],
+                        "roleMaster": []
+                    };
+
                     self.listProject = tblProject.tblProject;
                     
                     return $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(tblProject), {append: true});
@@ -94,6 +108,8 @@ angular.module('common.project', []).factory('factoryProject', function ($http, 
                 
                 var settings = angular.fromJson(success);
                 
+                // self.jsonData.tblSpecies = settings.tblSpecies;
+                // self.jsonData.tblEvent = settings.tblEvent;
                 settings.tblProject.push(pushData);
                 self.listProject = settings.tblProject;
 

@@ -1,6 +1,7 @@
 angular.module('starter.controllers', [
   'common.project',
   'common.species',
+  'common.event',
   'common.staf',
   'common.site',
   'common.parts',
@@ -252,77 +253,179 @@ angular.module('starter.controllers', [
   }
 )
 
-.controller('eventCtrl', function ($scope, $http, ionicDatePicker, ionicTimePicker) {
+.controller('eventCtrl', function ($scope, $http, $filter, $ionicModal, ionicDatePicker, ionicTimePicker, factoryEvent) {
 
-    $scope.dateEvent = "";
+  $scope._event = factoryEvent;
+  $scope._event.loadData();
 
-      var ipObj1 = {
-        callback: function (val) {  //Mandatory
-          console.log('Return value from the datepicker popup is : ' + val, new Date(val));
-          var date = new Date(val);
-          $scope.dateEvent = date.getDate() +' - '+ (date.getMonth()+1) +' - '+ date.getFullYear();
-        },
-        disabledDates: [            //Optional
-          new Date(2018, 2, 16),
-          new Date(2017, 2, 16),
-          new Date(2016, 2, 16),
-          new Date(2015, 3, 16),
-          new Date(2015, 4, 16),
-          new Date(2015, 5, 16),
-          new Date('Wednesday, August 12, 2015'),
-          new Date("08-16-2016"),
-          new Date(1439676000000)
-        ],
-        from: new Date(2012, 1, 1), //Optional
-        to: new Date(2018, 12, 30), //Optional
-        inputDate: new Date(),      //Optional
-        mondayFirst: true,          //Optional
-        disableWeekdays: [0],       //Optional
-        closeOnSelect: false,       //Optional
-        templateType: 'popup'       //Optional
-      };
+  $ionicModal.fromTemplateUrl('templates/event/modal-siteid.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modalEventid = modal;
+  });
   
-      $scope.openDatePickerEvent = function(){
-        ionicDatePicker.openDatePicker(ipObj1);
+  $scope.addModalSite = function() {
+    $scope.modalEventid.show();
+    $scope._event.nameValue = "";
+  };
+  
+  $scope.closeModalSite = function() {
+    $scope.modalEventid.hide();
+  };
+
+  $scope.addListSite = function() {
+    factoryEvent.addListSite() 
+      .then(function(response) {
+        $scope.modalEventid.hide();
+      }
+    );
+  };
+
+  $ionicModal.fromTemplateUrl('templates/event/modal-collection.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modalCollection = modal;
+  });
+  
+  $scope.addModalCollection = function() {
+    $scope.modalCollection.show();
+    $scope._event.nameCollection = "";
+  };
+  
+  $scope.closeModalCollection = function() {
+    $scope.modalCollection.hide();
+  };
+
+  $scope.addListCollection = function() {
+    factoryEvent.addListCollection() 
+      .then(function(response) {
+        $scope.modalCollection.hide();
+      }
+    );
+  };
+
+  $ionicModal.fromTemplateUrl('templates/event/modal-staff.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modalStaff = modal;
+  });
+  
+  $scope.addModalStaff = function() {
+    $scope.modalStaff.show();
+    $scope._event.nameStaff = "";
+  };
+  
+  $scope.closeModalStaff = function() {
+    $scope.modalStaff.hide();
+  };
+
+  $scope.addListStaff = function() {
+    factoryEvent.addListStaff() 
+      .then(function(response) {
+        $scope.modalStaff.hide();
+      }
+    );
+  };
+
+  $ionicModal.fromTemplateUrl('templates/event/modal-role.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modalRole = modal;
+  });
+  
+  $scope.addModalRole = function() {
+    $scope.modalRole.show();
+    $scope._event.nameRole = "";
+  };
+  
+  $scope.closeModalRole = function() {
+    $scope.modalRole.hide();
+  };
+
+  $scope.addListRole = function() {
+    factoryEvent.addListRole() 
+      .then(function(response) {
+        $scope.modalRole.hide();
+      }
+    );
+  };
+
+  $scope.dateEvent = "";
+
+    var ipObj1 = {
+      callback: function (val) {  //Mandatory
+        console.log('Return value from the datepicker popup is : ' + val, new Date(val));
+        $scope._event.dateEvent = val;
+        let dateEnd = $filter("date")(val, 'dd MMMM yyyy');
+        document.getElementById('dateEvent').value = dateEnd;
+      },
+      disabledDates: [            //Optional
+        new Date(2018, 2, 16),
+        new Date(2017, 2, 16),
+        new Date(2016, 2, 16),
+        new Date(2015, 3, 16),
+        new Date(2015, 4, 16),
+        new Date(2015, 5, 16),
+        new Date('Wednesday, August 12, 2015'),
+        new Date("08-16-2016"),
+        new Date(1439676000000)
+      ],
+      from: new Date(2012, 1, 1), //Optional
+      to: new Date(2018, 12, 30), //Optional
+      inputDate: new Date(),      //Optional
+      mondayFirst: true,          //Optional
+      disableWeekdays: [0],       //Optional
+      closeOnSelect: false,       //Optional
+      templateType: 'popup'       //Optional
+    };
+
+    $scope.openDatePickerEvent = function(){
+      ionicDatePicker.openDatePicker(ipObj1);
+    };
+
+    $scope.timeEventStar = "";
+
+    $scope.openTimePickerEventStart = function(){
+      var ipObj1 = {
+        callback: function (val) {
+          if (typeof (val) === 'undefined') {
+            console.log('Time not selected');
+          } else {
+            var selectedTime = new Date(val * 1000);
+            console.log('Selected epoch is : ', val, 'and the time is ', selectedTime.getUTCHours(), 'H :', selectedTime.getUTCMinutes(), 'M');
+            $scope._event.timeEventStar = val;
+
+            let dateStart = $filter("date")(val, 'HH:mm');
+            document.getElementById('timeEventStar').value = dateStart;
+          }
+        },
+        inputTime: ((new Date()).getHours() * 60 * 60 + (new Date()).getMinutes() * 60),
+        format: 24
       };
+      ionicTimePicker.openTimePicker(ipObj1);
+    };
 
-      $scope.timeEventStar = "";
+    $scope.timeEventEnd = "";
 
-      $scope.openTimePickerEventStart = function(){
-        var ipObj1 = {
-          callback: function (val) {
-            if (typeof (val) === 'undefined') {
-              console.log('Time not selected');
-            } else {
-              var selectedTime = new Date(val * 1000);
-              console.log('Selected epoch is : ', val, 'and the time is ', selectedTime.getUTCHours(), 'H :', selectedTime.getUTCMinutes(), 'M');
-              $scope.timeEventStar = selectedTime.getUTCHours() +' : '+ selectedTime.getUTCMinutes();
-            }
-          },
-          inputTime: ((new Date()).getHours() * 60 * 60 + (new Date()).getMinutes() * 60),
-          format: 24
-        };
-        ionicTimePicker.openTimePicker(ipObj1);
+    $scope.openTimePickerEventEnd = function(){
+      var ipObj1 = {
+        callback: function (val) {
+          if (typeof (val) === 'undefined') {
+            console.log('Time not selected');
+          } else {
+            var selectedTime = new Date(val * 1000);
+            console.log('Selected epoch is : ', val, 'and the time is ', selectedTime.getUTCHours(), 'H :', selectedTime.getUTCMinutes(), 'M');
+            $scope._event.timeEventEnd = val;
+
+            let dateEnd = $filter("date")(val, 'HH:mm');
+            document.getElementById('timeEventEnd').value = dateEnd;
+          }
+        },
+        inputTime: ((new Date()).getHours() * 60 * 60 + (new Date()).getMinutes() * 60),
+        format: 24
       };
-
-      $scope.timeEventEnd = "";
-
-      $scope.openTimePickerEventEnd = function(){
-        var ipObj1 = {
-          callback: function (val) {
-            if (typeof (val) === 'undefined') {
-              console.log('Time not selected');
-            } else {
-              var selectedTime = new Date(val * 1000);
-              console.log('Selected epoch is : ', val, 'and the time is ', selectedTime.getUTCHours(), 'H :', selectedTime.getUTCMinutes(), 'M');
-              $scope.timeEventEnd = selectedTime.getUTCHours() +' : '+ selectedTime.getUTCMinutes();
-            }
-          },
-          inputTime: ((new Date()).getHours() * 60 * 60 + (new Date()).getMinutes() * 60),
-          format: 24
-        };
-        ionicTimePicker.openTimePicker(ipObj1);
-      };
+      ionicTimePicker.openTimePicker(ipObj1);
+    };
 
   }
 )

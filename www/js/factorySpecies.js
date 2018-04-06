@@ -8,7 +8,7 @@ angular.module('common.species', []).factory('factorySpecies', [
         self.listSpecies = [];
         self.listSpeciesID = {};
         self.stateParams = "";
-        self.jsonData = {tblProject: [], tblSpecies: []};
+        self.jsonData = {};
 
         self.loadData = function () {
 
@@ -28,6 +28,7 @@ angular.module('common.species', []).factory('factorySpecies', [
                 .then(function (success) {
 
                     let settings = angular.fromJson(success);
+                    self.jsonData = settings;
 
                     if (settings.tblSpecies !== undefined) {
                         settings.tblSpecies.forEach(element => {
@@ -43,7 +44,7 @@ angular.module('common.species', []).factory('factorySpecies', [
                             }
                             
                         });
-                    }
+                    };
                     
                 }, function (error) {
                     console.log(error)
@@ -97,7 +98,8 @@ angular.module('common.species', []).factory('factorySpecies', [
                         "inputField4": document.getElementById('inputField4').value
                     };
                     
-                    self.jsonData.tblProject = settings.tblProject;
+                    // self.jsonData.tblProject = settings.tblProject;
+                    // self.jsonData.tblEvent = settings.tblEvent;
                     self.jsonData.tblSpecies.push(pushData);
                     self.listSpecies = self.jsonData.tblSpecies;
 
