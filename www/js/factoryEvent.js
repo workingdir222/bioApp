@@ -26,13 +26,14 @@ angular.module('common.event', []).factory('factoryEvent', function ($http, $cor
         self.addListSite = function() {
             var deferred = $q.defer();
             let siteArr ={
-                id: self.siteMaster.length + 1,
+                id: self.jsonData.siteMaster.length + 1,
                 name: self.nameValue,
             };
 
             // self.siteMaster.push(siteArr);
             self.jsonData.siteMaster.push(siteArr);
-            deferred.resolve(self.siteMaster);
+            $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(self.jsonData), { append: true });
+            deferred.resolve(siteArr);
             return deferred.promise;
         };
 
@@ -56,13 +57,14 @@ angular.module('common.event', []).factory('factoryEvent', function ($http, $cor
         self.addListCollection = function() {
             var deferred = $q.defer();
             let collectionArr ={
-                id: self.collectionMaster.length + 1,
+                id: self.jsonData.collectionMaster.length + 1,
                 name: self.nameCollection,
             };
             
             // self.collectionMaster.push(collectionArr);
             self.jsonData.collectionMaster.push(collectionArr);
-            deferred.resolve(self.collectionMaster);
+            $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(self.jsonData), { append: true });
+            deferred.resolve(collectionArr);
             return deferred.promise;
         };
 
@@ -86,13 +88,14 @@ angular.module('common.event', []).factory('factoryEvent', function ($http, $cor
         self.addListStaff = function() {
             var deferred = $q.defer();
             let staffArr ={
-                id: self.staffMaster.length + 1,
+                id: self.jsonData.staffMaster.length + 1,
                 name: self.nameStaff,
             };
 
             // self.staffMaster.push(staffArr);
             self.jsonData.staffMaster.push(staffArr);
-            deferred.resolve(self.staffMaster);
+            $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(self.jsonData), { append: true });
+            deferred.resolve(staffArr);
             return deferred.promise;
         };
 
@@ -104,13 +107,14 @@ angular.module('common.event', []).factory('factoryEvent', function ($http, $cor
         self.addListRole = function() {
             var deferred = $q.defer();
             let roleArr ={
-                id: self.roleMaster.length + 1,
+                id: self.jsonData.roleMaster.length + 1,
                 name: self.nameRole,
             };
 
             // self.roleMaster.push(roleArr);
             self.jsonData.roleMaster.push(roleArr);
-            deferred.resolve(self.roleMaster);
+            $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(self.jsonData), { append: true });
+            deferred.resolve(roleArr);
             return deferred.promise;
         };
         
@@ -133,7 +137,6 @@ angular.module('common.event', []).factory('factoryEvent', function ($http, $cor
 
                     let settings = angular.fromJson(success);
                     self.jsonData = settings;
-                    console.log(settings)
 
                     if (settings.tblEvent !== undefined) {
                         settings.tblEvent.forEach(element => {
@@ -151,7 +154,7 @@ angular.module('common.event', []).factory('factoryEvent', function ($http, $cor
 
             }, function (error) {
 
-                self.listProject = [];
+                self.listEvent = [];
 
             });
 
@@ -246,9 +249,7 @@ angular.module('common.event', []).factory('factoryEvent', function ($http, $cor
                     // self.jsonData.tblProject = settings.tblProject;
                     // self.jsonData.tblSpecies = settings.tblSpecies;
                     self.jsonData.tblEvent.push(pushData);
-
                     self.listEvent = self.jsonData.tblEvent;
-                    
                     console.log(self.jsonData);
 
                     return $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(self.jsonData), { append: true });

@@ -1,0 +1,145 @@
+<ion-view view-title="Master Capture">
+    <ion-content>
+        <ion-list>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Colecting event number
+                        </div>
+                        <select ng-model="_capture.colectingEventSelect">
+                            <option ng-repeat="listColectingEvent in _capture.jsonData.colectingEventMaster">{{ listEvent.name }}</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalColectingEvent()">Add</button>
+                </div>
+            </div>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Species field ID
+                        </div>
+                        <select ng-model="_capture.speciesFieldSelect">
+                            <option ng-repeat="listSpeciesField in _capture.jsonData.speciesFieldMaster">{{ listSpeciesField.name }}</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalSpeciesField()">Add</button>
+                </div>
+            </div>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Caught By
+                        </div>
+                        <select ng-model="_capture.caughtBySelect">
+                            <option ng-repeat="listCaughtBy in _capture.jsonData.caughtByMaster">{{ listCaughtBy.name }}</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalCaughtBy()">Add</button>
+                </div>
+            </div>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Capture Type
+                        </div>
+                        <select ng-model="_capture.captureTypeSelect">
+                            <option ng-repeat="listCaptureType in _capture.jsonData.captureTypeMaster">{{ listCaptureType.name }}</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalCaptureType()">Add</button>
+                </div>
+            </div>
+            <label class="item item-input">
+                <span class="input-label">Capture Date</span>
+                <input type="text" ng-model="_capture.dateCapture" ng-click="openDatePickerCapture()" placeholder="Capture Date">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Capture Time</span>
+                <input type="text" ng-model="_capture.captureTime" ng-click="openTimePickerCapture()" placeholder="Capture Time">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Release Time</span>
+                <input type="text" ng-model="_capture.releaseTime" ng-click="openTimePickerCaptureRelease()" placeholder="Release Time">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Camp Time</span>
+                <input type="text" ng-model="_capture.CampTime" ng-click="openTimePickerCaptureCamp()" placeholder="Camp Time">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Capture Condition</span>
+                <input type="text" placeholder="Capture Condition">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Camp Condition</span>
+                <input type="text" placeholder="Camp Condition">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Final Condition</span>
+                <input type="text" placeholder="Final Condition">
+            </label>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Trap Type
+                        </div>
+                        <select ng-model="_capture.trapTypeSelect">
+                            <option ng-repeat="listTrapType in _capture.jsonData.trapTypeMaster">{{ listTrapType.name }}</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalTrapType()">Add</button>
+                </div>
+            </div>
+            <label class="item item-input">
+                <span class="input-label">Trap #</span>
+                <input type="text" placeholder="Trap #">
+            </label>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Sex
+                </div>
+                <select ng-model="_capture.sexSelect">
+                    <option value="male">Male</option>
+                    <option value="female">female</option>
+                </select>
+            </label>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Age
+                        </div>
+                        <select ng-model="_capture.ageSelect">
+                            <option ng-repeat="listAge in _capture.jsonData.ageMaster">{{ listAge.name }}</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalAge()">Add</button>
+                </div>
+            </div>
+            <label class="item item-input">
+                <span class="input-label">Reproduction</span>
+                <input type="text" placeholder="Reproduction">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Notes</span>
+                <textarea placeholder="Notes"></textarea>
+            </label>
+        </ion-list>
+    </ion-content>
+</ion-view>

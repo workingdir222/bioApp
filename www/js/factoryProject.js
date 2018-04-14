@@ -6,8 +6,29 @@ angular.module('common.project', []).factory('factoryProject', function ($http, 
         self.location = "";
         self.dateProjectPush = "";
         self.listProject = [];
-        self.listSpecies = [];
         let listProjectArr = [];
+
+        self.jsonData = {
+            "tblProject": [],
+            "tblSpecies": [],
+            "tblEvent": [],
+            "tblSite": [],
+            "tblCapture": [],
+            "tblObs": [],
+            "tblNarrative": [],
+            "tblEvent": [],
+            "siteMaster": [],
+            "collectionMaster": [],
+            "staffMaster": [],
+            "roleMaster": [],
+            "typeMaster": [],
+            "roleMaster": [],
+            "countryMaster": [],
+            "stateMaster": [],
+            "islandMaster": [],
+            "habitatMaster": [],
+            "disturbedMaster": [],
+        };
 
         self.loadData = function () {
 
@@ -27,17 +48,9 @@ angular.module('common.project', []).factory('factoryProject', function ($http, 
                 .then(function (success) {
 
                     let settings = angular.fromJson(success);
+                    self.jsonData = settings;
 
-                    self.listProject = settings.tblProject;
-
-                    if (settings.tblSpecies !== undefined) {
-
-                        if (settings.tblSpecies !== "") {
-                            self.listSpecies = settings.tblSpecies;
-                            console.log(self.listSpecies);
-                        }
-                        
-                    }
+                    console.log(settings);
                     
                 }, function (error) {
                     console.log(error)
@@ -48,24 +61,7 @@ angular.module('common.project', []).factory('factoryProject', function ($http, 
                 $cordovaFile.createFile(cordova.file.dataDirectory, "dbfile.json", true)
                 .then(function (success) {
                 
-                    var tblProject = {
-                        "tblProject": [],
-                        "tblSpecies": [],
-                        "tblEvent": [],
-                        "tblSite": [],
-                        "tblCapture": [],
-                        "tblObs": [],
-                        "tblNarrative": [],
-                        "tblEvent": [],
-                        "siteMaster": [],
-                        "collectionMaster": [],
-                        "staffMaster": [],
-                        "roleMaster": []
-                    };
-
-                    self.listProject = tblProject.tblProject;
-                    
-                    return $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(tblProject), {append: true});
+                    return $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(self.jsonData), {append: true});
 
                 }, function (error) {
                 // error
@@ -80,8 +76,30 @@ angular.module('common.project', []).factory('factoryProject', function ($http, 
 
             $cordovaFile.removeFile(cordova.file.dataDirectory, "dbfile.json")
             .then(function (success) {
-                self.listProject = [];
-                self.listSpecies = [];
+                self.jsonData = {
+                    "tblProject": [],
+                    "tblSpecies": [],
+                    "tblEvent": [],
+                    "tblSite": [],
+                    "tblCapture": [],
+                    "tblObs": [],
+                    "tblNarrative": [],
+                    "tblEvent": [],
+                    "siteMaster": [],
+                    "collectionMaster": [],
+                    "staffMaster": [],
+                    "roleMaster": [],
+                    "typeMaster": [],
+                    "roleMaster": [],
+                    "countryMaster": [],
+                    "stateMaster": [],
+                    "islandMaster": [],
+                    "habitatMaster": [],
+                    "disturbedMaster": [],
+                    "sexMaster": [],
+                    "ageMaster": [],
+                    "caughtMaster": []
+                };
                 self.loadData();
             }, function (error) {
             })
@@ -103,17 +121,12 @@ angular.module('common.project', []).factory('factoryProject', function ($http, 
                     "dateProject": self.dateProjectPush,
                     "location": self.location
                 };
-
-                console.log(pushData);
-                
-                var settings = angular.fromJson(success);
                 
                 // self.jsonData.tblSpecies = settings.tblSpecies;
                 // self.jsonData.tblEvent = settings.tblEvent;
-                settings.tblProject.push(pushData);
-                self.listProject = settings.tblProject;
+                self.jsonData.tblProject.push(pushData);
 
-                return $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(settings), { append: true });
+                return $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(self.jsonData), { append: true });
                 
                 }, function (error) {
                 console.log(error)

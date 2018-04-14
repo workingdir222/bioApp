@@ -229,7 +229,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     url: '/site',
     views: {
       'menuContent': {
-        templateUrl: 'templates/site.html',
+        templateUrl: 'templates/site/site.html',
         controller: 'siteCtrl'
       }
     }
@@ -279,7 +279,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     url: '/capture',
     views: {
       'menuContent': {
-        templateUrl: 'templates/capture.html',
+        templateUrl: 'templates/capture/capture.html',
         controller: 'captureCtrl'
       }
     }

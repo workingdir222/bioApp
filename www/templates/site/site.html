@@ -4,17 +4,8 @@
         <ion-list>
             <label class="item item-input">
                 <span class="input-label">Site ID</span>
-                <input type="text" placeholder="Reng Part">
+                <input type="text" ng-model="_site.selectSiteID" placeholder="Reng Part">
             </label>
-            <!-- <button class="button button-block button-energized" ng-click="addStafPopup()">Add Staf</button> -->
-            <!-- <div class="row">
-                <div class="col">
-
-                </div>
-                <div class="col">
-                    
-                </div>
-            </div> -->
 
             <div class="row p-0">
                 <div class="col col-80 p-0">
@@ -23,13 +14,13 @@
                             Lead Staff
                         </div>
                         <!-- <a class="button button-icon icon ion-plus-circled" ng-click="addStafPopup()"></a> -->
-                        <select ng-model="staffSelect" ng-change="selectStaff(staffSelect)">
-                            <option ng-repeat="listStaf in stafList">{{listStaf.name}}</option>
+                        <select ng-model="_site.staffSelect" ng-change="selectStaff(staffSelect)">
+                            <option ng-repeat="listStaf in _site.jsonData.staffMaster">{{ listStaf.name }}</option>
                         </select>
                     </label>
                 </div>
                 <div class="col p-0">
-                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addStafPopup()">Add</button>
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalStaff()">Add</button>
                 </div>
             </div>
 
@@ -39,15 +30,13 @@
                         <div class="input-label">
                             Type
                         </div>
-                        <select>
-                            <option>---</option>
-                            <option>---</option>
-                            <option>---</option>
+                        <select ng-model="_site.typeSelect" ng-change="selectType(typeSelect)">
+                            <option ng-repeat="listType in _site.jsonData.typeMaster">{{ listType.name }}</option>
                         </select>
                     </label>
                 </div>
                 <div class="col p-0">
-                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addStafPopup()">Add</button>
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalType()">Add</button>
                 </div>
             </div>
             <div class="row p-0">
@@ -56,15 +45,13 @@
                         <div class="input-label">
                             Country
                         </div>
-                        <select>
-                            <option>---</option>
-                            <option>---</option>
-                            <option>---</option>
+                        <select ng-model="_site.countrySelect" ng-change="selectCountry(countrySelect)">
+                            <option ng-repeat="listCountry in _site.jsonData.countryMaster">{{ listCountry.name }}</option>
                         </select>
                     </label>
                 </div>
                 <div class="col p-0">
-                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addStafPopup()">Add</button>
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalCountry()">Add</button>
                 </div>
             </div>
             <div class="row p-0">
@@ -73,15 +60,13 @@
                         <div class="input-label">
                             State
                         </div>
-                        <select>
-                            <option>---</option>
-                            <option>---</option>
-                            <option>---</option>
+                        <select ng-model="_site.stateSelect" ng-change="selectState(stateSelect)">
+                            <option ng-repeat="listState in _site.jsonData.stateMaster">{{ listState.name }}</option>
                         </select>
                     </label>
                 </div>
                 <div class="col p-0">
-                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addStafPopup()">Add</button>
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalState()">Add</button>
                 </div>
             </div>
             
@@ -91,38 +76,36 @@
                         <div class="input-label">
                             Island
                         </div>
-                        <select>
-                            <option>---</option>
-                            <option>---</option>
-                            <option>---</option>
+                        <select ng-model="_site.islandSelect" ng-change="selectIsland(islandSelect)">
+                            <option ng-repeat="listIsland in _site.jsonData.islandMaster">{{ listIsland.name }}</option>
                         </select>
                     </label>
                 </div>
                 <div class="col p-0">
-                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addStafPopup()">Add</button>
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalIsland()">Add</button>
                 </div>
             </div>
             
             <label class="item item-input">
                 <span class="input-label">Elevation</span>
-                <input type="text" placeholder="Z Number">
+                <input type="text" ng-model="_site.inputZnomber" placeholder="Z Number">
             </label>
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Precise Location</span>
-                <textarea placeholder="Description"></textarea>
+                <textarea ng-model="_site.descLocation" placeholder="Description"></textarea>
             </label>
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Site Description</span>
-                <textarea placeholder="Description"></textarea>
+                <textarea ng-model="_site.descSite" placeholder="Description"></textarea>
             </label>
 
             <label class="item item-input">
                 <span class="input-label">Start Date</span>
-                <input type="text" placeholder="Nature">
+                <input type="text" ng-model="_site.inputStartDate" placeholder="Start Date">
             </label>
             <label class="item item-input">
                 <span class="input-label">End Date</span>
-                <input type="text" placeholder="field">
+                <input type="text" ng-model="_site.inputEndDate" placeholder="field">
             </label>
             
             <div class="row p-0">
@@ -131,15 +114,13 @@
                         <div class="input-label">
                             Habitat
                         </div>
-                        <select>
-                            <option>---</option>
-                            <option>---</option>
-                            <option>---</option>
+                        <select ng-model="_site.habitatSelect" ng-change="selectHabitat(habitatSelect)">
+                            <option ng-repeat="listHabitat in _site.jsonData.habitatMaster">{{ listHabitat.name }}</option>
                         </select>
                     </label>
                 </div>
                 <div class="col p-0">
-                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addStafPopup()">Add</button>
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalHabitat()">Add</button>
                 </div>
             </div>
             <div class="row p-0">
@@ -148,20 +129,23 @@
                         <div class="input-label">
                             Disturbed
                         </div>
-                        <select>
-                            <option>---</option>
-                            <option>---</option>
-                            <option>---</option>
+                        <select ng-model="_site.disturbedSelect" ng-change="selectDisturbed(disturbedSelect)">
+                            <option ng-repeat="listDisturbed in _site.jsonData.disturbedMaster">{{ listDisturbed.name }}</option>
                         </select>
                     </label>
                 </div>
                 <div class="col p-0">
-                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addStafPopup()">Add</button>
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalDisturbed()">Add</button>
                 </div>
             </div>
             
-            
         </ion-list>
+
+        <div class="padding">
+            <button ng-click="addTblSite()" class="button button-large button-block button-energized">
+                Save
+            </button>
+        </div>
         
     </ion-content>
 </ion-view>
