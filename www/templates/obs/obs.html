@@ -1,0 +1,173 @@
+<ion-view view-title="Master Staf">
+    <ion-content>
+        <ion-list>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Observer Name
+                        </div>
+                        <select ng-model="_obs.obsNameSelect" ng-change="selectObsName(obsNameSelect)">
+                            <option ng-repeat="listObsName in _obs.jsonData.obsNameMaster">{{ listObsName.name }}</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalObsName()">Add</button>
+                </div>
+            </div>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Collection Event Number
+                        </div>
+                        <select ng-model="_obs.collectionEventSelect" ng-change="selectCollectionEvent(collectionEventSelect)">
+                            <option ng-repeat="listCollectionEvent in _obs.jsonData.collectionEventMaster">{{ listCollectionEvent.name }}</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalCollectionEvent()">Add</button>
+                </div>
+            </div>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Record Type
+                        </div>
+                        <select ng-model="_obs.recordTypeSelect" ng-change="selectRecordType(recordTypeSelect)">
+                            <option ng-repeat="listRecordType in _obs.jsonData.recordTypeMaster">{{ listRecordType.name }}</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalRecordType()">Add</button>
+                </div>
+            </div>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Taxon Group
+                        </div>
+                        <select ng-model="_obs.taxonGroupSelect" ng-change="selectTaxonGroup(taxonGroupSelect)">
+                            <option ng-repeat="listTaxonGroup in _obs.jsonData.taxonGroupMaster">{{ listTaxonGroup.name }}</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalTaxonGroup()">Add</button>
+                </div>
+            </div>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Bird ID
+                        </div>
+                        <select ng-model="_obs.birdIDSelect" ng-change="selectBirdID(birdIDSelect)">
+                            <option ng-repeat="listBirdID in _obs.jsonData.birdIDMaster">{{ listBirdID.name }}</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalBirdID()">Add</button>
+                </div>
+            </div>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                                Frog ID
+                        </div>
+                        <select ng-model="_obs.frogIDSelect" ng-change="selectFrogID(frogIDSelect)">
+                            <option ng-repeat="listFrogID in _obs.jsonData.frogIDMaster">{{ listFrogID.name }}</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalFrogID()">Add</button>
+                </div>
+            </div>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Reptile ID
+                        </div>
+                        <select ng-model="_obs.reptileIDSelect" ng-change="selectReptileID(reptileIDSelect)">
+                            <option ng-repeat="listReptileID in _obs.jsonData.reptileIDMaster">{{ listReptileID.name }}</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalReptileID()">Add</button>
+                </div>
+            </div>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Mammal ID
+                        </div>
+                        <select ng-model="_obs.mammalIDSelect" ng-change="selectMammalID(mammalIDSelect)">
+                            <option ng-repeat="listMammalID in _obs.jsonData.mammalIDMaster">{{ listMammalID.name }}</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalMammalID()">Add</button>
+                </div>
+            </div>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Other Taxa ID
+                        </div>
+                        <select ng-model="_obs.otherTaxaIDSelect" ng-change="selectOtherTaxaID(otherTaxaIDSelect)">
+                            <option ng-repeat="listOtherTaxaID in _obs.jsonData.otherTaxaIDMaster">{{ listOtherTaxaID.name }}</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalOtherTaxaID()">Add</button>
+                </div>
+            </div>
+            <label class="item item-input">
+                <span class="input-label">Count</span>
+                <input type="text" placeholder="Count">
+            </label>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Sex
+                </div>
+                <select ng-model="_capture.sexSelect">
+                    <option value="male">Male</option>
+                    <option value="female">female</option>
+                </select>
+            </label>
+            <div class="row p-0">
+                <div class="col col-80 p-0">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Age
+                        </div>
+                        <select ng-model="_capture.ageSelect">
+                            <option ng-repeat="listAge in _capture.jsonData.ageMaster">{{ listAge.name }}</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col p-0">
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalAge()">Add</button>
+                </div>
+            </div>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Notes</span>
+                <textarea placeholder="Notes"></textarea>
+            </label>
+        </ion-list>
+    </ion-content>
+</ion-view>

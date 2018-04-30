@@ -22,23 +22,15 @@
                 <input type="text" placeholder="Weight">
             </label>
             
-            <div class="row p-0">
-                <div class="col col-80 p-0">
-                    <label class="item item-input item-select">
-                        <div class="input-label">
-                            Sex
-                        </div>
-                        <select>
-                            <option>Male</option>
-                            <option>Female</option>
-                            <option>---</option>
-                        </select>
-                    </label>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Sex
                 </div>
-                <div class="col p-0">
-                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
-                </div>
-            </div>
+                <select>
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+            </label>
             
             <div class="row p-0">
                 <div class="col col-80 p-0">
@@ -46,30 +38,28 @@
                         <div class="input-label">
                             Age
                         </div>
-                        <select>
-                            <option>Adult</option>
-                            <option>---</option>
-                            <option>---</option>
+                        <select ng-model="_species.ageSelect">
+                            <option ng-repeat="listAge in _species.jsonData.ageMaster">{{ listAge.name }}</option>
                         </select>
                     </label>
                 </div>
                 <div class="col p-0">
-                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalAge()">Add</button>
                 </div>
             </div>
-                <label class="item item-input">
-                    <span class="input-label">Forearm Length</span>
-                    <input type="text" placeholder="Forearm Length">
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Tragus</span>
-                    <input type="text" placeholder="Tragus">
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">SVL (mm)</span>
-                    <input type="text" placeholder="SVL">
-                </label>
-
+            
+            <label class="item item-input">
+                <span class="input-label">Forearm Length</span>
+                <input type="text" placeholder="Forearm Length">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Tragus</span>
+                <input type="text" placeholder="Tragus">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">SVL (mm)</span>
+                <input type="text" placeholder="SVL">
+            </label>
                 
             <div class="row p-0">
                 <div class="col col-80 p-0">
@@ -77,15 +67,13 @@
                         <div class="input-label">
                             Testes position
                         </div>
-                        <select>
-                            <option>Adult</option>
-                            <option>---</option>
-                            <option>---</option>
+                        <select ng-model="_species.testesPositionSelect">
+                            <option ng-repeat="listTestesPosition in _species.jsonData.testesPositionMaster">{{ listAge.name }}</option>
                         </select>
                     </label>
                 </div>
                 <div class="col p-0">
-                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalTestesPosition()">Add</button>
                 </div>
             </div>
             <label class="item item-input">
@@ -120,15 +108,13 @@
                         <div class="input-label">
                             Why ?
                         </div>
-                        <select>
-                            <option>Adult</option>
-                            <option>---</option>
-                            <option>---</option>
+                        <select ng-model="_species.whySelect">
+                            <option ng-repeat="listWhy in _species.jsonData.whyMaster">{{ listAge.name }}</option>
                         </select>
                     </label>
                 </div>
                 <div class="col p-0">
-                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalWhy()">Add</button>
                 </div>
             </div>
 

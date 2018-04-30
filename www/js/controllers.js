@@ -2,10 +2,12 @@ angular.module('starter.controllers', [
   'common.project',
   'common.species',
   'common.event',
-  'common.staf',
+  // 'common.staf',
   'common.site',
   'common.parts',
-  'common.capture'
+  'common.capture',
+  'common.obs',
+  'common.entry'
 ])
 
 .controller('DashCtrl', function($scope) {})
@@ -122,43 +124,319 @@ angular.module('starter.controllers', [
 
     $scope.loginData = {};
 
-      $scope.postData = function() {
-        $scope._parts.postDB();
-      };
-
-      $ionicModal.fromTemplateUrl('templates/specimen/modal-part.html', {
-        scope: $scope
-      }).then(function(modal) {
-        $scope.modalPartList = modal;
-      });
-      
-      // Open the login modal
-      $scope.addPartList = function() {
-        $scope.modalPartList.show();
-      };
-      
-      $scope.closePartList = function() {
-        $scope.modalPartList.hide();
-      };
-
-      $ionicModal.fromTemplateUrl('templates/specimen/modal-capture.html', {
-        scope: $scope
-      }).then(function(modal) {
-        $scope.modalCaptureList = modal;
-      });
-      
-      // Open the login modal
-      $scope.addCaptureList = function() {
-        $scope.modalCaptureList.show();
-      };
-      
-      $scope.closeCaptureList = function() {
-        $scope.modalCaptureList.hide();
-      };
-
     $scope._species = factorySpecies;
     $scope._species.stateParams = $stateParams.id;
     $scope._species.loadData();
+  
+    $scope.postData = function() {
+      $scope._parts.postDB();
+    };
+
+    $ionicModal.fromTemplateUrl('templates/specimen/modal-part.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modalPartList = modal;
+    });
+    
+    // Open the login modal
+    $scope.addPartList = function() {
+      $scope.modalPartList.show();
+    };
+    
+    $scope.closePartList = function() {
+      $scope.modalPartList.hide();
+    };
+
+    $ionicModal.fromTemplateUrl('templates/specimen/modal-capture.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modalCaptureList = modal;
+    });
+
+    // Open the login modal
+    $scope.addCaptureList = function() {
+      $scope.modalCaptureList.show();
+    };
+    
+    $scope.closeCaptureList = function() {
+      $scope.modalCaptureList.hide();
+    };
+
+    $ionicModal.fromTemplateUrl('templates/specimen/modal-age.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modalAge = modal;
+    });
+    
+    $scope.addModalAge = function() {
+      $scope.modalAge.show();
+      $scope._species.nameValue = "";
+    };
+    
+    $scope.closeModalAge = function() {
+      $scope.modalAge.hide();
+    };
+  
+    $scope.addListAge = function() {
+      factorySpecies.addListAge() 
+        .then(function(response) {
+          $scope.modalAge.hide();
+        }
+      );
+    };
+
+    $ionicModal.fromTemplateUrl('templates/specimen/modal-collection-event.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modalCollectionEvent = modal;
+    });
+    
+    $scope.addModalCollectionEvent = function() {
+      $scope.modalCollectionEvent.show();
+      $scope._species.nameValue = "";
+    };
+    
+    $scope.closeModalCollectionEvent = function() {
+      $scope.modalCollectionEvent.hide();
+    };
+  
+    $scope.addListCollectionEvent = function() {
+      factorySpecies.addListCollectionEvent() 
+        .then(function(response) {
+          $scope.modalCollectionEvent.hide();
+        }
+      );
+    };
+
+    $ionicModal.fromTemplateUrl('templates/specimen/modal-capture-type.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modalCaptureType = modal;
+    });
+    
+    $scope.addModalCaptureType = function() {
+      $scope.modalCaptureType.show();
+      $scope._species.nameValue = "";
+    };
+    
+    $scope.closeModalCaptureType = function() {
+      $scope.modalCaptureType.hide();
+    };
+  
+    $scope.addListCaptureType = function() {
+      factorySpecies.addListCaptureType() 
+        .then(function(response) {
+          $scope.modalCaptureType.hide();
+        }
+      );
+    };
+
+    $ionicModal.fromTemplateUrl('templates/specimen/modal-trap-type.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modalTrapType = modal;
+    });
+    
+    $scope.addModalTrapType = function() {
+      $scope.modalTrapType.show();
+      $scope._species.nameValue = "";
+    };
+    
+    $scope.closeModalTrapType = function() {
+      $scope.modalTrapType.hide();
+    };
+  
+    $scope.addListTrapType = function() {
+      factorySpecies.addListTrapType() 
+        .then(function(response) {
+          $scope.modalTrapType.hide();
+        }
+      );
+    };
+
+    $ionicModal.fromTemplateUrl('templates/specimen/modal-capture-select.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modalCaptureSelect = modal;
+    });
+    
+    $scope.addModalCaptureSelect = function() {
+      $scope.modalCaptureSelect.show();
+      $scope._species.nameValue = "";
+    };
+    
+    $scope.closeModalCaptureSelect = function() {
+      $scope.modalCaptureSelect.hide();
+    };
+  
+    $scope.addListCaptureSelect = function() {
+      factorySpecies.addListCaptureSelect() 
+        .then(function(response) {
+          $scope.modalCaptureSelect.hide();
+        }
+      );
+    };
+
+    $ionicModal.fromTemplateUrl('templates/specimen/modal-species-field.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modalSpeciesField = modal;
+    });
+    
+    $scope.addModalSpeciesField = function() {
+      $scope.modalSpeciesField.show();
+      $scope._species.nameValue = "";
+    };
+    
+    $scope.closeModalSpeciesField = function() {
+      $scope.modalSpeciesField.hide();
+    };
+  
+    $scope.addListSpeciesField = function() {
+      factorySpecies.addListSpeciesField() 
+        .then(function(response) {
+          $scope.modalSpeciesField.hide();
+        }
+      );
+    };
+
+    $ionicModal.fromTemplateUrl('templates/specimen/modal-caught-by.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modalCaughtBy = modal;
+    });
+    
+    $scope.addModalCaughtBy = function() {
+      $scope.modalCaughtBy.show();
+      $scope._species.nameValue = "";
+    };
+    
+    $scope.closeModalCaughtBy = function() {
+      $scope.modalCaughtBy.hide();
+    };
+  
+    $scope.addListCaughtBy = function() {
+      factorySpecies.addListCaughtBy() 
+        .then(function(response) {
+          $scope.modalCaughtBy.hide();
+        }
+      );
+    };
+
+    $ionicModal.fromTemplateUrl('templates/specimen/modal-camp-time.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modalCampTime = modal;
+    });
+    
+    $scope.addModalCampTime = function() {
+      $scope.modalCampTime.show();
+      $scope._species.nameValue = "";
+    };
+    
+    $scope.closeModalCampTime = function() {
+      $scope.modalCampTime.hide();
+    };
+  
+    $scope.addListCampTime = function() {
+      factorySpecies.addListCampTime() 
+        .then(function(response) {
+          $scope.modalCampTime.hide();
+        }
+      );
+    };
+
+    $ionicModal.fromTemplateUrl('templates/specimen/modal-camp-condition.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modalCampCondition = modal;
+    });
+    
+    $scope.addModalCampCondition = function() {
+      $scope.modalCampCondition.show();
+      $scope._species.nameValue = "";
+    };
+    
+    $scope.closeModalCampCondition = function() {
+      $scope.modalCampCondition.hide();
+    };
+  
+    $scope.addListCampCondition = function() {
+      factorySpecies.addListCampCondition() 
+        .then(function(response) {
+          $scope.modalCampCondition.hide();
+        }
+      );
+    };
+
+    $ionicModal.fromTemplateUrl('templates/specimen/modal-final-condition.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modalFinalCondition = modal;
+    });
+    
+    $scope.addModalFinalCondition = function() {
+      $scope.modalFinalCondition.show();
+      $scope._species.nameValue = "";
+    };
+    
+    $scope.closeModalFinalCondition = function() {
+      $scope.modalFinalCondition.hide();
+    };
+  
+    $scope.addListFinalCondition = function() {
+      factorySpecies.addListFinalCondition() 
+        .then(function(response) {
+          $scope.modalFinalCondition.hide();
+        }
+      );
+    };
+
+    $ionicModal.fromTemplateUrl('templates/specimen/modal-testes-position.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modalTestesPosition = modal;
+    });
+    
+    $scope.addModalTestesPosition = function() {
+      $scope.modalTestesPosition.show();
+      $scope._species.nameValue = "";
+    };
+    
+    $scope.closeModalTestesPosition = function() {
+      $scope.modalTestesPosition.hide();
+    };
+  
+    $scope.addListTestesPosition = function() {
+      factorySpecies.addListTestesPosition() 
+        .then(function(response) {
+          $scope.modalTestesPosition.hide();
+        }
+      );
+    };
+
+    $ionicModal.fromTemplateUrl('templates/specimen/modal-why.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modalWhy = modal;
+    });
+    
+    $scope.addModalWhy = function() {
+      $scope.modalWhy.show();
+      $scope._species.nameValue = "";
+    };
+    
+    $scope.closeModalWhy = function() {
+      $scope.modalWhy.hide();
+    };
+  
+    $scope.addListWhy = function() {
+      factorySpecies.addListWhy() 
+        .then(function(response) {
+          $scope.modalWhy.hide();
+        }
+      );
+    };
 
     $scope.projectDetail = factorySpecies.getDataByID($stateParams.id);
 
@@ -854,14 +1132,276 @@ angular.module('starter.controllers', [
   }
 )
 
-.controller('orbCtrl', function ($scope, $http) {
+.controller('orbCtrl', function ($scope, $http, $ionicModal, factoryObs) {
 
+    $scope._obs = factoryObs;
+
+    $ionicModal.fromTemplateUrl('templates/obs/modal-age.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modalAge = modal;
+    });
+    
+    $scope.addModalAge = function() {
+      $scope.modalAge.show();
+      $scope._obs.nameValue = "";
+    };
+    
+    $scope.closeModalAge = function() {
+      $scope.modalAge.hide();
+    };
+  
+    $scope.addListAge = function() {
+      factoryObs.addListAge() 
+        .then(function(response) {
+          $scope.modalAge.hide();
+        }
+      );
+    };
+
+    $ionicModal.fromTemplateUrl('templates/obs/modal-bird-id.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modalBirdID = modal;
+    });
+    
+    $scope.addModalBirdID = function() {
+      $scope.modalBirdID.show();
+      $scope._obs.nameValue = "";
+    };
+    
+    $scope.closeModalBirdID = function() {
+      $scope.modalBirdID.hide();
+    };
+  
+    $scope.addListBirdID = function() {
+      factoryObs.addListBirdID() 
+        .then(function(response) {
+          $scope.modalBirdID.hide();
+        }
+      );
+    };
+
+    $ionicModal.fromTemplateUrl('templates/obs/modal-frog-id.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modalFrogID = modal;
+    });
+    
+    $scope.addModalFrogID = function() {
+      $scope.modalFrogID.show();
+      $scope._obs.nameValue = "";
+    };
+    
+    $scope.closeModalFrogID = function() {
+      $scope.modalFrogID.hide();
+    };
+  
+    $scope.addListFrogID = function() {
+      factoryObs.addListFrogID() 
+        .then(function(response) {
+          $scope.modalFrogID.hide();
+        }
+      );
+    };
+
+    $ionicModal.fromTemplateUrl('templates/obs/modal-mammal-id.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modalMammalID = modal;
+    });
+    
+    $scope.addModalMammalID = function() {
+      $scope.modalMammalID.show();
+      $scope._obs.nameValue = "";
+    };
+    
+    $scope.closeModalMammalID = function() {
+      $scope.modalMammalID.hide();
+    };
+  
+    $scope.addListMammalID = function() {
+      factoryObs.addListMammalID() 
+        .then(function(response) {
+          $scope.modalMammalID.hide();
+        }
+      );
+    };
+
+    $ionicModal.fromTemplateUrl('templates/obs/modal-reptile-id.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modalReptileID = modal;
+    });
+    
+    $scope.addModalReptileID = function() {
+      $scope.modalReptileID.show();
+      $scope._obs.nameValue = "";
+    };
+    
+    $scope.closeModalReptileID = function() {
+      $scope.modalReptileID.hide();
+    };
+  
+    $scope.addListReptileID = function() {
+      factoryObs.addListReptileID() 
+        .then(function(response) {
+          $scope.modalReptileID.hide();
+        }
+      );
+    };
+
+    $ionicModal.fromTemplateUrl('templates/obs/modal-other-taxa-id.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modalOtherTaxaID = modal;
+    });
+    
+    $scope.addModalOtherTaxaID = function() {
+      $scope.modalOtherTaxaID.show();
+      $scope._obs.nameValue = "";
+    };
+    
+    $scope.closeModalOtherTaxaID = function() {
+      $scope.modalOtherTaxaID.hide();
+    };
+  
+    $scope.addListOtherTaxaID = function() {
+      factoryObs.addListOtherTaxaID() 
+        .then(function(response) {
+          $scope.modalOtherTaxaID.hide();
+        }
+      );
+    };
+
+    $ionicModal.fromTemplateUrl('templates/obs/modal-collection-event.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modalCollectionEvent = modal;
+    });
+    
+    $scope.addModalCollectionEvent = function() {
+      $scope.modalCollectionEvent.show();
+      $scope._obs.nameValue = "";
+    };
+    
+    $scope.closeModalCollectionEvent = function() {
+      $scope.modalCollectionEvent.hide();
+    };
+  
+    $scope.addListCollectionEvent = function() {
+      factoryObs.addListCollectionEvent() 
+        .then(function(response) {
+          $scope.modalCollectionEvent.hide();
+        }
+      );
+    };
+
+    $ionicModal.fromTemplateUrl('templates/obs/modal-obs-name.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modalObsName = modal;
+    });
+    
+    $scope.addModalObsName = function() {
+      $scope.modalObsName.show();
+      $scope._obs.nameValue = "";
+    };
+    
+    $scope.closeModalObsName = function() {
+      $scope.modalObsName.hide();
+    };
+  
+    $scope.addListObsName = function() {
+      factoryObs.addListObsName() 
+        .then(function(response) {
+          $scope.modalObsName.hide();
+        }
+      );
+    };
+
+    $ionicModal.fromTemplateUrl('templates/obs/modal-record-type.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modalRecordType = modal;
+    });
+    
+    $scope.addModalRecordType = function() {
+      $scope.modalRecordType.show();
+      $scope._obs.nameValue = "";
+    };
+    
+    $scope.closeModalRecordType = function() {
+      $scope.modalRecordType.hide();
+    };
+  
+    $scope.addListRecordType = function() {
+      factoryObs.addListRecordType() 
+        .then(function(response) {
+          $scope.modalRecordType.hide();
+        }
+      );
+    };
+
+    $ionicModal.fromTemplateUrl('templates/obs/modal-taxon-group.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modalTaxonGroup = modal;
+    });
+    
+    $scope.addModalTaxonGroup = function() {
+      $scope.modalTaxonGroup.show();
+      $scope._obs.nameValue = "";
+    };
+    
+    $scope.closeModalTaxonGroup = function() {
+      $scope.modalTaxonGroup.hide();
+    };
+  
+    $scope.addListTaxonGroup = function() {
+      factoryObs.addListTaxonGroup() 
+        .then(function(response) {
+          $scope.modalTaxonGroup.hide();
+        }
+      );
+    };
 
   }
 )
 
-.controller('entryCtrl', function ($scope, $http) {
+.controller('entryCtrl', function ($scope, $http, factoryEntry, ionicDatePicker) {
 
+  $scope._entry = factoryEntry;
+
+    var ipObj1 = {
+      callback: function (val) {  //Mandatory
+        console.log('Return value from the datepicker popup is : ' + val, new Date(val));
+        var date = new Date(val);
+        $scope._entry.dateEntry = date.getDate() +' - '+ (date.getMonth()+1) +' - '+ date.getFullYear();
+      },
+      disabledDates: [            //Optional
+        new Date(2018, 2, 16),
+        new Date(2017, 2, 16),
+        new Date(2016, 2, 16),
+        new Date(2015, 3, 16),
+        new Date(2015, 4, 16),
+        new Date(2015, 5, 16),
+        new Date('Wednesday, August 12, 2015'),
+        new Date("08-16-2016"),
+        new Date(1439676000000)
+      ],
+      from: new Date(2012, 1, 1), //Optional
+      to: new Date(2018, 12, 30), //Optional
+      inputDate: new Date(),      //Optional
+      mondayFirst: true,          //Optional
+      disableWeekdays: [0],       //Optional
+      closeOnSelect: false,       //Optional
+      templateType: 'popup'       //Optional
+    };
+
+    $scope.openDatePicker = function(){
+      ionicDatePicker.openDatePicker(ipObj1);
+    };
 
   }
 )

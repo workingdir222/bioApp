@@ -289,7 +289,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     url: '/orb',
     views: {
       'menuContent': {
-        templateUrl: 'templates/orb.html',
+        templateUrl: 'templates/obs/obs.html',
         controller: 'orbCtrl'
       }
     }

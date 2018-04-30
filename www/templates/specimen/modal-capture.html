@@ -7,22 +7,19 @@
     </ion-header-bar>
     <ion-content>
         <ion-list>
-            
             <div class="row p-0">
                 <div class="col col-80 p-0">
                     <label class="item item-input item-select">
                         <div class="input-label">
                             Coll. Event
                         </div>
-                        <select>
-                            <option>KCT----</option>
-                            <option>KCM----</option>
-                            <option>---</option>
+                        <select ng-model="_species.collectionEventSelect">
+                            <option ng-repeat="listCollectionEvent in _species.jsonData.collectionEventMaster">{{ listCollectionEvent.name }}</option>
                         </select>
                     </label>
                 </div>
                 <div class="col p-0">
-                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalCollectionEvent()">Add</button>
                 </div>
             </div>
             <label class="item item-input">
@@ -40,15 +37,13 @@
                         <div class="input-label">
                             Capture Type
                         </div>
-                        <select>
-                            <option>Voucher<option>
-                            <option>----</option>
-                            <option>---</option>
+                        <select ng-model="_species.captureTypeSelect">
+                            <option ng-repeat="listCaptureType in _species.jsonData.captureTypeMaster">{{ listCaptureType.name }}<option>
                         </select>
                     </label>
                 </div>
                 <div class="col p-0">
-                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalCaptureType()">Add</button>
                 </div>
             </div>
             
@@ -58,15 +53,13 @@
                         <div class="input-label">
                             Trap Type
                         </div>
-                        <select>
-                            <option>Pitfall<option>
-                            <option>----</option>
-                            <option>---</option>
+                        <select ng-model="_species.trapTypeSelect">
+                            <option ng-repeat="listTrapType in _species.jsonData.trapTypeMaster">{{ listTrapType.name }}<option>
                         </select>
                     </label>
                 </div>
                 <div class="col p-0">
-                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalTrapType()">Add</button>
                 </div>
             </div>
             <label class="item item-input">
@@ -80,15 +73,13 @@
                         <div class="input-label">
                             Capture
                         </div>
-                        <select>
-                            <option>Aliva<option>
-                            <option>----</option>
-                            <option>---</option>
+                        <select ng-model="_species.captureSelectSelect">
+                            <option ng-repeat="listCaptureSelect in _species.jsonData.captureSelectMaster">{{ listCaptureSelect.name }}<option>
                         </select>
                     </label>
                 </div>
                 <div class="col p-0">
-                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalCaptureSelect()">Add</button>
                 </div>
             </div>
             
@@ -98,50 +89,38 @@
                         <div class="input-label">
                             Species Field
                         </div>
-                        <select>
-                            <option>Aliva<option>
-                            <option>----</option>
-                            <option>---</option>
+                        <select ng-model="_species.speciesFieldSelect">
+                            <option ng-repeat="listSpeciesField in _species.jsonData.speciesFieldMaster">{{ listSpeciesField.name }}<option>
                         </select>
                     </label>
                 </div>
                 <div class="col p-0">
-                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalSpeciesField()">Add</button>
                 </div>
             </div>
             
-            <div class="row p-0">
-                <div class="col col-80 p-0">
-                    <label class="item item-input item-select">
-                        <div class="input-label">
-                            Sex
-                        </div>
-                        <select>
-                            <option>Male</option>
-                            <option>Female</option>
-                            <option>---</option>
-                        </select>
-                    </label>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Sex
                 </div>
-                <div class="col p-0">
-                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
-                </div>
-            </div>
+                <select>
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+            </label>
             <div class="row p-0">
                 <div class="col col-80 p-0">
                     <label class="item item-input item-select">
                         <div class="input-label">
                             Age
                         </div>
-                        <select>
-                            <option>Adult</option>
-                            <option>---</option>
-                            <option>---</option>
+                        <select ng-model="_species.captureAgeSelect">
+                            <option ng-repeat="listAge in _species.jsonData.ageMaster">{{ listAge.name }}</option>
                         </select>
                     </label>
                 </div>
                 <div class="col p-0">
-                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalAge()">Add</button>
                 </div>
             </div>
             <div class="row p-0">
@@ -150,15 +129,13 @@
                         <div class="input-label">
                             Caught By
                         </div>
-                        <select>
-                            <option>---</option>
-                            <option>---</option>
-                            <option>---</option>
+                        <select ng-model="_species.captureCaughtBySelect">
+                            <option ng-repeat="listCaughtBy in _species.jsonData.caughtByMaster">{{ listCaughtBy.name }}</option>
                         </select>
                     </label>
                 </div>
                 <div class="col p-0">
-                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalCaughtBy()">Add</button>
                 </div>
             </div>
             
@@ -178,15 +155,13 @@
                         <div class="input-label">
                             Camp Time
                         </div>
-                        <select>
-                            <option>---</option>
-                            <option>---</option>
-                            <option>---</option>
+                        <select ng-model="_species.campTimeSelect">
+                            <option ng-repeat="listCampTime in _species.jsonData.campTimeMaster">{{ listCampTime.name }}</option>
                         </select>
                     </label>
                 </div>
                 <div class="col p-0">
-                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalCampTime()">Add</button>
                 </div>
             </div>
             
@@ -196,15 +171,13 @@
                         <div class="input-label">
                             Camp Condition
                         </div>
-                        <select>
-                            <option>---</option>
-                            <option>---</option>
-                            <option>---</option>
+                        <select ng-model="_species.campConditionSelect">
+                            <option ng-repeat="listCampCondition in _species.jsonData.campConditionMaster">{{ listCampCondition.name }}</option>
                         </select>
                     </label>
                 </div>
                 <div class="col p-0">
-                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalCampCondition()">Add</button>
                 </div>
             </div>
             <div class="row p-0">
@@ -213,15 +186,13 @@
                             <div class="input-label">
                                 Final Condition
                             </div>
-                            <select>
-                                <option>---</option>
-                                <option>---</option>
-                                <option>---</option>
+                            <select ng-model="_species.finalConditionSelect">
+                                <option ng-repeat="listFinalCondition in _species.jsonData.finalConditionMaster">{{ listFinalCondition.name }}</option>
                             </select>
                         </label>
                 </div>
                 <div class="col p-0">
-                    <button class="button button-block button-energized mb-0 mt-0">Add</button>
+                    <button class="button button-block button-energized mb-0 mt-0" ng-click="addModalFinalCondition()">Add</button>
                 </div>
             </div>
             
