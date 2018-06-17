@@ -13,7 +13,7 @@
                         <div class="input-label">
                             Coll. Event
                         </div>
-                        <select ng-model="_species.collectionEventSelect">
+                        <select ng-model="_species.dataCapture.collectionEventSelect">
                             <option ng-repeat="listCollectionEvent in _species.jsonData.collectionEventMaster">{{ listCollectionEvent.name }}</option>
                         </select>
                     </label>
@@ -24,11 +24,11 @@
             </div>
             <label class="item item-input">
                 <span class="input-label">Capture Date</span>
-                <input type="text" ng-model="dateCapture" value="{{dateCapture}}" ng-click="openDatePickerCapture()" placeholder="Capture Date">
+                <input type="text" ng-model="_species.dataCapture.dateCapture" value="{{dateCapture}}" ng-click="openDatePickerCapture()" placeholder="Capture Date">
             </label>
             <label class="item item-input">
                 <span class="input-label">Capture Time</span>
-                <input type="text" ng-model="timeCapture" value="{{timeCapture}}" ng-click="openTimePickerCapture()" placeholder="Capture Time">
+                <input type="text" ng-model="_species.dataCapture.timeCapture" value="{{timeCapture}}" ng-click="openTimePickerCapture()" placeholder="Capture Time">
             </label>
             
             <div class="row p-0">
@@ -37,7 +37,7 @@
                         <div class="input-label">
                             Capture Type
                         </div>
-                        <select ng-model="_species.captureTypeSelect">
+                        <select ng-model="_species.dataCapture.captureTypeSelect">
                             <option ng-repeat="listCaptureType in _species.jsonData.captureTypeMaster">{{ listCaptureType.name }}<option>
                         </select>
                     </label>
@@ -53,7 +53,7 @@
                         <div class="input-label">
                             Trap Type
                         </div>
-                        <select ng-model="_species.trapTypeSelect">
+                        <select ng-model="_species.dataCapture.trapTypeSelect">
                             <option ng-repeat="listTrapType in _species.jsonData.trapTypeMaster">{{ listTrapType.name }}<option>
                         </select>
                     </label>
@@ -64,7 +64,7 @@
             </div>
             <label class="item item-input">
                 <span class="input-label">Trap ID</span>
-                <input type="text" placeholder="Trap ID">
+                <input ng-model="_species.dataCapture.inputTrapId" type="text" placeholder="Trap ID">
             </label>
             
             <div class="row p-0">
@@ -73,7 +73,7 @@
                         <div class="input-label">
                             Capture
                         </div>
-                        <select ng-model="_species.captureSelectSelect">
+                        <select ng-model="_species.dataCapture.captureSelectSelect">
                             <option ng-repeat="listCaptureSelect in _species.jsonData.captureSelectMaster">{{ listCaptureSelect.name }}<option>
                         </select>
                     </label>
@@ -89,7 +89,7 @@
                         <div class="input-label">
                             Species Field
                         </div>
-                        <select ng-model="_species.speciesFieldSelect">
+                        <select ng-model="_species.dataCapture.speciesFieldSelect">
                             <option ng-repeat="listSpeciesField in _species.jsonData.speciesFieldMaster">{{ listSpeciesField.name }}<option>
                         </select>
                     </label>
@@ -103,9 +103,9 @@
                 <div class="input-label">
                     Sex
                 </div>
-                <select>
-                    <option>Male</option>
-                    <option>Female</option>
+                <select ng-model="_species.dataCapture.selectSex">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
                 </select>
             </label>
             <div class="row p-0">
@@ -114,7 +114,7 @@
                         <div class="input-label">
                             Age
                         </div>
-                        <select ng-model="_species.captureAgeSelect">
+                        <select ng-model="_species.dataCapture.captureAgeSelect">
                             <option ng-repeat="listAge in _species.jsonData.ageMaster">{{ listAge.name }}</option>
                         </select>
                     </label>
@@ -129,7 +129,7 @@
                         <div class="input-label">
                             Caught By
                         </div>
-                        <select ng-model="_species.captureCaughtBySelect">
+                        <select ng-model="_species.dataCapture.captureCaughtBySelect">
                             <option ng-repeat="listCaughtBy in _species.jsonData.caughtByMaster">{{ listCaughtBy.name }}</option>
                         </select>
                     </label>
@@ -142,11 +142,11 @@
             
             <label class="item item-input">
                 <span class="input-label">Reproduction</span>
-                <input type="text" placeholder="Reproduction">
+                <input ng-model="_species.dataCapture.inputReproduction" type="text" placeholder="Reproduction">
             </label>
             <label class="item item-input">
                 <span class="input-label">Release Time</span>
-                <input type="text" placeholder="release time">
+                <input ng-model="_species.dataCapture.inputReleaseTime" type="text" placeholder="release time">
             </label>
             
             <div class="row p-0">
@@ -155,7 +155,7 @@
                         <div class="input-label">
                             Camp Time
                         </div>
-                        <select ng-model="_species.campTimeSelect">
+                        <select ng-model="_species.dataCapture.campTimeSelect">
                             <option ng-repeat="listCampTime in _species.jsonData.campTimeMaster">{{ listCampTime.name }}</option>
                         </select>
                     </label>
@@ -171,7 +171,7 @@
                         <div class="input-label">
                             Camp Condition
                         </div>
-                        <select ng-model="_species.campConditionSelect">
+                        <select ng-model="_species.dataCapture.campConditionSelect">
                             <option ng-repeat="listCampCondition in _species.jsonData.campConditionMaster">{{ listCampCondition.name }}</option>
                         </select>
                     </label>
@@ -186,7 +186,7 @@
                             <div class="input-label">
                                 Final Condition
                             </div>
-                            <select ng-model="_species.finalConditionSelect">
+                            <select ng-model="_species.dataCapture.finalConditionSelect">
                                 <option ng-repeat="listFinalCondition in _species.jsonData.finalConditionMaster">{{ listFinalCondition.name }}</option>
                             </select>
                         </label>
@@ -198,12 +198,12 @@
             
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Description</span>
-                <textarea placeholder="Description"></textarea>
+                <textarea ng-model="_species.dataCapture.inputDescription" placeholder="Description"></textarea>
             </label>
         </ion-list>
 
         <div class="padding">
-            <button class="button button-large button-block button-energized">
+            <button ng-click="_species.addDataCapture()" class="button button-large button-block button-energized">
                 Save
             </button>
         </div>

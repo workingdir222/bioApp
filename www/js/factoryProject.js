@@ -1,11 +1,20 @@
-angular.module('common.project', []).factory('factoryProject', function ($http, $cordovaFile, ionicDatePicker) {
+angular.module('common.project', [])
+.factory('factoryProject', function ($http, $filter, $cordovaFile, ionicDatePicker) {
 
         var self = {};
 
         self.dateProject = "";
         self.location = "";
         self.dateProjectPush = "";
+
         self.listProject = [];
+        self.listSpecimen = [];
+        self.listEvent = [];
+        self.listSite = [];
+        self.listCapture = [];
+        self.listOrb = [];
+        self.listEntry = [];
+
         let listProjectArr = [];
 
         self.jsonData = {
@@ -16,7 +25,7 @@ angular.module('common.project', []).factory('factoryProject', function ($http, 
             "tblCapture": [],
             "tblObs": [],
             "tblNarrative": [],
-            "tblEvent": [],
+            // "tblEvent": [],
             "siteMaster": [],
             "collectionMaster": [],
             "staffMaster": [],
@@ -31,15 +40,17 @@ angular.module('common.project', []).factory('factoryProject', function ($http, 
         };
 
         self.loadData = function () {
-
-            $cordovaFile.getFreeDiskSpace()
-            .then(function (success) {
-                // success in kilobytes
-                console.log(success);
-            }, function (error) {
-                // error
-                console.log(error);
-            });
+            self.listProject = [];
+            self.listSpecimen = [];
+            
+            // $cordovaFile.getFreeDiskSpace()
+            // .then(function (success) {
+            //     // success in kilobytes
+            //     console.log('Error Messeg: => '+ success);
+            // }, function (error) {
+            //     // error
+            //     console.log('Error Messeg: => '+ error);
+            // });
 
             $cordovaFile.checkFile(cordova.file.dataDirectory, "dbfile.json")
             .then(function (req) {
@@ -49,6 +60,34 @@ angular.module('common.project', []).factory('factoryProject', function ($http, 
 
                     let settings = angular.fromJson(success);
                     self.jsonData = settings;
+
+                    // self.listProject = self.jsonData.tblProject;
+
+                    angular.forEach(self.jsonData.tblProject, function(item){
+                        self.listProject.push({
+                            id: item.id,
+                            dateProject: item.dateProject,
+                            location: item.location
+                        })
+                    });
+
+                    angular.forEach(self.jsonData.tblSpecies, function(item){
+                        self.listSpecimen.push({
+                            id: item.id,
+                            idParent: item.idParent,
+                            idProject: item.idProject,
+                            inputReg: item.inputReg,
+                            inputCollector: item.inputCollector,
+                            inputInitials: item.inputInitials,
+                            inputPreparator: item.inputPreparator,
+                            inputGenu: item.inputGenu,
+                            inputSpecies: item.inputSpecies,
+                            inputField1: item.inputField1,
+                            inputField2: item.inputField2,
+                            inputField3: item.inputField3,
+                            inputField4: item.inputField4
+                        })
+                    })
 
                     console.log(settings);
                     
@@ -72,6 +111,10 @@ angular.module('common.project', []).factory('factoryProject', function ($http, 
             });
         };
 
+        self.getDataSpecies = function() {
+            
+        };
+
         self.deleteDB = function () {
 
             $cordovaFile.removeFile(cordova.file.dataDirectory, "dbfile.json")
@@ -84,7 +127,7 @@ angular.module('common.project', []).factory('factoryProject', function ($http, 
                     "tblCapture": [],
                     "tblObs": [],
                     "tblNarrative": [],
-                    "tblEvent": [],
+                    // "tblEvent": [],
                     "siteMaster": [],
                     "collectionMaster": [],
                     "staffMaster": [],
@@ -117,10 +160,12 @@ angular.module('common.project', []).factory('factoryProject', function ($http, 
                 idProject = idProject.replace(/\s+/g, '-').toLowerCase();
 
                 var pushData = {
-                    "id": idProject,
-                    "dateProject": self.dateProjectPush,
-                    "location": self.location
+                    id: idProject,
+                    dateProject: self.dateProjectPush,
+                    location: self.location
                 };
+
+                self.listProject.push(pushData)
                 
                 // self.jsonData.tblSpecies = settings.tblSpecies;
                 // self.jsonData.tblEvent = settings.tblEvent;
@@ -148,8 +193,6 @@ angular.module('common.project', []).factory('factoryProject', function ($http, 
 
                 var settings = angular.fromJson(success);
                 
-                // console.log(settings);
-
             }, function (error) {
                 console.log(error);
             });
@@ -157,12 +200,36 @@ angular.module('common.project', []).factory('factoryProject', function ($http, 
         };
 
         self.getDataByID = function(id) {
-            console.log(id);
-            for (var i = 0; i < self.listProject.length; i++) {
-                if (self.listProject[i].id === id) {
-                    return self.listProject[i];
+            angular.forEach(self.jsonData.tblProject, function (element) {
+                if (element.id === id) {
+                    self.dateProject = element;
+                    // return element;
                 }
-            }
+            })
+        };
+
+        self.getDataSpecimenByID = function(id) {
+            console.log(id);
+        };
+
+        self.getDataEventByID = function(id) {
+            console.log(id);
+        };
+
+        self.getDataSiteByID = function(id) {
+            console.log(id);
+        };
+
+        self.getDataCaptureByID = function(id) {
+            console.log(id);
+        };
+
+        self.getDataOrbByID = function(id) {
+            console.log(id);
+        };
+
+        self.getDataNarrativeByID = function(id) {
+            console.log(id);
         };
         
         var ipObj1 = {
@@ -170,7 +237,7 @@ angular.module('common.project', []).factory('factoryProject', function ($http, 
             console.log('Return value from the datepicker popup is : ' + val, new Date(val));
             self.dateProjectPush = val;
             var date = new Date(val);
-            self.dateProject = date.getDate() +' - '+ (date.getMonth()+1) +' - '+ date.getFullYear();
+            self.dateProject = $filter("date")(date, 'dd MMMM yyyy');;
         },
         disabledDates: [            //Optional
             new Date(2018, 2, 16),

@@ -1,46 +1,52 @@
 <ion-view view-title="Specimen">
+    <ion-nav-buttons side="right">
+        <button ng-click="_species.checkDbFile()" class="button button-icon button-clear">
+            Save
+        </button>
+    </ion-nav-buttons>
+    
     <ion-content>
         <ion-list>
             <label class="item item-input">
                 <span class="input-label">Reg</span>
-                <input id="inputReg" type="text" placeholder="Reg">
+                <input ng-model="_species.dataSpecies.inputReg" type="text" placeholder="Reg">
             </label>
             <label class="item item-input">
                 <span class="input-label">Collector</span>
-                <input id="inputCollector" type="text" placeholder="Colector">
+                <input ng-model="_species.dataSpecies.inputCollector" type="text" placeholder="Colector">
             </label>
             <label class="item item-input">
                 <span class="input-label">Initials</span>
-                <input id="inputInitials" type="text" placeholder="Initials">
+                <input ng-model="_species.dataSpecies.inputInitials" type="text" placeholder="Initials">
             </label>
             <label class="item item-input">
                 <span class="input-label">Preparator</span>
-                <input id="inputPreparator" type="text" placeholder="Preparator">
+                <input ng-model="_species.dataSpecies.inputPreparator" type="text" placeholder="Preparator">
             </label>
             <label class="item item-input">
                 <span class="input-label">Genu</span>
-                <input id="inputGenu" type="text" placeholder="Genu">
+                <input ng-model="_species.dataSpecies.inputGenu" type="text" placeholder="Genu">
             </label>
             <label class="item item-input">
                 <span class="input-label">Species</span>
-                <input id="inputSpecies" type="text" placeholder="Species">
+                <input ng-model="_species.dataSpecies.inputSpecies" type="text" placeholder="Species">
             </label>
     
             <label class="item item-input">
                 <span class="input-label">field</span>
-                <input id="inputField1" type="text" placeholder="field">
+                <input ng-model="_species.dataSpecies.inputField1" type="text" placeholder="field">
             </label>
             <label class="item item-input">
                 <span class="input-label">field</span>
-                <input id="inputField2" type="text" placeholder="field">
+                <input ng-model="_species.dataSpecies.inputField2" type="text" placeholder="field">
             </label>
             <label class="item item-input">
                 <span class="input-label">field</span>
-                <input id="inputField3" type="text" placeholder="field">
+                <input ng-model="_species.dataSpecies.inputField3" type="text" placeholder="field">
             </label>
             <label class="item item-input item-stacked-label">
                 <span class="input-label">field</span>
-                <textarea id="inputField4" placeholder="field"></textarea>
+                <textarea ng-model="_species.dataSpecies.inputField4" placeholder="field"></textarea>
             </label>
         </ion-list>
 
@@ -52,11 +58,11 @@
             </div>
         </div>
 
-        <div class="padding">
+        <!-- <div class="padding">
             <button ng-click="_species.checkDbFile()" class="button button-large button-block button-energized">
                 Save
             </button>
-        </div>
+        </div> -->
     </ion-content>
 </ion-view>
       

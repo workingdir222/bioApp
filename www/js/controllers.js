@@ -33,10 +33,49 @@ angular.module('starter.controllers', [
 
 .controller('ProjectDetailCtrl', function($scope, $stateParams, factoryProject) {
 
-  $scope.projectDetail = factoryProject.getDataByID($stateParams.id);
-  $scope.listSpecies = factoryProject.listSpecies;
+  $scope._project = factoryProject;
+  $scope._project.getDataByID($stateParams.id);
 
+  // $scope.projectDetail = factoryProject.getDataByID($stateParams.id);
+  // console.log($scope.projectDetail);
+  // $scope.listSpecies = factoryProject.listSpecies;
 
+})
+
+.controller('ProjectDetailCtrlSpecimen', function($scope, $stateParams, factoryProject) {
+  $scope._project = factoryProject;
+  $scope._project.getDataSpecimenByID($stateParams.id);
+})
+
+.controller('ProjectDetailCtrlEvent', function($scope, $stateParams, factoryProject) {
+  $scope._project = factoryProject;
+  $scope._project.getDataEventByID($stateParams.id);
+})
+
+.controller('ProjectDetailCtrlSite', function($scope, $stateParams, factoryProject) {
+  $scope._project = factoryProject;
+  $scope._project.getDataSiteByID($stateParams.id);
+})
+
+.controller('ProjectDetailCtrlCapture', function($scope, $stateParams, factoryProject) {
+  $scope._project = factoryProject;
+  $scope._project.getDataCaptureByID($stateParams.id);
+})
+
+.controller('ProjectDetailCtrlOrb', function($scope, $stateParams, factoryProject) {
+  $scope._project = factoryProject;
+  $scope._project.getDataOrbByID($stateParams.id);
+})
+
+.controller('ProjectMenu', function($scope, $stateParams) {
+  $scope.saveData = function() {
+    console.log($stateParams.id);
+  }
+})
+
+.controller('ProjectDetailCtrlEntry', function($scope, $stateParams, factoryProject) {
+  $scope._project = factoryProject;
+  $scope._project.getDataNarrativeByID($stateParams.id);
 })
 
 .controller('AccountCtrl', function($scope) {
@@ -49,7 +88,7 @@ angular.module('starter.controllers', [
 
     $scope._project = factoryProject;
 
-    document.addEventListener("deviceready", function () {
+    document.addEventListener('deviceready', function () {
       $scope._project.loadData();
     });
 
@@ -128,9 +167,9 @@ angular.module('starter.controllers', [
     $scope._species.stateParams = $stateParams.id;
     $scope._species.loadData();
   
-    $scope.postData = function() {
-      $scope._parts.postDB();
-    };
+    // $scope.postData = function() {
+    //   $scope._parts.postDB();
+    // };
 
     $ionicModal.fromTemplateUrl('templates/specimen/modal-part.html', {
       scope: $scope
@@ -140,11 +179,26 @@ angular.module('starter.controllers', [
     
     // Open the login modal
     $scope.addPartList = function() {
+      $scope._species.dataPart.inputRegPart = "";
+      $scope._species.dataPart.inputZnumber = "";
+      $scope._species.dataPart.inputNature = "";
+      $scope._species.dataPart.inputField = "";
+      $scope._species.dataPart.inputTreatment = "";
+      $scope._species.dataPart.inputPerm = "";
+      $scope._species.dataPart.inputTemp = "";
       $scope.modalPartList.show();
     };
     
     $scope.closePartList = function() {
       $scope.modalPartList.hide();
+    };
+
+    $scope.addPartsScope = function() {
+      factorySpecies.addPartS() 
+        .then(function(response) {
+          $scope.modalPartList.hide();
+        }
+      );
     };
 
     $ionicModal.fromTemplateUrl('templates/specimen/modal-capture.html', {
@@ -161,6 +215,14 @@ angular.module('starter.controllers', [
     $scope.closeCaptureList = function() {
       $scope.modalCaptureList.hide();
     };
+
+    $scope.addDataCapture = function() {
+      factorySpecies.addDataCapture() 
+        .then(function(response) {
+          $scope.modalCaptureList.hide();
+        }
+      );
+    }
 
     $ionicModal.fromTemplateUrl('templates/specimen/modal-age.html', {
       scope: $scope

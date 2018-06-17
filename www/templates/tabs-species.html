@@ -1,18 +1,18 @@
 <ion-tabs class="abs-striped tabs-color-assertive tabs-icon-top">
 
-  <ion-tab title="Specimen" icon-on="ion-pie-graph" icon-off="ion-ios-pie-outline" href="#/app/species/specimen">
+  <ion-tab title="Specimen" icon-on="ion-pie-graph" icon-off="ion-ios-pie-outline" href="#/app/species/specimen/{{_species.stateParams}}">
     <ion-nav-view name="tab-specimen"></ion-nav-view>
   </ion-tab>
   
-  <ion-tab title="Parts" icon-on="ion-ios-list" icon-off="ion-ios-list-outline" href="#/app/species/parts">
+  <ion-tab title="Parts" icon-on="ion-ios-list" icon-off="ion-ios-list-outline" href="#/app/species/parts/{{_species.stateParams}}">
     <ion-nav-view name="tab-parts"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="Measurement" icon-on="ion-ios-recording" icon-off="ion-ios-recording-outline" href="#/app/species/measurement">
+  <ion-tab title="Measurement" icon-on="ion-ios-recording" icon-off="ion-ios-recording-outline" href="#/app/species/measurement/{{_species.stateParams}}">
     <ion-nav-view name="tab-measurement"></ion-nav-view>
   </ion-tab>
   
-  <ion-tab title="Capture Record" icon-on="ion-ios-camera" icon-off="ion-ios-camera-outline" href="#/app/species/capture">
+  <ion-tab title="Capture Record" icon-on="ion-ios-camera" icon-off="ion-ios-camera-outline" href="#/app/species/capture/{{_species.stateParams}}">
     <ion-nav-view name="tab-capture"></ion-nav-view>
   </ion-tab>
 

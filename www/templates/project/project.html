@@ -1,8 +1,8 @@
 <ion-view view-title="Master Project">
     <ion-content>
 
-        <ion-list>
-            <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="list in _project.jsonData.tblProject" type="item-text-wrap" href="#/app/project-detail-menu/{{list.id}}">
+        <ion-list ng-show="_project.listProject.length !== 0">
+            <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="list in _project.listProject" type="item-text-wrap" href="#/app/project-detail-menu/{{list.id}}">
                 <h2 class="text-capitalize">{{list.location}}</h2>
                 <p>{{list.dateProject | date:'MMMM dd, y'}}</p>
                 <i class="icon ion-chevron-right icon-accessory"></i>

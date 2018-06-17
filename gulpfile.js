@@ -25,3 +25,11 @@ gulp.task('sass', function(done) {
 gulp.task('watch', ['sass'], function() {
   gulp.watch(paths.sass, ['sass']);
 });
+
+gulp.task( 'js', () => {
+  return gulp.src( 'src/**/*.js', { buffer : false } )
+      .pipe( cached( 'js' ) )
+      .pipe( pkg() )
+      .pipe( directive() )
+      .pipe( gulp.dest( 'output' ) );
+} );

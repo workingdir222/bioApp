@@ -1,34 +1,40 @@
 <ion-view view-title="Measurement">
+    <ion-nav-buttons side="right">
+        <button ng-click="_species.checkDbFile()" class="button button-icon button-clear">
+            Save
+        </button>
+    </ion-nav-buttons>
+    
     <ion-content>
-
         <ion-list>
             <label class="item item-input">
                 <span class="input-label">Total Length (mm)</span>
-                <input type="text" placeholder="Total Length"></label>
-                <label class="item item-input">
+                <input ng-model="_species.dataMeasurement.inputTotalLength"type="text" placeholder="Total Length">
+            </label>
+            <label class="item item-input">
                 <span class="input-label">Tail Length (mm)</span>
-                <input type="text" placeholder="Tail Length">
+                <input ng-model="_species.dataMeasurement.inputTailLength" type="text" placeholder="Tail Length">
             </label>
             <label class="item item-input">
                 <span class="input-label">Hind Foot (mm)</span>
-                <input type="text" placeholder="Hind Foot">
+                <input ng-model="_species.dataMeasurement.inputHindFoot" type="text" placeholder="Hind Foot">
             </label>
             <label class="item item-input">
                 <span class="input-label">Ear (mm)</span>
-                <input type="text" placeholder="Ear">
+                <input ng-model="_species.dataMeasurement.inputEar" type="text" placeholder="Ear">
             </label>
             <label class="item item-input">
                 <span class="input-label">Weight (g)</span>
-                <input type="text" placeholder="Weight">
+                <input ng-model="_species.dataMeasurement.inputWeight" type="text" placeholder="Weight">
             </label>
             
             <label class="item item-input item-select">
                 <div class="input-label">
                     Sex
                 </div>
-                <select>
-                    <option>Male</option>
-                    <option>Female</option>
+                <select ng-model="_species.dataMeasurement.selectSex">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
                 </select>
             </label>
             
@@ -38,7 +44,7 @@
                         <div class="input-label">
                             Age
                         </div>
-                        <select ng-model="_species.ageSelect">
+                        <select ng-model="_species.dataMeasurement.ageSelect">
                             <option ng-repeat="listAge in _species.jsonData.ageMaster">{{ listAge.name }}</option>
                         </select>
                     </label>
@@ -50,15 +56,15 @@
             
             <label class="item item-input">
                 <span class="input-label">Forearm Length</span>
-                <input type="text" placeholder="Forearm Length">
+                <input ng-model="_species.dataMeasurement.inputForearmLength" type="text" placeholder="Forearm Length">
             </label>
             <label class="item item-input">
                 <span class="input-label">Tragus</span>
-                <input type="text" placeholder="Tragus">
+                <input ng-model="_species.dataMeasurement.inputTragus" type="text" placeholder="Tragus">
             </label>
             <label class="item item-input">
                 <span class="input-label">SVL (mm)</span>
-                <input type="text" placeholder="SVL">
+                <input ng-model="_species.dataMeasurement.inputSvl" type="text" placeholder="SVL">
             </label>
                 
             <div class="row p-0">
@@ -67,7 +73,7 @@
                         <div class="input-label">
                             Testes position
                         </div>
-                        <select ng-model="_species.testesPositionSelect">
+                        <select ng-model="_species.dataMeasurement.testesPositionSelect">
                             <option ng-repeat="listTestesPosition in _species.jsonData.testesPositionMaster">{{ listAge.name }}</option>
                         </select>
                     </label>
@@ -78,27 +84,27 @@
             </div>
             <label class="item item-input">
                 <span class="input-label">Testes size</span>
-                <input type="text" placeholder="Testes position">
+                <input ng-model="_species.dataMeasurement.inputTestesPosition" type="text" placeholder="Testes position">
             </label>
             <label class="item item-input">
-                <span class="input-label">Reproducive Stage</span>
-                <input type="text" placeholder="Reproducive Stage">
+                <span class="input-label">Reproductive Stage</span>
+                <input ng-model="_species.dataMeasurement.inputReproductiveStage" type="text" placeholder="Reproductive Stage">
             </label>
             <label class="item item-input">
                 <span class="input-label">placental Scars</span>
-                <input type="text" placeholder="placental Scars">
+                <input ng-model="_species.dataMeasurement.inputPlacentalScars" type="text" placeholder="Placental Scars">
             </label>
             <label class="item item-input">
                 <span class="input-label">Mammae</span>
-                <input type="text" placeholder="Mammae">
+                <input ng-model="_species.dataMeasurement.inputMammae" type="text" placeholder="Mammae">
             </label>
 
             <label class="item item-input">
                 <span class="input-label">Prep date</span>
-                <input type="text" placeholder="Prep date">
+                <input ng-model="_species.dataMeasurement.inputPrepDate" type="text" placeholder="Prep date">
             </label>
 
-            <ion-toggle ng-model="settings.enableFriends">
+            <ion-toggle ng-model="_species.dataMeasurement.enableFriends">
                 Inaccurate
             </ion-toggle>
             
@@ -108,7 +114,7 @@
                         <div class="input-label">
                             Why ?
                         </div>
-                        <select ng-model="_species.whySelect">
+                        <select ng-model="_species.dataMeasurement.whySelect">
                             <option ng-repeat="listWhy in _species.jsonData.whyMaster">{{ listAge.name }}</option>
                         </select>
                     </label>
@@ -120,28 +126,34 @@
 
             <label class="item item-input">
                 <span class="input-label">Endoparasites</span>
-                <input type="text" placeholder="Endoparasites">
+                <input ng-model="_species.dataMeasurement.inputEndoparasites" type="text" placeholder="Endoparasites">
             </label>
             <label class="item item-input">
                 <span class="input-label">Ectoparasites</span>
-                <input type="text" placeholder="Ectoparasites">
+                <input ng-model="_species.dataMeasurement.inputEctoparasites" type="text" placeholder="Ectoparasites">
             </label>
             <label class="item item-input">
                 <span class="input-label">Embryo Number (L,R)</span>
-                <input type="text" placeholder="Embryo Number">
             </label>
-            <label class="item item-input">
-                <span class="input-label">Embryo Number (L,R)</span>
-                <input type="text" placeholder="Embryo Number">
-            </label>
+            <div class="row">
+                <div class="col col-50">
+                    <input ng-model="_species.dataMeasurement.inputEmbryoNumber1" type="text" placeholder="Embryo Number">
+                </div>
+                <div class="col col-50">
+                    <input ng-model="_species.dataMeasurement.inputEmbryoNumber2" type="text" placeholder="Embryo Number">
+                </div>
+            </div>
             <label class="item item-input">
                 <span class="input-label">Embryo Length (CR mm - L,R)</span>
-                <input type="text" placeholder="Embryo Length (CR mm - L,R)">
             </label>
-            <label class="item item-input mb-5">
-                <span class="input-label">Embryo Length (CR mm - L,R)</span>
-                <input type="text" placeholder="Embryo Length (CR mm - L,R)">
-            </label>
+            <div class="row">
+                <div class="col col-50">
+                    <input ng-model="_species.dataMeasurement.inputEmbryoLength1" type="text" placeholder="Embryo Length (CR mm - L,R)">
+                </div>
+                <div class="col col-50">
+                    <input ng-model="_species.dataMeasurement.inputEmbryoLength1" type="text" placeholder="Embryo Length (CR mm - L,R)">
+                </div>
+            </div>
                 
             </div>
         </ion-list>

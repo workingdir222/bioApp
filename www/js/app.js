@@ -63,7 +63,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
   .state('app', {
     url: '/app',
     abstract: true,
-    templateUrl: 'templates/menu.html'
+    templateUrl: 'templates/menu.html',
+    controller: 'ProjectMenu'
   })
 
   .state('app.project', {
@@ -91,7 +92,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     views: {
       'menuContent': {
         templateUrl: 'templates/project/detail-project-specimen.html',
-        controller: 'ProjectDetailCtrl'
+        controller: 'ProjectDetailCtrlSpecimen'
       }
     }
   })
@@ -110,7 +111,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     url: '/species',
     views: {
       'menuContent': {
-        templateUrl: 'templates/tabs-species.html'
+        templateUrl: 'templates/tabs-species.html',
+        controller: 'speciesCtrl'
       }
     }
   })
@@ -136,7 +138,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
   })
 
   .state('app.species.parts', {
-      url: '/parts',
+      url: '/parts/:id',
       views: {
         'tab-parts': {
           templateUrl: 'templates/specimen/parts.html',
@@ -146,7 +148,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     })
 
     .state('app.species.measurement', {
-      url: '/measurement',
+      url: '/measurement/:id',
       views: {
         'tab-measurement': {
           templateUrl: 'templates/specimen/measurement.html',
@@ -156,7 +158,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     })
 
     .state('app.species.capture', {
-      url: '/capture',
+      url: '/capture/:id',
       views: {
         'tab-capture': {
           templateUrl: 'templates/specimen/capture.html',
@@ -200,7 +202,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     views: {
       'menuContent': {
         templateUrl: 'templates/project/detail-project-event.html',
-        controller: 'ProjectDetailCtrl'
+        controller: 'ProjectDetailCtrlEvent'
       }
     }
   })
@@ -220,7 +222,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     views: {
       'menuContent': {
         templateUrl: 'templates/project/detail-project-site.html',
-        controller: 'ProjectDetailCtrl'
+        controller: 'ProjectDetailCtrlSite'
       }
     }
   })
@@ -240,7 +242,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     views: {
       'menuContent': {
         templateUrl: 'templates/project/detail-project-capture.html',
-        controller: 'ProjectDetailCtrl'
+        controller: 'ProjectDetailCtrlCapture'
       }
     }
   })
@@ -250,7 +252,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     views: {
       'menuContent': {
         templateUrl: 'templates/project/detail-project-orb.html',
-        controller: 'ProjectDetailCtrl'
+        controller: 'ProjectDetailCtrlOrb'
       }
     }
   })
@@ -260,7 +262,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     views: {
       'menuContent': {
         templateUrl: 'templates/project/detail-project-entry.html',
-        controller: 'ProjectDetailCtrl'
+        controller: 'ProjectDetailCtrlEntry'
       }
     }
   })

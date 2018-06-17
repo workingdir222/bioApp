@@ -1,5 +1,18 @@
 <ion-view view-title="Parts">
+    <ion-nav-buttons side="right">
+        <button ng-click="_species.checkDbFile()" class="button button-icon button-clear">
+            Save
+        </button>
+    </ion-nav-buttons>
+
     <ion-content>
+        <ion-list>
+            <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="listPart in _species.dataPartArr" type="item-text-wrap">
+                <h2 class="text-capitalize">{{listPart.inputRegPart}}</h2>
+                <p>{{listPart.inputZnumber}}</p>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </ion-item>
+        </ion-list>
 
         <div class="padding">
             <button ng-click="addPartList()" class="button button-large button-block button-energized">

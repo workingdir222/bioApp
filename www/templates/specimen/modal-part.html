@@ -9,36 +9,36 @@
         <ion-list>
             <label class="item item-input">
                 <span class="input-label">Reng Part</span>
-                <input type="text" placeholder="Reng Part">
+                <input ng-model="_species.dataPart.inputRegPart" type="text" placeholder="Reng Part">
             </label>
             <label class="item item-input">
                 <span class="input-label">Z Number</span>
-                <input type="text" placeholder="Z Number">
+                <input ng-model="_species.dataPart.inputZnumber" type="text" placeholder="Z Number">
             </label>
             <label class="item item-input">
                 <span class="input-label">Nature</span>
-                <input type="text" placeholder="Nature">
+                <input ng-model="_species.dataPart.inputNature" type="text" placeholder="Nature">
             </label>
             <label class="item item-input">
                 <span class="input-label">Field</span>
-                <input type="text" placeholder="field">
+                <input ng-model="_species.dataPart.inputField" type="text" placeholder="field">
             </label>
             <label class="item item-input">
                 <span class="input-label">Treatment</span>
-                <input type="text" placeholder="Treatment">
+                <input ng-model="_species.dataPart.inputTreatment" type="text" placeholder="Treatment">
             </label>
             <label class="item item-input">
                 <span class="input-label">Perm</span>
-                <input type="text" placeholder="Perm">
+                <input ng-model="_species.dataPart.inputPerm" type="text" placeholder="Perm">
             </label>
             <label class="item item-input mb-5">
                 <span class="input-label">Temp</span>
-                <input type="text" placeholder="Temp">
+                <input ng-model="_species.dataPart.inputTemp" type="text" placeholder="Temp">
             </label>
         </ion-list>
 
         <div class="padding">
-            <button class="button button-large button-block button-energized">
+            <button ng-click="addPartsScope()" class="button button-large button-block button-energized">
                 Save
             </button>
         </div>

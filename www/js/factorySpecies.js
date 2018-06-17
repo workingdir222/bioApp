@@ -1,7 +1,4 @@
-angular.module('common.species', []).factory('factorySpecies', [
-    '$http',
-    '$cordovaFile',
-    function ($http, $cordovaFile) {
+angular.module('common.species', []).factory('factorySpecies', function ($http, $cordovaFile, $state, $location, $q) {
 
         var self = {};
         self.idProject = "";
@@ -10,16 +7,24 @@ angular.module('common.species', []).factory('factorySpecies', [
         self.stateParams = "";
         self.jsonData = {};
 
+        self.rengPartArr = [];
+        self.dataPartArr = [];
+        self.dataCaptureArr = [];
+        self.dataSpecies = {};
+        self.dataPart = {};
+        self.dataMeasurement = {};
+        self.dataCapture = {};
+
         self.loadData = function () {
 
-            $cordovaFile.getFreeDiskSpace()
-            .then(function (success) {
-                // success in kilobytes
-                console.log(success);
-            }, function (error) {
-                // error
-                console.log(error);
-            });
+            // $cordovaFile.getFreeDiskSpace()
+            // .then(function (success) {
+            //     // success in kilobytes
+            //     console.log(success);
+            // }, function (error) {
+            //     // error
+            //     console.log(error);
+            // });
 
             $cordovaFile.checkFile(cordova.file.dataDirectory, "dbfile.json")
             .then(function (req) {
@@ -35,12 +40,29 @@ angular.module('common.species', []).factory('factorySpecies', [
 
                             if (element.id === self.stateParams) {
                                 self.listSpecies = settings.tblSpecies;
-
                                 angular.forEach(self.listSpecies, function(item){
                                     if (item.id === self.stateParams) {
-                                        self.listSpeciesID = item;
+                                        // self.listSpeciesID = item;
+                                        self.dataSpecies = item;
+                                        self.dataPartArr = item.inputParts;
                                     }
                                 })
+                            } else {
+                                self.dataSpecies = {
+                                    id: "",
+                                    idParent: "",
+                                    idProject: "",
+                                    inputReg: "",
+                                    inputCollector: "",
+                                    inputInitials: "",
+                                    inputPreparator: "",
+                                    inputGenu: "",
+                                    inputSpecies: "",
+                                    inputField1: "",
+                                    inputField2: "",
+                                    inputField3: "",
+                                    inputField4: ""
+                                }
                             }
                             
                         });
@@ -73,7 +95,7 @@ angular.module('common.species', []).factory('factorySpecies', [
 
                 $cordovaFile.readAsBinaryString(cordova.file.dataDirectory, req.name)
                 .then(function (success) {
-
+                    
                     var settings = angular.fromJson(success);
                     var idLength = 0;
 
@@ -82,28 +104,19 @@ angular.module('common.species', []).factory('factorySpecies', [
                     } else {
                         idLength = 0;
                     };
-
-                    var pushData = {
-                        "id": self.stateParams +'-specimen'+ idLength,
-                        "idProject": self.stateParams,
-                        "inputReg": document.getElementById('inputReg').value,
-                        "inputCollector": document.getElementById('inputCollector').value,
-                        "inputInitials": document.getElementById('inputInitials').value,
-                        "inputPreparator": document.getElementById('inputPreparator').value,
-                        "inputGenu": document.getElementById('inputGenu').value,
-                        "inputSpecies": document.getElementById('inputSpecies').value,
-                        "inputField1": document.getElementById('inputField1').value,
-                        "inputField2": document.getElementById('inputField2').value,
-                        "inputField3": document.getElementById('inputField3').value,
-                        "inputField4": document.getElementById('inputField4').value
-                    };
                     
-                    // self.jsonData.tblProject = settings.tblProject;
-                    // self.jsonData.tblEvent = settings.tblEvent;
-                    self.jsonData.tblSpecies.push(pushData);
+                    self.dataSpecies.id = self.stateParams;
+                    self.dataSpecies.idParent = self.stateParams.replace("-specimen"+ idLength, "");
+                    self.dataSpecies.dataMeasurement.push(self.dataMeasurement);
+                    self.jsonData.tblSpecies.push(self.dataSpecies);
                     self.listSpecies = self.jsonData.tblSpecies;
 
-                    return $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(self.jsonData), { append: true });
+                    $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(self.jsonData), { append: true });
+
+                    let pathBack = "/app/project-detail-specimen/"+ self.stateParams.replace("-specimen"+ idLength, "");
+                    
+                    // $state.go('app.project-detail-specimen');
+                    $location.path(pathBack);
                 
                 }, function (error) {
                 console.log(error)
@@ -111,8 +124,25 @@ angular.module('common.species', []).factory('factorySpecies', [
 
             });
         };
+        
+        self.addPartS = function () {
+            let deferred = $q.defer();
+            console.log(self.dataPart);
+            self.dataPartArr.push(angular.copy(self.dataPart));
+            self.dataSpecies.inputParts = self.dataPartArr;
+            deferred.resolve(self.dataPart);
+            return deferred.promise;
+        };
+
+        self.addDataCapture = function () {
+            let deferred = $q.defer();
+            self.dataCaptureArr.push(self.dataCapture);
+            self.dataSpecies.dataCapture = self.dataCaptureArr;
+            deferred.resolve(self.dataCapture);
+            return deferred.promise;
+        };
 
         return self;
 
     }
-])
+)
