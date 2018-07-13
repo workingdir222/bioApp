@@ -4,8 +4,8 @@
 
         <ion-list>
             <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="list in _project.listSpecimen" type="item-text-wrap" href="#/app/species/specimen/{{list.id}}">
-                <h2 class="text-capitalize">{{list.inputReg}}</h2>
-                <p>{{list.inputCollector}}</p>
+                <h2 class="text-capitalize">{{list.tblSpeciment.inputReg}}</h2>
+                <p>{{list.tblSpeciment.inputCollector}}</p>
                 <i class="icon ion-chevron-right icon-accessory"></i>
             </ion-item>
         </ion-list>

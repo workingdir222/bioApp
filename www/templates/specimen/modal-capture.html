@@ -24,11 +24,11 @@
             </div>
             <label class="item item-input">
                 <span class="input-label">Capture Date</span>
-                <input type="text" ng-model="_species.dataCapture.dateCapture" value="{{dateCapture}}" ng-click="openDatePickerCapture()" placeholder="Capture Date">
+                <input type="text" ng-model="_species.dataCapture.dateCapture" ng-click="openDatePickerCapture()" placeholder="Capture Date">
             </label>
             <label class="item item-input">
                 <span class="input-label">Capture Time</span>
-                <input type="text" ng-model="_species.dataCapture.timeCapture" value="{{timeCapture}}" ng-click="openTimePickerCapture()" placeholder="Capture Time">
+                <input type="text" ng-model="_species.dataCapture.timeCapture" ng-click="openTimePickerCapture()" placeholder="Capture Time">
             </label>
             
             <div class="row p-0">
@@ -203,7 +203,7 @@
         </ion-list>
 
         <div class="padding">
-            <button ng-click="_species.addDataCapture()" class="button button-large button-block button-energized">
+            <button ng-click="addDataCapture()" class="button button-large button-block button-energized">
                 Save
             </button>
         </div>

@@ -37,6 +37,11 @@ angular.module('common.project', [])
             "islandMaster": [],
             "habitatMaster": [],
             "disturbedMaster": [],
+            "sexMaster": [],
+            "ageMaster": [],
+            "caughtMaster": [],
+            "testestPositionMaster": [],
+            "collectionEventMaster": []
         };
 
         self.loadData = function () {
@@ -74,18 +79,11 @@ angular.module('common.project', [])
                     angular.forEach(self.jsonData.tblSpecies, function(item){
                         self.listSpecimen.push({
                             id: item.id,
-                            idParent: item.idParent,
                             idProject: item.idProject,
-                            inputReg: item.inputReg,
-                            inputCollector: item.inputCollector,
-                            inputInitials: item.inputInitials,
-                            inputPreparator: item.inputPreparator,
-                            inputGenu: item.inputGenu,
-                            inputSpecies: item.inputSpecies,
-                            inputField1: item.inputField1,
-                            inputField2: item.inputField2,
-                            inputField3: item.inputField3,
-                            inputField4: item.inputField4
+                            tblSpeciment: item.tblSpeciment,
+                            tblParts: item.tblParts,
+                            tblMeasurement: item.tblMeasurement,
+                            tblCapture: item.tblCapture,
                         })
                     })
 
@@ -141,7 +139,9 @@ angular.module('common.project', [])
                     "disturbedMaster": [],
                     "sexMaster": [],
                     "ageMaster": [],
-                    "caughtMaster": []
+                    "caughtMaster": [],
+                    "testestPositionMaster": [],
+                    "collectionEventMaster": []
                 };
                 self.loadData();
             }, function (error) {

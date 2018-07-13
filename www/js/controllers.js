@@ -159,7 +159,7 @@ angular.module('starter.controllers', [
   }
 )
 
-.controller('speciesCtrl', function ($scope, $http, $ionicModal, $stateParams, $timeout, Chats, factorySpecies, ionicDatePicker, ionicTimePicker) {
+.controller('speciesCtrl', function ($scope, $filter, $ionicModal, $stateParams, $timeout, Chats, factorySpecies, ionicDatePicker, ionicTimePicker) {
 
     $scope.loginData = {};
 
@@ -546,7 +546,7 @@ angular.module('starter.controllers', [
         callback: function (val) {  //Mandatory
           console.log('Return value from the datepicker popup is : ' + val, new Date(val));
           var date = new Date(val);
-          $scope.dateCapture = date.getDate() +' - '+ (date.getMonth()+1) +' - '+ date.getFullYear();
+          $scope._species.dataCapture.dateCapture = $filter("date")(date, 'dd MMMM yyyy');
         },
         disabledDates: [            //Optional
           new Date(2018, 2, 16),
@@ -582,7 +582,7 @@ angular.module('starter.controllers', [
             } else {
               var selectedTime = new Date(val * 1000);
               console.log('Selected epoch is : ', val, 'and the time is ', selectedTime.getUTCHours(), 'H :', selectedTime.getUTCMinutes(), 'M');
-              $scope.timeCapture = selectedTime.getUTCHours() +' : '+ selectedTime.getUTCMinutes();
+              $scope._species.dataCapture.timeCapture = selectedTime.getUTCHours() +' : '+ selectedTime.getUTCMinutes();
             }
           },
           inputTime: ((new Date()).getHours() * 60 * 60 + (new Date()).getMinutes() * 60),

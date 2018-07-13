@@ -11,9 +11,12 @@ angular.module('common.species', []).factory('factorySpecies', function ($http, 
         self.dataPartArr = [];
         self.dataCaptureArr = [];
         self.dataSpecies = {};
+        self.dataSpeciment = {};
         self.dataPart = {};
         self.dataMeasurement = {};
         self.dataCapture = {};
+
+        self.listAge = [];
 
         self.loadData = function () {
 
@@ -34,6 +37,7 @@ angular.module('common.species', []).factory('factorySpecies', function ($http, 
 
                     let settings = angular.fromJson(success);
                     self.jsonData = settings;
+                    self.listAge = settings.ageMaster;
 
                     if (settings.tblSpecies !== undefined) {
                         settings.tblSpecies.forEach(element => {
@@ -42,26 +46,21 @@ angular.module('common.species', []).factory('factorySpecies', function ($http, 
                                 self.listSpecies = settings.tblSpecies;
                                 angular.forEach(self.listSpecies, function(item){
                                     if (item.id === self.stateParams) {
-                                        // self.listSpeciesID = item;
                                         self.dataSpecies = item;
-                                        self.dataPartArr = item.inputParts;
+                                        self.dataSpeciment = item.tblSpeciment;
+                                        self.dataPartArr = item.tblParts;
+                                        self.dataMeasurement = item.tblMeasurement;
+                                        self.dataCaptureArr = item.tblCapture;
                                     }
                                 })
                             } else {
                                 self.dataSpecies = {
                                     id: "",
-                                    idParent: "",
                                     idProject: "",
-                                    inputReg: "",
-                                    inputCollector: "",
-                                    inputInitials: "",
-                                    inputPreparator: "",
-                                    inputGenu: "",
-                                    inputSpecies: "",
-                                    inputField1: "",
-                                    inputField2: "",
-                                    inputField3: "",
-                                    inputField4: ""
+                                    tblSpeciment: {},
+                                    tblParts: [],
+                                    tblMeasurement: {},
+                                    tblCapture: [],
                                 }
                             }
                             
@@ -73,11 +72,8 @@ angular.module('common.species', []).factory('factorySpecies', function ($http, 
                 });
 
             }, function (error) {
-
                 self.listProject = [];
-
             });
-
         };
 
         self.getDataByID = function(id) {
@@ -106,16 +102,17 @@ angular.module('common.species', []).factory('factorySpecies', function ($http, 
                     };
                     
                     self.dataSpecies.id = self.stateParams;
-                    self.dataSpecies.idParent = self.stateParams.replace("-specimen"+ idLength, "");
-                    self.dataSpecies.dataMeasurement.push(self.dataMeasurement);
+                    self.dataSpecies.idProject = self.stateParams.replace("-specimen"+ idLength, "");
+                    self.dataSpecies.tblSpeciment = self.dataSpeciment;
+                    self.dataSpecies.tblParts = self.dataPartArr;
+                    self.dataSpecies.tblMeasurement = self.dataMeasurement;
+                    self.dataSpecies.tblCapture = self.dataCaptureArr;
                     self.jsonData.tblSpecies.push(self.dataSpecies);
                     self.listSpecies = self.jsonData.tblSpecies;
 
                     $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(self.jsonData), { append: true });
-
                     let pathBack = "/app/project-detail-specimen/"+ self.stateParams.replace("-specimen"+ idLength, "");
                     
-                    // $state.go('app.project-detail-specimen');
                     $location.path(pathBack);
                 
                 }, function (error) {
@@ -127,18 +124,42 @@ angular.module('common.species', []).factory('factorySpecies', function ($http, 
         
         self.addPartS = function () {
             let deferred = $q.defer();
-            console.log(self.dataPart);
             self.dataPartArr.push(angular.copy(self.dataPart));
-            self.dataSpecies.inputParts = self.dataPartArr;
             deferred.resolve(self.dataPart);
             return deferred.promise;
         };
 
         self.addDataCapture = function () {
             let deferred = $q.defer();
-            self.dataCaptureArr.push(self.dataCapture);
-            self.dataSpecies.dataCapture = self.dataCaptureArr;
+            self.dataCaptureArr.push(angular.copy(self.dataCapture));
             deferred.resolve(self.dataCapture);
+            return deferred.promise;
+        };
+
+        self.addListAge = function () {
+            let deferred = $q.defer();
+            self.jsonData.ageMaster.push({name: self.nameAge});
+
+            $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(self.jsonData), { append: true });
+            deferred.resolve(self.nameAge);
+            return deferred.promise;
+        };
+
+        self.addListTestesPosition = function () {
+            let deferred = $q.defer();
+            self.jsonData.testestPositionMaster.push({name: self.nameTestesPosition});
+
+            $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(self.jsonData), { append: true });
+            deferred.resolve(self.nameAge);
+            return deferred.promise;
+        };
+
+        self.addListCollectionEvent = function () {
+            let deferred = $q.defer();
+            self.jsonData.collectionEventMaster.push({name: self.nameCollectionEvent});
+
+            $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(self.jsonData), { append: true });
+            deferred.resolve(self.nameAge);
             return deferred.promise;
         };
 
