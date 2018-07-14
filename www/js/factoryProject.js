@@ -41,7 +41,15 @@ angular.module('common.project', [])
             "ageMaster": [],
             "caughtMaster": [],
             "testestPositionMaster": [],
-            "collectionEventMaster": []
+            "collectionEventMaster": [],
+            "captureTypeMaster": [],
+            "trapTypeMaster": [],
+            "captureSelectMaster": [],
+            "speciesFieldMaster": [],
+            "caughtByMaster": [],
+            "campTimeMaster": [],
+            "campConditionMaster": [],
+            "finalConditionMaster": []
         };
 
         self.loadData = function () {
@@ -141,7 +149,15 @@ angular.module('common.project', [])
                     "ageMaster": [],
                     "caughtMaster": [],
                     "testestPositionMaster": [],
-                    "collectionEventMaster": []
+                    "collectionEventMaster": [],
+                    "captureTypeMaster": [],
+                    "trapTypeMaster": [],
+                    "captureSelectMaster": [],
+                    "speciesFieldMaster": [],
+                    "caughtByMaster": [],
+                    "campTimeMaster": [],
+                    "campConditionMaster": [],
+                    "finalConditionMaster": []
                 };
                 self.loadData();
             }, function (error) {

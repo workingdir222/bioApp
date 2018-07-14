@@ -228,7 +228,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
   })
 
   .state('app.site', {
-    url: '/site',
+    url: '/site/:id',
     views: {
       'menuContent': {
         templateUrl: 'templates/site/site.html',

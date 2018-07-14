@@ -9,7 +9,11 @@
         <ion-list>
             <ion-list>
                 <label class="item item-input">
-                    <span class="input-label">Date</span>
+                    <span class="input-label">Start Date</span>
+                    <input type="text" ng-model="_project.dateProject" value="{{_project.dateProject}}" ng-click="_project.openDatePicker()" placeholder="Date">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label"> end Date</span>
                     <input type="text" ng-model="_project.dateProject" value="{{_project.dateProject}}" ng-click="_project.openDatePicker()" placeholder="Date">
                 </label>
                 <label class="item item-input">

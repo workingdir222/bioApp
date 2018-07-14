@@ -138,7 +138,7 @@ angular.module('common.species', []).factory('factorySpecies', function ($http, 
 
         self.addListAge = function () {
             let deferred = $q.defer();
-            self.jsonData.ageMaster.push({name: self.nameAge});
+            self.jsonData.ageMaster.push({name: angular.copy(self.nameAge)});
 
             $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(self.jsonData), { append: true });
             deferred.resolve(self.nameAge);
@@ -147,19 +147,91 @@ angular.module('common.species', []).factory('factorySpecies', function ($http, 
 
         self.addListTestesPosition = function () {
             let deferred = $q.defer();
-            self.jsonData.testestPositionMaster.push({name: self.nameTestesPosition});
+            self.jsonData.testestPositionMaster.push({name: angular.copy(self.nameTestesPosition)});
 
             $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(self.jsonData), { append: true });
-            deferred.resolve(self.nameAge);
+            deferred.resolve(self.nameTestesPosition);
             return deferred.promise;
         };
 
         self.addListCollectionEvent = function () {
             let deferred = $q.defer();
-            self.jsonData.collectionEventMaster.push({name: self.nameCollectionEvent});
+            self.jsonData.collectionEventMaster.push({name: angular.copy(self.nameCollectionEvent)});
 
             $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(self.jsonData), { append: true });
-            deferred.resolve(self.nameAge);
+            deferred.resolve(self.nameCollectionEvent);
+            return deferred.promise;
+        };
+
+        self.addListCaptureType = function () {
+            let deferred = $q.defer();
+            self.jsonData.captureTypeMaster.push({name: angular.copy(self.nameCaptureType)});
+
+            $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(self.jsonData), { append: true });
+            deferred.resolve(self.nameCaptureType);
+            return deferred.promise;
+        };
+
+        self.addListTrapType = function () {
+            let deferred = $q.defer();
+            self.jsonData.trapTypeMaster.push({name: angular.copy(self.nameTrapType)});
+
+            $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(self.jsonData), { append: true });
+            deferred.resolve(self.nameTrapType);
+            return deferred.promise;
+        };
+
+        self.addListCaptureSelect = function () {
+            let deferred = $q.defer();
+            self.jsonData.captureSelectMaster.push({name: angular.copy(self.nameCaptureSelect)});
+
+            $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(self.jsonData), { append: true });
+            deferred.resolve(self.nameCaptureSelect);
+            return deferred.promise;
+        };
+
+        self.addListSpeciesField = function () {
+            let deferred = $q.defer();
+            self.jsonData.speciesFieldMaster.push({name: angular.copy(self.nameSpeciesField)});
+
+            $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(self.jsonData), { append: true });
+            deferred.resolve(self.nameSpeciesField);
+            return deferred.promise;
+        };
+
+        self.addListCaughtBy = function () {
+            let deferred = $q.defer();
+            self.jsonData.caughtByMaster.push({name: angular.copy(self.nameCaughtBy)});
+
+            $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(self.jsonData), { append: true });
+            deferred.resolve(self.nameCaughtBy);
+            return deferred.promise;
+        };
+
+        self.addListCampTime = function () {
+            let deferred = $q.defer();
+            self.jsonData.campTimeMaster.push({name: angular.copy(self.nameCampTime)});
+
+            $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(self.jsonData), { append: true });
+            deferred.resolve(self.nameCampTime);
+            return deferred.promise;
+        };
+
+        self.addListCampCondition = function () {
+            let deferred = $q.defer();
+            self.jsonData.campConditionMaster.push({name: angular.copy(self.nameCampCondition)});
+
+            $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(self.jsonData), { append: true });
+            deferred.resolve(self.nameCampCondition);
+            return deferred.promise;
+        };
+
+        self.addListFinalCondition = function () {
+            let deferred = $q.defer();
+            self.jsonData.finalConditionMaster.push({name: angular.copy(self.nameFinalCondition)});
+
+            $cordovaFile.writeFile(cordova.file.dataDirectory, "dbfile.json", JSON.stringify(self.jsonData), { append: true });
+            deferred.resolve(self.nameFinalCondition);
             return deferred.promise;
         };
 

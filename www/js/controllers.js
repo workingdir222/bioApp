@@ -770,7 +770,7 @@ angular.module('starter.controllers', [
   }
 )
 
-.controller('siteCtrl', function ($scope, $http, $ionicModal, factorySite) {
+.controller('siteCtrl', function ($scope, $http, $ionicModal, $location, $stateParams, factorySite) {
 
     $scope._site = factorySite;;
     $scope._site.loadData();
@@ -939,7 +939,9 @@ angular.module('starter.controllers', [
     $scope.addTblSite = function() {
       factorySite.addTblSite() 
         .then(function(response) {
-          
+          let idReplace = $stateParams.id.split("-")[2];
+          let pathBack = "/app/project-detail-site/"+ $stateParams.id.replace("-"+ idReplace, "");
+          $location.path(pathBack);
         }
       );
     };
